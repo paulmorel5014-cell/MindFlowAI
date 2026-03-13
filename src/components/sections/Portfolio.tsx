@@ -365,7 +365,7 @@ export default function Portfolio() {
             </span>
           </div>
           <h2 className="font-serif text-fluid-lg font-bold dark:text-white text-charcoal mb-4">
-            Études de cas
+            Nos réalisations
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-xl mx-auto">
             Chaque projet est une démonstration de ce que nos algorithmes

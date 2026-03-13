@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Check, Zap, Star, Crown, ArrowRight, Sparkles } from 'lucide-react'
+import { Check, Zap, Star, Crown, ArrowRight, Sparkles, Shield, RefreshCw, Headphones, Award } from 'lucide-react'
 
 const plans = [
   {
@@ -123,8 +123,8 @@ export default function Pricing() {
           {plans.map((plan, index) => (
             <motion.div
               key={plan.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: index * 0.13, ease: [0.22, 1, 0.36, 1] }}
               className="relative group"
@@ -267,16 +267,26 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Trust note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        {/* Trust badges */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center text-sm dark:text-slate-600 text-charcoal/40 mt-10"
+          transition={{ delay: 0.55, duration: 0.6 }}
+          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mt-12"
         >
-          Aucun engagement minimum · Résiliable à tout moment · Premier bilan offert
-        </motion.p>
+          {[
+            { icon: Shield, label: 'Paiement sécurisé', color: '#8B5CF6' },
+            { icon: RefreshCw, label: 'Résiliable à tout moment', color: '#06B6D4' },
+            { icon: Headphones, label: 'Accompagnement humain', color: '#8B5CF6' },
+            { icon: Award, label: 'Premier bilan offert', color: '#06B6D4' },
+          ].map(({ icon: Icon, label, color }) => (
+            <div key={label} className="flex items-center gap-2">
+              <Icon className="w-4 h-4 flex-shrink-0" style={{ color }} />
+              <span className="text-xs dark:text-slate-500 text-charcoal/50 font-medium">{label}</span>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
