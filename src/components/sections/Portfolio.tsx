@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, Star, TrendingUp } from 'lucide-react'
+import { SiteMockupModal } from './SiteMockup'
 
 const projects = [
   {
@@ -92,7 +93,15 @@ const projects = [
   },
 ]
 
-function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  onOpenMockup,
+}: {
+  project: (typeof projects)[0]
+  index: number
+  onOpenMockup: () => void
+}) {
   const [hovered, setHovered] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
@@ -105,13 +114,11 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={onOpenMockup}
       className="relative group cursor-pointer"
     >
       <motion.div
-        animate={{
-          scale: hovered ? 1.02 : 1,
-          y: hovered ? -4 : 0,
-        }}
+        animate={{ scale: hovered ? 1.02 : 1, y: hovered ? -4 : 0 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className={`
           frozen-card rounded-2xl overflow-hidden border border-white/[0.08]
@@ -128,10 +135,14 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
           </div>
 
           {/* Category badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-4"
+          <div
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-4"
             style={{ background: `${project.accent}15`, border: `0.5px solid ${project.accent}30` }}
           >
-            <span className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: project.accent }}>
+            <span
+              className="text-[10px] font-semibold uppercase tracking-widest"
+              style={{ color: project.accent }}
+            >
               {project.category}
             </span>
           </div>
@@ -177,9 +188,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         </div>
 
         {/* Card footer */}
-        <div
-          className="px-6 py-4 border-t border-white/[0.05] flex items-center justify-between"
-        >
+        <div className="px-6 py-4 border-t border-white/[0.05] flex items-center justify-between">
           <div>
             <div className="flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5" style={{ color: project.accent }} />
@@ -195,7 +204,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
           </div>
         </div>
 
-        {/* Hover arrow */}
+        {/* Hover — "Voir le site" hint */}
         <motion.div
           animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.7 }}
           transition={{ duration: 0.2 }}
@@ -204,6 +213,22 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         >
           <ArrowUpRight className="w-3.5 h-3.5" style={{ color: project.accent }} />
         </motion.div>
+
+        {/* "Voir le site" label on hover */}
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 4 }}
+              transition={{ duration: 0.2 }}
+              className="absolute bottom-16 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-semibold text-white whitespace-nowrap"
+              style={{ background: `${project.accent}CC` }}
+            >
+              Voir le site →
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </motion.div>
   )
@@ -212,6 +237,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
 export default function Portfolio() {
   const headerRef = useRef<HTMLDivElement>(null)
   const headerInView = useInView(headerRef, { once: true })
+  const [activeMockup, setActiveMockup] = useState<string | null>(null)
 
   return (
     <section id="portfolio" className="relative py-32 overflow-hidden">
@@ -233,7 +259,7 @@ export default function Portfolio() {
             </span>
           </div>
           <h2 className="font-serif text-fluid-lg font-bold dark:text-white text-charcoal mb-4">
-            Études de cas
+            Nos réalisations
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-xl mx-auto">
             Chaque projet est une démonstration de ce que nos algorithmes
@@ -245,12 +271,22 @@ export default function Portfolio() {
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.slice(0, 2).map((p, i) => (
-              <ProjectCard key={p.id} project={p} index={i} />
+              <ProjectCard
+                key={p.id}
+                project={p}
+                index={i}
+                onOpenMockup={() => setActiveMockup(p.id)}
+              />
             ))}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {projects.slice(2).map((p, i) => (
-              <ProjectCard key={p.id} project={p} index={i + 2} />
+              <ProjectCard
+                key={p.id}
+                project={p}
+                index={i + 2}
+                onOpenMockup={() => setActiveMockup(p.id)}
+              />
             ))}
           </div>
         </div>
@@ -273,6 +309,11 @@ export default function Portfolio() {
           </a>
         </motion.div>
       </div>
+
+      {/* Site mockup modal */}
+      {activeMockup && (
+        <SiteMockupModal projectId={activeMockup} onClose={() => setActiveMockup(null)} />
+      )}
     </section>
   )
 }

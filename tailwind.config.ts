@@ -36,6 +36,7 @@ const config: Config = {
         serif: ['var(--font-playfair)', 'Georgia', 'serif'],
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         signature: ['var(--font-dancing)', 'cursive'],
+        typewriter: ['"Special Elite"', 'Courier New', 'monospace'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
