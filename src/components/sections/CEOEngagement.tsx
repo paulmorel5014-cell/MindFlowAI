@@ -9,7 +9,7 @@ export default function CEOEngagement() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="vision" className="relative py-32 overflow-hidden">
+    <section id="vision" className="relative py-16 md:py-32 overflow-hidden">
       {/* Background — blurred image simulation */}
       <div className="absolute inset-0 dark:bg-space bg-ivory overflow-hidden">
         {/* Blurred abstract shapes for depth */}
@@ -46,7 +46,7 @@ export default function CEOEngagement() {
           <div className="absolute -inset-[1px] rounded-[28px] bg-gradient-to-br from-violet-neon/20 via-transparent to-cyan-glacial/15 z-0" />
 
           {/* Main card */}
-          <div className="relative z-10 frozen-card rounded-[26px] p-10 md:p-16 border border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
+          <div className="relative z-10 frozen-card rounded-[26px] p-6 sm:p-10 md:p-16 border border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
 
             {/* Quote icon */}
             <div className="flex justify-center mb-8">

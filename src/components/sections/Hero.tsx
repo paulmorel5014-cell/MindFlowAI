@@ -12,6 +12,8 @@ const stats = [
 ]
 
 const words = ['Prestige', 'Excellence', 'Innovation', 'Vision']
+const VOWELS = ['A','E','I','O','U','É','È','Ê','Œ']
+const getPrep = (w: string) => VOWELS.includes(w[0].toUpperCase()) ? "d'" : 'de '
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null)
@@ -95,7 +97,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 frozen-card"
         >
           <Sparkles className="w-3.5 h-3.5 text-cyan-glacial" />
-          <span className="text-xs font-medium tracking-widest uppercase dark:text-slate-300 text-charcoal/70">
+          <span className="text-[9px] sm:text-xs font-medium tracking-wide sm:tracking-widest uppercase dark:text-slate-300 text-charcoal/70">
             Architecture Digitale · Génération 2025
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-glacial animate-pulse" />
@@ -110,7 +112,7 @@ export default function Hero() {
         >
           L&rsquo;Architecture Digitale<br />
           <span className="relative inline-block">
-            de{' '}
+            {getPrep(words[wordIndex])}
             <AnimatePresence mode="wait">
               <motion.span
                 key={wordIndex}
@@ -142,7 +144,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 sm:mb-20"
         >
           <a
             href="#configurateur"

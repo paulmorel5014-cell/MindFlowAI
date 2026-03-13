@@ -86,7 +86,7 @@ export default function Pricing() {
   const headerInView = useInView(headerRef, { once: true })
 
   return (
-    <section id="tarification" className="relative py-32 overflow-hidden">
+    <section id="tarification" className="relative py-16 md:py-32 overflow-hidden">
       <div className="absolute inset-0 dark:bg-space-mid bg-white/60" />
 
       {/* Decorative lines */}
@@ -103,7 +103,7 @@ export default function Pricing() {
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-violet-neon/10 bg-violet-neon/5 border border-violet-neon/20 mb-6">
             <span className="text-xs font-semibold text-violet-bright uppercase tracking-widest">

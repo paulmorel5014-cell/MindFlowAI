@@ -374,7 +374,7 @@ export default function Configurator() {
   }
 
   return (
-    <section id="configurateur" className="relative py-32 overflow-hidden">
+    <section id="configurateur" className="relative py-16 md:py-32 overflow-hidden">
       <div className="absolute inset-0 dark:bg-space-mid bg-white/40" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-neon/30 to-transparent" />
 
@@ -388,7 +388,7 @@ export default function Configurator() {
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center mb-8 md:mb-14"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-cyan-glacial/10 bg-cyan-glacial/5 border border-cyan-glacial/20 mb-6">
             <Sparkles className="w-3.5 h-3.5 text-cyan-glacial" />

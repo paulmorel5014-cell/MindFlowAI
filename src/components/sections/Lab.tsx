@@ -345,7 +345,7 @@ export default function Lab() {
   const activeToolData = tools.find((t) => t.id === activeTool) ?? null
 
   return (
-    <section id="laboratoire" className="relative py-32 overflow-hidden">
+    <section id="laboratoire" className="relative py-16 md:py-32 overflow-hidden">
       <div className="absolute inset-0 dark:bg-space-mid bg-white/60" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-neon/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-glacial/20 to-transparent" />
@@ -358,7 +358,7 @@ export default function Lab() {
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-20"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-violet-neon/10 bg-violet-neon/5 border border-violet-neon/20 mb-6">
             <span className="text-xs font-semibold text-violet-bright uppercase tracking-widest">

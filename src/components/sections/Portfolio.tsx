@@ -342,7 +342,7 @@ export default function Portfolio() {
   const [activeMockup, setActiveMockup] = useState<string | null>(null)
 
   return (
-    <section id="portfolio" className="relative py-32 overflow-hidden">
+    <section id="portfolio" className="relative py-16 md:py-32 overflow-hidden">
       <div className="absolute inset-0 dark:bg-space bg-ivory" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -357,7 +357,7 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/5 border border-amber-500/20 mb-6">
             <span className="text-xs font-semibold text-amber-500 uppercase tracking-widest">
