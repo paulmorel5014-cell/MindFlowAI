@@ -2,82 +2,82 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Check, Zap, Star, Crown, ArrowRight } from 'lucide-react'
+import { Check, Zap, Star, Crown, ArrowRight, Sparkles } from 'lucide-react'
 
 const plans = [
   {
     id: 'launch',
     name: 'Launch',
-    tagline: 'Décoller avec méthode',
+    tagline: "L'essentiel pour exister.",
     icon: Zap,
-    price: 'Sur devis',
-    priceNote: 'adapté à votre budget',
+    setupPrice: '499€',
+    setupNote: 'Paiement unique',
+    monthlyPrice: '49€',
+    monthlyNote: '/ mois',
     badge: null,
     color: 'cyan',
     accentColor: '#06B6D4',
     borderClass: 'border-cyan-glacial/20',
-    glowClass: 'shadow-[0_0_40px_rgba(6,182,212,0.1)]',
-    hoverGlowClass: 'hover:shadow-[0_0_60px_rgba(6,182,212,0.2)]',
+    glowClass: 'shadow-[0_0_40px_rgba(6,182,212,0.08)]',
+    hoverGlowClass: 'hover:shadow-[0_0_60px_rgba(6,182,212,0.18)]',
     features: [
-      'Prospect Radar — 500 scans/mois',
-      'Algorithmes SEO fondamentaux',
-      'Tableau de bord Analytics',
-      'RDV Auto — 50 créneaux/mois',
-      'Support prioritaire 5j/7',
-      'Rapport mensuel détaillé',
+      'Site vitrine Frozen Ice (1 page)',
+      'Optimisation Google My Business',
+      'Prospect Radar — Version Standard',
     ],
     cta: 'Commencer',
+    featured: false,
+    selfFinance: null,
   },
   {
     id: 'prestige',
     name: 'Prestige',
-    tagline: 'L\'expérience signature',
+    tagline: 'Dominez votre marché local.',
     icon: Star,
-    price: 'Sur devis',
-    priceNote: 'recommandé pour la croissance',
-    badge: 'Populaire',
+    setupPrice: '1 299€',
+    setupNote: 'Paiement unique',
+    monthlyPrice: '99€',
+    monthlyNote: '/ mois',
+    badge: 'CONSEILLÉ',
     color: 'violet',
     accentColor: '#8B5CF6',
     borderClass: 'border-violet-neon/40',
-    glowClass: 'shadow-[0_0_60px_rgba(139,92,246,0.2)]',
-    hoverGlowClass: 'hover:shadow-[0_0_80px_rgba(139,92,246,0.35)]',
+    glowClass: 'shadow-[0_0_60px_rgba(139,92,246,0.18)]',
+    hoverGlowClass: 'hover:shadow-[0_0_90px_rgba(139,92,246,0.32)]',
     featured: true,
     features: [
+      'Site Multi-pages premium',
+      'Écosystème RDV Auto & Analytics complet',
       'Prospect Radar — Illimité',
-      'MindFlow Analytics complet',
-      'Moteurs prédictifs avancés',
-      'RDV Auto — Illimité',
-      'Flux de données multi-canaux',
-      'Équipe dédiée 7j/7',
-      'Rapport hebdomadaire + bilan trimestriel',
-      'Accès API propriétaire',
+      'Support Prioritaire 7j/7',
     ],
-    cta: 'Choisir Prestige',
+    selfFinance: "S'autofinance dès votre premier chantier généré.",
+    cta: 'Démarrer ma croissance',
   },
   {
     id: 'elite',
     name: 'Élite',
-    tagline: 'Partenariat stratégique',
+    tagline: 'Infrastructure digitale sur-mesure.',
     icon: Crown,
-    price: 'Sur mesure',
-    priceNote: 'pour les ambitions sans limites',
+    setupPrice: 'Sur Devis',
+    setupNote: 'À partir de 3 000€',
+    monthlyPrice: '199€',
+    monthlyNote: '/ mois',
     badge: 'Exclusif',
     color: 'gold',
     accentColor: '#D4AF72',
     borderClass: 'border-amber-400/20',
-    glowClass: 'shadow-[0_0_40px_rgba(212,175,114,0.1)]',
+    glowClass: 'shadow-[0_0_40px_rgba(212,175,114,0.08)]',
     hoverGlowClass: 'hover:shadow-[0_0_60px_rgba(212,175,114,0.2)]',
+    featured: false,
     features: [
-      'Tout Prestige inclus',
-      'Algorithmes sur-mesure dédiés',
-      'Data Scientist attitré',
-      'Infrastructure propriétaire',
-      'Tableaux de bord temps réel 24/7',
-      'Conseil stratégique mensuel C-level',
-      'SLA 99.9% garanti',
-      'Intégrations CRM/ERP illimitées',
+      'Solutions logicielles dédiées',
+      'Stratégie SEO agressive',
+      'Accès API propriétaire',
+      'Consultant dédié',
     ],
-    cta: 'Nous contacter',
+    selfFinance: null,
+    cta: 'Contacter un expert',
   },
 ]
 
@@ -94,7 +94,7 @@ export default function Pricing() {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-glacial/20 to-transparent" />
 
       {/* Ambient glows */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] dark:bg-violet-neon/[0.04] blur-[100px] pointer-events-none rounded-full" />
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] dark:bg-violet-neon/[0.04] blur-[120px] pointer-events-none rounded-full" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
@@ -114,8 +114,7 @@ export default function Pricing() {
             Investissez à la hauteur<br />de vos ambitions
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-xl mx-auto">
-            Chaque formule est adaptée à votre réalité. Nos tarifs s&apos;ajustent
-            à votre budget — discutons-en.
+            Setup unique. Abonnement simple. Résultats mesurables.
           </p>
         </motion.div>
 
@@ -127,17 +126,28 @@ export default function Pricing() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.65, delay: index * 0.13, ease: [0.22, 1, 0.36, 1] }}
               className="relative group"
             >
-              {/* Featured glow ring */}
+              {/* Featured animated glow ring */}
               {plan.featured && (
-                <div
-                  className="absolute -inset-[1px] rounded-[24px] z-0"
-                  style={{
-                    background: `linear-gradient(135deg, ${plan.accentColor}40, transparent, ${plan.accentColor}20)`,
-                  }}
-                />
+                <>
+                  <div
+                    className="absolute -inset-[1px] rounded-[24px] z-0"
+                    style={{
+                      background: `linear-gradient(135deg, ${plan.accentColor}50, transparent 50%, ${plan.accentColor}25)`,
+                    }}
+                  />
+                  {/* Subtle pulse animation for featured */}
+                  <motion.div
+                    className="absolute -inset-[2px] rounded-[25px] z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: `linear-gradient(135deg, ${plan.accentColor}30, transparent 60%, ${plan.accentColor}15)`,
+                    }}
+                    animate={{ opacity: [0.3, 0.6, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                </>
               )}
 
               <div
@@ -145,54 +155,65 @@ export default function Pricing() {
                   relative z-10 frozen-card h-full rounded-[22px] p-7 flex flex-col
                   border ${plan.borderClass}
                   ${plan.glowClass} ${plan.hoverGlowClass}
-                  transition-all duration-500 hover:-translate-y-1
-                  ${plan.featured ? 'dark:bg-white/[0.06]' : ''}
+                  transition-all duration-500 hover:-translate-y-1.5
+                  ${plan.featured ? 'dark:bg-white/[0.06] bg-white/80' : ''}
                 `}
               >
                 {/* Badge */}
                 {plan.badge && (
                   <div
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white"
-                    style={{ background: `linear-gradient(135deg, ${plan.accentColor}, ${plan.accentColor}CC)` }}
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold text-white whitespace-nowrap"
+                    style={{ background: `linear-gradient(135deg, ${plan.accentColor}EE, ${plan.accentColor}AA)`, boxShadow: `0 4px 16px ${plan.accentColor}40` }}
                   >
+                    {plan.featured && <Sparkles className="w-3 h-3" />}
                     {plan.badge}
                   </div>
                 )}
 
-                {/* Header */}
+                {/* Icon + Name */}
                 <div className="mb-6">
                   <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                    style={{ background: `${plan.accentColor}15`, border: `0.5px solid ${plan.accentColor}30` }}
+                    className="w-11 h-11 rounded-xl flex items-center justify-center mb-4"
+                    style={{ background: `${plan.accentColor}15`, border: `0.5px solid ${plan.accentColor}35` }}
                   >
                     <plan.icon className="w-5 h-5" style={{ color: plan.accentColor }} />
                   </div>
                   <h3 className="font-serif font-bold text-2xl dark:text-white text-charcoal mb-1">
                     {plan.name}
                   </h3>
-                  <p className="text-sm dark:text-slate-500 text-charcoal/50">{plan.tagline}</p>
+                  <p className="text-sm dark:text-slate-400 text-charcoal/55 italic">{plan.tagline}</p>
                 </div>
 
-                {/* Price */}
-                <div className="mb-6 pb-6 border-b border-white/[0.06]">
+                {/* Price Block */}
+                <div className="mb-6 pb-6 border-b dark:border-white/[0.07] border-black/[0.05]">
+                  {/* Setup — main price, large */}
                   <div
-                    className="font-serif font-bold text-3xl mb-1"
+                    className="font-serif font-bold text-3xl leading-tight mb-0.5"
                     style={{ color: plan.accentColor }}
                   >
-                    {plan.price}
+                    {plan.setupPrice}
                   </div>
-                  <div className="text-xs dark:text-slate-500 text-charcoal/50 italic">
-                    {plan.priceNote}
+                  <div className="text-[11px] dark:text-slate-500 text-charcoal/45 mb-3 tracking-wide uppercase">
+                    {plan.setupNote}
+                  </div>
+                  {/* Subscription — subdued, secondary */}
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-sm font-semibold dark:text-slate-300 text-charcoal/65">
+                      {plan.monthlyPrice}
+                    </span>
+                    <span className="text-xs dark:text-slate-500 text-charcoal/40">
+                      {plan.monthlyNote}
+                    </span>
                   </div>
                 </div>
 
                 {/* Features */}
-                <ul className="flex-1 space-y-3 mb-8">
+                <ul className="flex-1 space-y-3 mb-6">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5">
                       <div
                         className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                        style={{ background: `${plan.accentColor}15` }}
+                        style={{ background: `${plan.accentColor}18` }}
                       >
                         <Check className="w-2.5 h-2.5" style={{ color: plan.accentColor }} />
                       </div>
@@ -203,6 +224,25 @@ export default function Pricing() {
                   ))}
                 </ul>
 
+                {/* Self-finance mention for Prestige */}
+                {plan.selfFinance && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    className="mb-5 px-3.5 py-2.5 rounded-xl text-xs"
+                    style={{
+                      background: `${plan.accentColor}08`,
+                      borderLeft: `2px solid ${plan.accentColor}45`,
+                    }}
+                  >
+                    <span className="dark:text-slate-400 text-charcoal/55 italic">
+                      💡 {plan.selfFinance}
+                    </span>
+                  </motion.div>
+                )}
+
                 {/* CTA */}
                 <a
                   href="#configurateur"
@@ -210,13 +250,13 @@ export default function Pricing() {
                     group/btn w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl
                     text-sm font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]
                     ${plan.featured
-                      ? 'shimmer-btn text-white shadow-[0_4px_20px_rgba(139,92,246,0.3)]'
-                      : 'border dark:text-white text-charcoal hover:text-white'
+                      ? 'shimmer-btn text-white shadow-[0_4px_24px_rgba(139,92,246,0.35)]'
+                      : 'border dark:hover:bg-white/[0.06] hover:bg-black/[0.04]'
                     }
                   `}
                   style={plan.featured
                     ? { '--btn-bg': `linear-gradient(135deg, ${plan.accentColor}, #06B6D4)` } as React.CSSProperties
-                    : { borderColor: `${plan.accentColor}30`, color: plan.accentColor }
+                    : { borderColor: `${plan.accentColor}35`, color: plan.accentColor }
                   }
                 >
                   {plan.cta}

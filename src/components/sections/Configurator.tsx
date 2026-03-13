@@ -4,8 +4,9 @@ import { useRef, useState } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import {
   UtensilsCrossed, Hotel, HardHat, Scale, Laptop2, Store,
-  BarChart3, Users, Globe, Mail, Phone, ArrowRight, ArrowLeft,
-  CheckCircle2, Sparkles, MessageSquare, Megaphone, Calendar, TrendingUp,
+  BarChart3, Users, Globe, Mail, ArrowRight, ArrowLeft,
+  CheckCircle2, Sparkles, Megaphone, Calendar,
+  Rocket, TrendingUp, Cpu,
 } from 'lucide-react'
 
 /* ─── Step 1 — Secteur ─────────────────────────────── */
@@ -28,20 +29,43 @@ const needs = [
   { id: 'email', label: 'Email & nurturing', icon: Mail, description: 'Séquences comportementales intelligentes' },
 ]
 
-/* ─── Step 3 — Budget ──────────────────────────────── */
-const budgets = [
-  { id: 'starter', label: 'Démarrage', range: '< 500€/mois', description: 'Algorithmes essentiels, impact immédiat', color: '#06B6D4' },
-  { id: 'growth', label: 'Croissance', range: '500 — 1 500€/mois', description: 'Suite complète, équipe dédiée', color: '#8B5CF6' },
-  { id: 'scale', label: 'Accélération', range: '1 500 — 3 000€/mois', description: 'Moteurs prédictifs avancés', color: '#F59E0B' },
-  { id: 'enterprise', label: 'Sans limite', range: '3 000€+/mois', description: 'Partenariat stratégique exclusif', color: '#EC4899' },
+/* ─── Step 3 — Ambition ─────────────────────────────── */
+const ambitions = [
+  {
+    id: 'demarrage',
+    label: 'Démarrage',
+    description: 'Je lance mon activité et j\'ai besoin d\'être pro en ligne, visible et crédible dès maintenant.',
+    icon: Rocket,
+    targetPlan: 'Plan Launch',
+    color: '#06B6D4',
+    badge: '499€ Setup · 49€/mois',
+  },
+  {
+    id: 'croissance',
+    label: 'Croissance',
+    description: 'Je veux automatiser mes rendez-vous, mon suivi client et dominer mon marché local.',
+    icon: TrendingUp,
+    targetPlan: 'Plan Prestige',
+    color: '#8B5CF6',
+    badge: '1 299€ Setup · 99€/mois',
+  },
+  {
+    id: 'expansion',
+    label: 'Expansion',
+    description: 'J\'ai besoin d\'un écosystème technologique sur-mesure pour une infrastructure digitale complète.',
+    icon: Cpu,
+    targetPlan: 'Plan Élite',
+    color: '#D4AF72',
+    badge: 'Sur Devis · 199€/mois',
+  },
 ]
 
-const stepLabels = ['Votre secteur', 'Votre besoin', 'Votre budget', 'Contact']
+const stepLabels = ['Votre secteur', 'Votre besoin', 'Votre ambition', 'Contact']
 
 interface FormData {
   sector: string
   needs: string[]
-  budget: string
+  ambition: string
   name: string
   email: string
   phone: string
@@ -150,53 +174,99 @@ function Step3({
   onSelect,
 }: { selected: string; onSelect: (id: string) => void }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      {budgets.map((budget, i) => {
-        const active = selected === budget.id
+    <div className="space-y-3">
+      {ambitions.map((ambition, i) => {
+        const active = selected === ambition.id
+        const Icon = ambition.icon
         return (
           <motion.button
-            key={budget.id}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.07 }}
-            onClick={() => onSelect(budget.id)}
+            key={ambition.id}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            onClick={() => onSelect(ambition.id)}
             className={`
-              relative p-5 rounded-xl text-left border transition-all duration-200 hover:scale-[1.02]
-              ${active
-                ? 'shadow-[0_0_20px_rgba(0,0,0,0.2)]'
-                : 'dark:border-white/[0.06] border-black/[0.05] dark:bg-white/[0.02] bg-white/60'
-              }
+              relative w-full p-5 rounded-xl text-left border transition-all duration-300
+              hover:scale-[1.01] hover:-translate-y-0.5
+              ${active ? 'shadow-[0_0_30px_rgba(0,0,0,0.2)]' : 'dark:border-white/[0.06] border-black/[0.05] dark:bg-white/[0.02] bg-white/60'}
             `}
             style={active
-              ? { borderColor: `${budget.color}40`, background: `${budget.color}08` }
+              ? { borderColor: `${ambition.color}50`, background: `${ambition.color}08` }
               : {}
             }
           >
-            <div className="flex items-start justify-between mb-3">
-              <div className="font-serif font-bold text-lg dark:text-white text-charcoal">{budget.label}</div>
-              {active && (
-                <motion.div
-                  initial={{ scale: 0, rotate: -45 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                >
-                  <CheckCircle2 className="w-5 h-5" style={{ color: budget.color }} />
-                </motion.div>
-              )}
-            </div>
-            <div className="text-sm font-mono font-semibold mb-2" style={{ color: budget.color }}>
-              {budget.range}
-            </div>
-            <div className="text-xs dark:text-slate-500 text-charcoal/50">{budget.description}</div>
+            <div className="flex items-start gap-4">
+              {/* Icon */}
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
+                style={{
+                  background: active ? `${ambition.color}20` : 'rgba(255,255,255,0.04)',
+                  border: `0.5px solid ${active ? ambition.color + '40' : 'rgba(255,255,255,0.06)'}`,
+                }}
+              >
+                <Icon
+                  className="w-5 h-5 transition-colors duration-300"
+                  style={{ color: active ? ambition.color : undefined }}
+                />
+              </div>
 
-            {/* Animated border on selection */}
+              {/* Content */}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2 mb-1">
+                  <span
+                    className="font-serif font-bold text-lg transition-colors duration-300"
+                    style={{ color: active ? ambition.color : undefined }}
+                  >
+                    {ambition.label}
+                  </span>
+                  {/* Plan badge */}
+                  <span
+                    className="text-[10px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap transition-all duration-300"
+                    style={{
+                      background: active ? `${ambition.color}18` : 'rgba(255,255,255,0.04)',
+                      color: active ? ambition.color : 'inherit',
+                      border: `0.5px solid ${active ? ambition.color + '35' : 'rgba(255,255,255,0.06)'}`,
+                    }}
+                  >
+                    {ambition.badge}
+                  </span>
+                </div>
+                <p className="text-sm dark:text-slate-400 text-charcoal/60 leading-relaxed">
+                  {ambition.description}
+                </p>
+                <div className="mt-2">
+                  <span
+                    className="text-[10px] font-semibold uppercase tracking-widest"
+                    style={{ color: `${ambition.color}${active ? 'CC' : '70'}` }}
+                  >
+                    → {ambition.targetPlan}
+                  </span>
+                </div>
+              </div>
+
+              {/* Selection indicator */}
+              <div className="flex-shrink-0 mt-1">
+                {active ? (
+                  <motion.div
+                    initial={{ scale: 0, rotate: -45 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: 'spring', damping: 14, stiffness: 200 }}
+                  >
+                    <CheckCircle2 className="w-5 h-5" style={{ color: ambition.color }} />
+                  </motion.div>
+                ) : (
+                  <div className="w-5 h-5 rounded-full dark:border-white/[0.12] border-black/[0.12] border" />
+                )}
+              </div>
+            </div>
+
+            {/* Active background gradient */}
             {active && (
               <motion.div
-                className="absolute inset-0 rounded-xl"
+                className="absolute inset-0 rounded-xl pointer-events-none"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                style={{
-                  background: `linear-gradient(135deg, ${budget.color}15, transparent)`,
-                }}
+                style={{ background: `linear-gradient(135deg, ${ambition.color}10, transparent)` }}
               />
             )}
           </motion.button>
@@ -272,7 +342,7 @@ export default function Configurator() {
   const [formData, setFormData] = useState<FormData>({
     sector: '',
     needs: [],
-    budget: '',
+    ambition: '',
     name: '',
     email: '',
     phone: '',
@@ -294,7 +364,7 @@ export default function Configurator() {
   const canAdvance = () => {
     if (step === 0) return formData.sector !== ''
     if (step === 1) return formData.needs.length > 0
-    if (step === 2) return formData.budget !== ''
+    if (step === 2) return formData.ambition !== ''
     if (step === 3) return formData.name !== '' && formData.email !== ''
     return false
   }
@@ -392,13 +462,13 @@ export default function Configurator() {
                     <h3 className="font-serif font-bold text-xl dark:text-white text-charcoal mb-6">
                       {step === 0 && 'Quel est votre secteur d\'activité ?'}
                       {step === 1 && 'Quels sont vos besoins prioritaires ?'}
-                      {step === 2 && 'Quel est votre investissement mensuel ?'}
+                      {step === 2 && 'Quelle est votre ambition actuelle ?'}
                       {step === 3 && 'Dernière étape — vos coordonnées'}
                     </h3>
 
                     {step === 0 && <Step1 selected={formData.sector} onSelect={(id) => updateField('sector', id)} />}
                     {step === 1 && <Step2 selected={formData.needs} onToggle={toggleNeed} />}
-                    {step === 2 && <Step3 selected={formData.budget} onSelect={(id) => updateField('budget', id)} />}
+                    {step === 2 && <Step3 selected={formData.ambition} onSelect={(id) => updateField('ambition', id)} />}
                     {step === 3 && <Step4 data={formData} onChange={updateField} />}
                   </motion.div>
                 </AnimatePresence>
