@@ -2,7 +2,8 @@
 
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, Star, TrendingUp, Globe, ExternalLink } from 'lucide-react'
+import { ArrowUpRight, Star, TrendingUp, Globe, ExternalLink, Monitor } from 'lucide-react'
+import { SiteMockupModal } from './SiteMockup'
 
 const projects = [
   {
@@ -172,7 +173,15 @@ function BrowserMockup({ project }: { project: (typeof projects)[0] }) {
 }
 
 /* ─── Project Card ───────────────────────────────────────────────── */
-function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  onOpenMockup,
+}: {
+  project: (typeof projects)[0]
+  index: number
+  onOpenMockup: () => void
+}) {
   const [hovered, setHovered] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
@@ -185,6 +194,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
       transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={onOpenMockup}
       className="relative group cursor-pointer"
     >
       <motion.div
@@ -295,7 +305,24 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
           </div>
         </div>
 
-        {/* Hover arrow overlay */}
+        {/* Hover — "Voir le site" CTA */}
+        <AnimatePresence>
+          {hovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 6, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 4, scale: 0.94 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute bottom-[60px] left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-2 rounded-full text-[11px] font-semibold text-white whitespace-nowrap pointer-events-none shadow-lg"
+              style={{ background: `${project.accent}DD`, backdropFilter: 'blur(8px)' }}
+            >
+              <Monitor className="w-3 h-3" />
+              Voir le site →
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Arrow badge */}
         <motion.div
           animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.7 }}
           transition={{ duration: 0.2 }}
@@ -312,6 +339,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
 export default function Portfolio() {
   const headerRef = useRef<HTMLDivElement>(null)
   const headerInView = useInView(headerRef, { once: true })
+  const [activeMockup, setActiveMockup] = useState<string | null>(null)
 
   return (
     <section id="portfolio" className="relative py-32 overflow-hidden">
@@ -349,12 +377,12 @@ export default function Portfolio() {
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.slice(0, 2).map((p, i) => (
-              <ProjectCard key={p.id} project={p} index={i} />
+              <ProjectCard key={p.id} project={p} index={i} onOpenMockup={() => setActiveMockup(p.id)} />
             ))}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {projects.slice(2).map((p, i) => (
-              <ProjectCard key={p.id} project={p} index={i + 2} />
+              <ProjectCard key={p.id} project={p} index={i + 2} onOpenMockup={() => setActiveMockup(p.id)} />
             ))}
           </div>
         </div>
@@ -377,6 +405,11 @@ export default function Portfolio() {
           </a>
         </motion.div>
       </div>
+
+      {/* Full-screen site mockup modal */}
+      {activeMockup && (
+        <SiteMockupModal projectId={activeMockup} onClose={() => setActiveMockup(null)} />
+      )}
     </section>
   )
 }
