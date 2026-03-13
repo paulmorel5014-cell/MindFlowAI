@@ -3,14 +3,13 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { Radar, BarChart3, CalendarCheck, ArrowRight, X, Zap, Shield, Clock, ChevronRight } from 'lucide-react'
-import ProspectRadar from '@/components/tools/ProspectRadar'
-import MindFlowAnalytics from '@/components/tools/MindFlowAnalytics'
-import RDVAuto from '@/components/tools/RDVAuto'
+import Image from 'next/image'
 
 const tools = [
   {
     id: 'radar',
     icon: Radar,
+    otterImage: '/images/otter-radar.png',
     name: 'Prospect Radar',
     tagline: 'Détection prédictive',
     description:
@@ -29,12 +28,12 @@ const tools = [
     iconColor: 'text-cyan-glacial',
     glowColor: 'rgba(6,182,212,0.15)',
     accentHex: '#06B6D4',
-    component: ProspectRadar,
   },
   {
     id: 'analytics',
     icon: BarChart3,
-    name: 'MindFlow Analytics',
+    otterImage: '/images/otter-analytics.png',
+    name: 'OtterFlow Analytics',
     tagline: 'Intelligence prédictive',
     description:
       'Tableaux de bord vivants alimentés par nos moteurs analytiques. Visualisez l\'évolution de votre ROI avec une précision de 94.2% et anticipez les tendances marché.',
@@ -52,11 +51,11 @@ const tools = [
     iconColor: 'text-violet-bright',
     glowColor: 'rgba(139,92,246,0.15)',
     accentHex: '#8B5CF6',
-    component: MindFlowAnalytics,
   },
   {
     id: 'rdv',
     icon: CalendarCheck,
+    otterImage: '/images/otter-rdv.png',
     name: 'RDV Auto',
     tagline: 'Orchestration automatisée',
     description:
@@ -75,7 +74,6 @@ const tools = [
     iconColor: 'text-green-400',
     glowColor: 'rgba(34,197,94,0.12)',
     accentHex: '#22C55E',
-    component: RDVAuto,
   },
 ]
 
@@ -245,7 +243,6 @@ function ToolModal({ tool, onClose }: { tool: (typeof tools)[0]; onClose: () => 
 function ToolCard({ tool, index, onOpen }: { tool: (typeof tools)[0]; index: number; onOpen: () => void }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const ToolComponent = tool.component
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -284,8 +281,15 @@ function ToolCard({ tool, index, onOpen }: { tool: (typeof tools)[0]; index: num
             ))}
           </div>
         </div>
-        <div className="h-[280px]">
-          <ToolComponent />
+        <div className="h-[280px] flex items-end justify-center relative">
+          <Image
+            src={tool.otterImage}
+            alt={`Mascotte ${tool.name}`}
+            width={240}
+            height={280}
+            className="object-contain drop-shadow-2xl select-none"
+            priority
+          />
         </div>
       </motion.div>
 
@@ -366,7 +370,7 @@ export default function Lab() {
             </span>
           </div>
           <h2 className="font-serif text-fluid-lg font-bold dark:text-white text-charcoal mb-4">
-            Le Laboratoire MindFlow
+            Le Laboratoire OtterFlow
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-2xl mx-auto">
             Trois instruments de précision conçus pour transformer vos données
