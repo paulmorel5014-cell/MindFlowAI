@@ -1,25 +1,46 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring, useInView } from 'framer-motion'
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 
 const stats = [
-  { value: '98%', label: 'Taux de satisfaction' },
-  { value: '+340%', label: 'ROI moyen sur 6 mois' },
-  { value: '200+', label: 'Projets livrés' },
-  { value: '12', label: 'Secteurs maîtrisés' },
+  { to: 98, prefix: '', suffix: '%', label: 'Taux de satisfaction' },
+  { to: 340, prefix: '+', suffix: '%', label: 'ROI moyen sur 6 mois' },
+  { to: 200, prefix: '', suffix: '+', label: 'Projets livrés' },
+  { to: 12, prefix: '', suffix: '', label: 'Secteurs maîtrisés' },
 ]
 
 const words = ['Prestige', 'Excellence', 'Innovation', 'Vision']
+const VOWELS = ['A','E','I','O','U','É','È','Ê','Œ']
+const getPrep = (w: string) => VOWELS.includes(w[0].toUpperCase()) ? "d'" : 'de '
+
+/* ─── CountUp ─────────────────────────────────────────── */
+function CountUp({ to, prefix = '', suffix = '', active }: { to: number; prefix?: string; suffix?: string; active: boolean }) {
+  const motionValue = useMotionValue(0)
+  const springValue = useSpring(motionValue, { stiffness: 45, damping: 18 })
+  const [display, setDisplay] = useState(0)
+
+  useEffect(() => {
+    if (active) motionValue.set(to)
+  }, [active, to, motionValue])
+
+  useEffect(() => {
+    return springValue.on('change', (v) => setDisplay(Math.round(v)))
+  }, [springValue])
+
+  return <>{prefix}{display}{suffix}</>
+}
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   const [wordIndex, setWordIndex] = useState(0)
+  const statsInView = useInView(statsRef, { once: true, margin: '-80px' })
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -95,7 +116,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 frozen-card"
         >
           <Sparkles className="w-3.5 h-3.5 text-cyan-glacial" />
-          <span className="text-xs font-medium tracking-widest uppercase dark:text-slate-300 text-charcoal/70">
+          <span className="text-[9px] sm:text-xs font-medium tracking-wide sm:tracking-widest uppercase dark:text-slate-300 text-charcoal/70">
             Architecture Digitale · Génération 2025
           </span>
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-glacial animate-pulse" />
@@ -110,7 +131,7 @@ export default function Hero() {
         >
           L&rsquo;Architecture Digitale<br />
           <span className="relative inline-block">
-            de{' '}
+            {getPrep(words[wordIndex])}
             <AnimatePresence mode="wait">
               <motion.span
                 key={wordIndex}
@@ -142,7 +163,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 sm:mb-20"
         >
           <a
             href="#configurateur"
@@ -161,8 +182,9 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Stats */}
+        {/* Stats — animated counters */}
         <motion.div
+          ref={statsRef}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.75 }}
@@ -177,7 +199,7 @@ export default function Hero() {
               className="frozen-card rounded-2xl p-5 text-center group hover:scale-[1.03] transition-transform duration-300 cursor-default"
             >
               <div className="font-serif font-bold text-2xl md:text-3xl gradient-text mb-1">
-                {stat.value}
+                <CountUp to={stat.to} prefix={stat.prefix} suffix={stat.suffix} active={statsInView} />
               </div>
               <div className="text-xs dark:text-slate-500 text-charcoal/50 font-medium leading-tight">
                 {stat.label}

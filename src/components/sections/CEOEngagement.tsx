@@ -9,7 +9,7 @@ export default function CEOEngagement() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="vision" className="relative py-32 overflow-hidden">
+    <section id="vision" className="relative py-16 md:py-32 overflow-hidden">
       {/* Background — blurred image simulation */}
       <div className="absolute inset-0 dark:bg-space bg-ivory overflow-hidden">
         {/* Blurred abstract shapes for depth */}
@@ -46,7 +46,7 @@ export default function CEOEngagement() {
           <div className="absolute -inset-[1px] rounded-[28px] bg-gradient-to-br from-violet-neon/20 via-transparent to-cyan-glacial/15 z-0" />
 
           {/* Main card */}
-          <div className="relative z-10 frozen-card rounded-[26px] p-10 md:p-16 border border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
+          <div className="relative z-10 frozen-card rounded-[26px] p-6 sm:p-10 md:p-16 border border-white/[0.10] shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
 
             {/* Quote icon */}
             <div className="flex justify-center mb-8">
@@ -67,7 +67,7 @@ export default function CEOEngagement() {
               {/* Decorative line */}
               <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-violet-neon/40 via-cyan-glacial/30 to-transparent rounded-full" />
 
-              <div className="font-signature text-2xl md:text-3xl leading-relaxed dark:text-white/90 text-charcoal/90 pl-4 space-y-5">
+              <div className="font-typewriter text-lg md:text-xl leading-relaxed dark:text-white/90 text-charcoal/90 pl-4 space-y-5">
                 <motion.p
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -115,32 +115,16 @@ export default function CEOEngagement() {
               initial={{ opacity: 0, y: 15 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.9, duration: 0.7 }}
-              className="mt-12 flex items-end justify-between flex-wrap gap-6"
+              className="mt-12"
             >
-              {/* Signature */}
-              <div>
-                <div className="font-signature text-4xl md:text-5xl gradient-text mb-1">
-                  Alexandre Moreau
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-[1px] bg-gradient-to-r from-violet-neon to-transparent" />
-                  <span className="text-xs dark:text-slate-500 text-charcoal/50 tracking-widest uppercase">
-                    Fondateur & CEO, MindFlow
-                  </span>
-                </div>
+              <div className="font-typewriter text-3xl md:text-4xl gradient-text mb-1">
+                Paul Morel
               </div>
-
-              {/* Stats mini */}
-              <div className="flex gap-6">
-                {[
-                  { v: '7+', l: 'années d\'expertise' },
-                  { v: '200+', l: 'clients accompagnés' },
-                ].map((s) => (
-                  <div key={s.l} className="text-right">
-                    <div className="font-serif font-bold text-xl gradient-text">{s.v}</div>
-                    <div className="text-[10px] dark:text-slate-600 text-charcoal/40">{s.l}</div>
-                  </div>
-                ))}
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-[1px] bg-gradient-to-r from-violet-neon to-transparent" />
+                <span className="text-xs dark:text-slate-500 text-charcoal/50 tracking-widest uppercase">
+                  Fondateur & CEO, MindFlow
+                </span>
               </div>
             </motion.div>
 

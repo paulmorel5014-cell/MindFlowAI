@@ -39,6 +39,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-inter);
