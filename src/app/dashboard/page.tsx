@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useDashboardData } from '@/hooks/useDashboardData'
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar'
@@ -32,8 +32,17 @@ const widgetVariants = {
   },
 }
 
+const SECTION_IDS: Record<string, string> = {
+  revenue: 'section-revenue',
+  pulse: 'section-pulse',
+  funnel: 'section-funnel',
+  heatmap: 'section-heatmap',
+  calendar: 'section-calendar',
+}
+
 export default function DashboardPage() {
   const [activeSection, setActiveSection] = useState('overview')
+  const mainRef = useRef<HTMLElement>(null)
   const {
     stats,
     liveEvents,
@@ -46,6 +55,41 @@ export default function DashboardPage() {
     tendency,
     refresh,
   } = useDashboardData()
+
+  // Navigate to a section or open settings
+  const handleSectionChange = useCallback((id: string) => {
+    if (id === 'settings') {
+      setActiveSection('settings')
+      return
+    }
+    setActiveSection(id)
+    const elId = SECTION_IDS[id]
+    if (elId) {
+      document.getElementById(elId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else {
+      // overview → scroll to top
+      mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }, [])
+
+  // Update active section on scroll via IntersectionObserver
+  useEffect(() => {
+    const sections = Object.entries(SECTION_IDS)
+    const observers: IntersectionObserver[] = []
+
+    sections.forEach(([key, elId]) => {
+      const el = document.getElementById(elId)
+      if (!el) return
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(key) },
+        { root: mainRef.current, threshold: 0.4 }
+      )
+      obs.observe(el)
+      observers.push(obs)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
+  }, [])
 
   const fillRate = stats
     ? Math.round((stats.confirmedRdv / stats.totalSlots) * 100)
@@ -60,7 +104,7 @@ export default function DashboardPage() {
       {/* Sidebar */}
       <DashboardSidebar
         activeSection={activeSection}
-        onSectionChange={setActiveSection}
+        onSectionChange={handleSectionChange}
         isDemo={isDemo}
       />
 
@@ -74,7 +118,7 @@ export default function DashboardPage() {
         />
 
         {/* Scrollable content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">
+        <main ref={mainRef} className="flex-1 overflow-y-auto p-4 md:p-6">
           {/* Loading skeleton */}
           {isLoading && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 animate-pulse">
@@ -94,6 +138,7 @@ export default function DashboardPage() {
             >
               {/* Widget 1 — Revenue Predictor (large, top-left) */}
               <motion.div
+                id="section-revenue"
                 variants={widgetVariants}
                 className="lg:col-span-1 min-h-[320px]"
               >
@@ -109,6 +154,7 @@ export default function DashboardPage() {
 
               {/* Widget 2 — RDV Pulse (tall, spans 2 rows on large) */}
               <motion.div
+                id="section-pulse"
                 variants={widgetVariants}
                 className="lg:col-span-1 lg:row-span-2 min-h-[320px]"
               >
@@ -133,6 +179,7 @@ export default function DashboardPage() {
 
               {/* Widget 3 — Conversion Funnel */}
               <motion.div
+                id="section-funnel"
                 variants={widgetVariants}
                 className="lg:col-span-1 min-h-[280px]"
               >
@@ -157,6 +204,7 @@ export default function DashboardPage() {
 
               {/* Widget 4 — Demand Heatmap (wide) */}
               <motion.div
+                id="section-heatmap"
                 variants={widgetVariants}
                 className="md:col-span-2 lg:col-span-2 min-h-[380px]"
               >
@@ -165,6 +213,7 @@ export default function DashboardPage() {
 
               {/* Widget 5 — Performance Calendar (wide) */}
               <motion.div
+                id="section-calendar"
                 variants={widgetVariants}
                 className="md:col-span-2 lg:col-span-3 min-h-[280px]"
               >
