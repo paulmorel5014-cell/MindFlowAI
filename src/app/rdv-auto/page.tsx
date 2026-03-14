@@ -2,17 +2,19 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CalendarDays, LayoutDashboard, Zap, ArrowLeft } from 'lucide-react'
+import { CalendarDays, LayoutDashboard, Zap, ArrowLeft, Lock } from 'lucide-react'
 import Link from 'next/link'
 import BookingTunnel from '@/components/rdv-auto/BookingTunnel'
 import AdminTimeline from '@/components/rdv-auto/AdminTimeline'
 import { initializeStore } from '@/lib/rdv-store'
+import { useAuth } from '@/hooks/useAuth'
 
 type View = 'booking' | 'admin'
 
 export default function RDVAutoPage() {
   const [view, setView] = useState<View>('booking')
   const [mounted, setMounted] = useState(false)
+  const { user, isLoading: authLoading } = useAuth()
 
   useEffect(() => {
     initializeStore()
@@ -150,7 +152,46 @@ export default function RDVAutoPage() {
                   </p>
                 </div>
 
-                <AdminTimeline />
+                {/* Auth gate */}
+                {authLoading ? (
+                  <div className="flex justify-center py-16">
+                    <motion.div
+                      animate={{ opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 1.6, repeat: Infinity }}
+                      className="text-xs font-mono text-white/30 tracking-widest uppercase"
+                    >
+                      Vérification…
+                    </motion.div>
+                  </div>
+                ) : !user ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="frozen-card rounded-2xl p-8 flex flex-col items-center text-center gap-5 border border-white/[0.07]"
+                  >
+                    <div
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center"
+                      style={{ background: 'linear-gradient(135deg, #8B5CF6, #06B6D4)', boxShadow: '0 0 32px rgba(139,92,246,0.35)' }}
+                    >
+                      <Lock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h2 className="text-base font-bold text-white mb-1">Accès réservé aux artisans</h2>
+                      <p className="text-sm text-white/40 max-w-xs">
+                        Connectez-vous à votre espace MindFlow pour accéder au tableau de bord artisan.
+                      </p>
+                    </div>
+                    <Link
+                      href={`/login?from=${encodeURIComponent('/rdv-auto')}`}
+                      className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold text-white"
+                      style={{ background: 'linear-gradient(135deg, #8B5CF6, #06B6D4)' }}
+                    >
+                      Se connecter
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <AdminTimeline />
+                )}
               </motion.div>
             )}
           </AnimatePresence>

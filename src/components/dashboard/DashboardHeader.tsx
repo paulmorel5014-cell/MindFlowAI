@@ -1,7 +1,9 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { RefreshCw, Wifi, WifiOff } from 'lucide-react'
+import { RefreshCw, Wifi, WifiOff, LogOut, User } from 'lucide-react'
+import { useAuth } from '@/hooks/useAuth'
 
 interface Props {
   isLoading: boolean
@@ -10,10 +12,17 @@ interface Props {
 }
 
 export default function DashboardHeader({ isLoading, isDemo, onRefresh }: Props) {
+  const { user, logout } = useAuth()
+  const router = useRouter()
   const now = new Date()
   const dateStr = now.toLocaleDateString('fr-FR', {
     weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
   })
+
+  function handleLogout() {
+    logout()
+    router.push('/login')
+  }
 
   return (
     <header className="flex items-center justify-between px-6 py-4 border-b border-white/[0.05] frozen-card rounded-none">
@@ -67,6 +76,28 @@ export default function DashboardHeader({ isLoading, isDemo, onRefresh }: Props)
             {now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
           </span>
         </div>
+
+        {/* User menu */}
+        {user && (
+          <div className="flex items-center gap-2 pl-3 border-l border-white/[0.07]">
+            <div className="flex items-center gap-1.5">
+              <div className="w-6 h-6 rounded-full flex items-center justify-center bg-violet-neon/20 border border-violet-neon/30">
+                <User className="w-3 h-3 text-violet-bright" />
+              </div>
+              <span className="text-xs text-slate-400 hidden md:inline max-w-[120px] truncate">
+                {user.name}
+              </span>
+            </div>
+            <button
+              onClick={handleLogout}
+              title="Se déconnecter"
+              className="flex items-center gap-1 px-2 py-1.5 rounded-lg text-slate-500 hover:text-red-400 hover:bg-red-400/[0.08] transition-all text-xs"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Déconnexion</span>
+            </button>
+          </div>
+        )}
       </div>
     </header>
   )
