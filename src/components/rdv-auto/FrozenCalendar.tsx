@@ -2,14 +2,18 @@
 
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { generateSlots, hasAvailableSlot, Service } from '@/lib/rdv-store'
+import { ChevronLeft, ChevronRight, Info } from 'lucide-react'
+import { generateSlots, getAppointments, hasAvailableSlot, Service } from '@/lib/rdv-store'
+import { useStoreVersion } from '@/hooks/useStoreVersion'
 
 const DAY_NAMES = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
 const MONTH_NAMES = [
   'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
   'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre',
 ]
+
+// Max weeks in the future a client can book
+const MAX_WEEKS_AHEAD = 8
 
 function formatDate(year: number, month: number, day: number): string {
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
@@ -40,6 +44,8 @@ const slideVariants = {
 
 export default function FrozenCalendar({ service, selectedDate, selectedTime, onSelect }: Props) {
   const now = new Date()
+  const storeVersion = useStoreVersion() // Re-runs memos when store changes
+
   const [year, setYear] = useState(now.getFullYear())
   const [month, setMonth] = useState(now.getMonth())
   const [dir, setDir] = useState<1 | -1>(1)
@@ -47,25 +53,46 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
 
   const todayStr = formatDate(now.getFullYear(), now.getMonth(), now.getDate())
 
-  // Compute which days have at least one slot
+  // 8-week lookahead limit
+  const maxDate = useMemo(() => {
+    const d = new Date(now)
+    d.setDate(d.getDate() + MAX_WEEKS_AHEAD * 7)
+    return d.toISOString().split('T')[0]
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []) // stable — computed once at mount
+
+  // Compute available days — ONE getAppointments() call for the whole month
   const availableDays = useMemo(() => {
+    const allAppts = getAppointments() // single parse
     const set = new Set<string>()
     const days = getDaysInMonth(year, month)
     for (let d = 1; d <= days; d++) {
       const dateStr = formatDate(year, month, d)
-      if (dateStr < todayStr) continue
+      if (dateStr < todayStr || dateStr > maxDate) continue
       const dow = new Date(year, month, d).getDay()
-      if (dow === 0 || dow === 6) continue // No weekends
-      if (hasAvailableSlot(dateStr, service.duration)) set.add(dateStr)
+      if (dow === 0 || dow === 6) continue
+      if (hasAvailableSlot(dateStr, service.duration, allAppts)) set.add(dateStr)
     }
     return set
-  }, [year, month, service.duration, todayStr])
+  // storeVersion ensures we recompute after any booking/cancellation
+  }, [year, month, service.duration, todayStr, maxDate, storeVersion])
 
-  // Slots for selected day
+  // Slots for selected day — fresh parse (single day, low cost)
   const slots = useMemo(
     () => (activeDay ? generateSlots(activeDay, service.duration) : []),
-    [activeDay, service.duration],
+    // storeVersion ensures freshness after a new booking
+    [activeDay, service.duration, storeVersion],
   )
+
+  const canGoPrev = !(year === now.getFullYear() && month === now.getMonth())
+  const canGoNext = (() => {
+    const nextMonthFirst = formatDate(
+      month === 11 ? year + 1 : year,
+      month === 11 ? 0 : month + 1,
+      1,
+    )
+    return nextMonthFirst <= maxDate
+  })()
 
   const goMonth = (delta: 1 | -1) => {
     setDir(delta)
@@ -78,8 +105,6 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
       else setMonth((m) => m - 1)
     }
   }
-
-  const canGoPrev = !(year === now.getFullYear() && month === now.getMonth())
 
   const daysInMonth = getDaysInMonth(year, month)
   const firstWeekday = getFirstWeekday(year, month)
@@ -114,8 +139,9 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
           </AnimatePresence>
 
           <button
-            onClick={() => goMonth(1)}
-            className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/[0.05] hover:bg-white/10 transition-all"
+            onClick={() => canGoNext && goMonth(1)}
+            disabled={!canGoNext}
+            className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/[0.05] hover:bg-white/10 disabled:opacity-25 disabled:cursor-not-allowed transition-all"
           >
             <ChevronRight className="w-4 h-4 text-white/50" />
           </button>
@@ -123,8 +149,13 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
 
         {/* Day name headers */}
         <div className="grid grid-cols-7 gap-1 mb-1.5">
-          {DAY_NAMES.map((d) => (
-            <div key={d} className="text-center text-[10px] text-white/25 font-medium py-0.5">
+          {DAY_NAMES.map((d, i) => (
+            <div
+              key={d}
+              className={`text-center text-[10px] font-medium py-0.5 ${
+                i >= 5 ? 'text-white/15' : 'text-white/25'
+              }`}
+            >
               {d}
             </div>
           ))}
@@ -142,63 +173,87 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
             transition={{ duration: 0.22, ease: 'easeInOut' }}
             className="grid grid-cols-7 gap-1"
           >
-            {/* Empty cells */}
-            {Array.from({ length: firstWeekday }, (_, i) => (
-              <div key={`e-${i}`} />
-            ))}
+            {Array.from({ length: firstWeekday }, (_, i) => <div key={`e-${i}`} />)}
 
-            {/* Day cells */}
             {Array.from({ length: daysInMonth }, (_, i) => {
               const day = i + 1
               const dateStr = formatDate(year, month, day)
               const isToday = dateStr === todayStr
               const isPast = dateStr < todayStr
+              const isBeyond = dateStr > maxDate
               const dow = new Date(year, month, day).getDay()
               const isWeekend = dow === 0 || dow === 6
               const isAvailable = availableDays.has(dateStr)
               const isActive = dateStr === activeDay
-              const disabled = isPast || isWeekend || !isAvailable
+              const disabled = isPast || isBeyond || isWeekend || !isAvailable
 
               return (
-                <motion.button
-                  key={day}
-                  onClick={() => !disabled && setActiveDay(dateStr)}
-                  disabled={disabled}
-                  whileHover={!disabled ? { scale: 1.12 } : {}}
-                  whileTap={!disabled ? { scale: 0.93 } : {}}
-                  className={`
-                    relative aspect-square rounded-lg text-[11px] font-medium flex items-center justify-center
-                    transition-all duration-200 select-none
-                    ${
-                      isActive
-                        ? 'bg-gradient-to-br from-violet-neon to-cyan-glacial text-white shadow-[0_0_16px_rgba(139,92,246,0.55)]'
-                        : isToday
-                        ? 'bg-violet-neon/[0.18] border border-violet-neon/40 text-violet-bright'
-                        : isAvailable
-                        ? 'bg-cyan-glacial/[0.07] border border-cyan-glacial/[0.18] text-white/65 cursor-pointer hover:bg-cyan-glacial/[0.14] hover:border-cyan-glacial/35'
-                        : 'text-white/15 cursor-not-allowed'
-                    }
-                  `}
-                >
-                  {day}
-                  {/* Soft pulse ring on available days */}
-                  {isAvailable && !isActive && (
-                    <motion.span
-                      className="absolute inset-0 rounded-lg border border-cyan-glacial/25 pointer-events-none"
-                      animate={{ opacity: [0.25, 0.7, 0.25], scale: [1, 1.06, 1] }}
-                      transition={{
-                        duration: 2.8,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                        delay: (day % 9) * 0.18,
-                      }}
-                    />
+                <div key={day} className="relative group">
+                  <motion.button
+                    onClick={() => !disabled && setActiveDay(dateStr)}
+                    disabled={disabled}
+                    whileHover={!disabled ? { scale: 1.12 } : {}}
+                    whileTap={!disabled ? { scale: 0.93 } : {}}
+                    className={`
+                      w-full aspect-square rounded-lg text-[11px] font-medium flex items-center justify-center
+                      transition-all duration-200 select-none
+                      ${
+                        isActive
+                          ? 'bg-gradient-to-br from-violet-neon to-cyan-glacial text-white shadow-[0_0_16px_rgba(139,92,246,0.55)]'
+                          : isToday && isAvailable
+                          ? 'bg-violet-neon/[0.18] border border-violet-neon/40 text-violet-bright'
+                          : isAvailable
+                          ? 'bg-cyan-glacial/[0.07] border border-cyan-glacial/[0.18] text-white/65 cursor-pointer hover:bg-cyan-glacial/[0.14] hover:border-cyan-glacial/35'
+                          : isWeekend
+                          ? 'text-white/12 cursor-default'
+                          : 'text-white/15 cursor-not-allowed'
+                      }
+                    `}
+                  >
+                    {day}
+                    {isAvailable && !isActive && (
+                      <motion.span
+                        className="absolute inset-0 rounded-lg border border-cyan-glacial/25 pointer-events-none"
+                        animate={{ opacity: [0.25, 0.7, 0.25], scale: [1, 1.06, 1] }}
+                        transition={{
+                          duration: 2.8,
+                          repeat: Infinity,
+                          ease: 'easeInOut',
+                          delay: (day % 9) * 0.18,
+                        }}
+                      />
+                    )}
+                  </motion.button>
+
+                  {/* Tooltip for weekends */}
+                  {isWeekend && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block z-10 pointer-events-none">
+                      <div className="bg-space/95 border border-white/[0.12] rounded-lg px-2 py-1 text-[9px] text-white/50 whitespace-nowrap backdrop-blur-md">
+                        Fermé le week-end
+                      </div>
+                    </div>
                   )}
-                </motion.button>
+                </div>
               )
             })}
           </motion.div>
         </AnimatePresence>
+
+        {/* Legend */}
+        <div className="flex items-center gap-4 mt-3 pt-3 border-t border-white/[0.05]">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-sm bg-cyan-glacial/[0.3] border border-cyan-glacial/40" />
+            <span className="text-[10px] text-white/30">Disponible</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-sm bg-gradient-to-br from-violet-neon/80 to-cyan-glacial/80" />
+            <span className="text-[10px] text-white/30">Sélectionné</span>
+          </div>
+          <div className="flex items-center gap-1.5 ml-auto">
+            <Info className="w-3 h-3 text-white/20" />
+            <span className="text-[10px] text-white/20">Lun–Ven uniquement</span>
+          </div>
+        </div>
       </div>
 
       {/* ── Time slots ── */}
@@ -211,7 +266,6 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
             transition={{ duration: 0.28 }}
             className="frozen-card rounded-2xl border border-white/[0.07] p-4"
           >
-            {/* Header */}
             <div className="flex items-center gap-2 mb-3">
               <span className="text-xs font-mono text-cyan-glacial capitalize">
                 {new Date(activeDay + 'T12:00:00').toLocaleDateString('fr-FR', {
@@ -251,23 +305,16 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
                       `}
                       style={
                         isSelectedSlot
-                          ? {
-                              background:
-                                'linear-gradient(135deg, rgba(6,182,212,0.22) 0%, rgba(6,182,212,0.08) 100%)',
-                            }
+                          ? { background: 'linear-gradient(135deg, rgba(6,182,212,0.22) 0%, rgba(6,182,212,0.08) 100%)' }
                           : undefined
                       }
                     >
-                      {/* Inner ice shimmer on selected */}
                       {isSelectedSlot && (
                         <motion.div
                           className="absolute inset-0 rounded-xl pointer-events-none"
                           animate={{ opacity: [0.4, 0.9, 0.4] }}
                           transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-                          style={{
-                            background:
-                              'linear-gradient(135deg, rgba(103,232,249,0.08) 0%, transparent 60%)',
-                          }}
+                          style={{ background: 'linear-gradient(135deg, rgba(103,232,249,0.08) 0%, transparent 60%)' }}
                         />
                       )}
                       <span className="relative z-10">{time}</span>

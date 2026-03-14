@@ -12,7 +12,7 @@ import {
   Service,
   Appointment,
   saveAppointment,
-  onAppointmentConfirm,
+  onAppointmentCreated,
 } from '@/lib/rdv-store'
 
 type Step = 1 | 2 | 3
@@ -76,7 +76,7 @@ export default function BookingTunnel() {
     }
 
     saveAppointment(appt)
-    onAppointmentConfirm(appt)
+    onAppointmentCreated(appt) // Dispatches APPOINTMENT_CREATED — artisan confirmation sends APPOINTMENT_CONFIRMED
     setConfirmedAppt(appt)
     setIsLoading(false)
   }
