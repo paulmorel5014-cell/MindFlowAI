@@ -66,7 +66,20 @@ function broadcastUpdate(): void {
 
 export function initializeStore(): void {
   if (typeof window === 'undefined') return
-  if (!localStorage.getItem(STORAGE_KEY)) {
+
+  // Migration: purge old seed appointments injected by previous versions
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (raw) {
+      const parsed: Appointment[] = JSON.parse(raw)
+      const cleaned = parsed.filter((a) => !a.id.startsWith('seed-'))
+      if (cleaned.length !== parsed.length) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cleaned))
+      }
+    } else {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([]))
+    }
+  } catch {
     localStorage.setItem(STORAGE_KEY, JSON.stringify([]))
   }
 }
