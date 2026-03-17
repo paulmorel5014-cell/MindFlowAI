@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   title: 'MindFlow — L\'Architecture Digitale de Prestige',
   description: 'Agence digitale d\'excellence. Algorithmes prédictifs, flux de données et moteurs analytiques au service de votre croissance.',
   keywords: ['agence digitale', 'marketing digital', 'algorithmes', 'flux de données', 'croissance'],
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'MindFlow',
+  },
   openGraph: {
     title: 'MindFlow — L\'Architecture Digitale de Prestige',
     description: 'Agence digitale d\'excellence. Algorithmes prédictifs et moteurs de croissance pour les marques d\'exception.',
@@ -21,6 +27,8 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        <meta name="theme-color" content="#0a0a0a" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
-import { Sun, Moon, Menu, X, Zap } from 'lucide-react'
+import { Sun, Moon, Menu, X, Zap, User, Building2, LogIn } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -73,7 +73,7 @@ export default function Navigation() {
             </div>
 
             {/* Actions */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               {/* Theme toggle */}
               {mounted && (
                 <button
@@ -91,6 +91,34 @@ export default function Navigation() {
                   {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
                 </button>
               )}
+
+              {/* Agent Immo CTA */}
+              <a
+                href="/agent-immo"
+                className={cn(
+                  'hidden lg:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-300',
+                  'border border-amber-500/30 text-amber-400/80 hover:text-amber-300',
+                  'bg-amber-500/[0.07] hover:bg-amber-500/[0.12] hover:border-amber-500/50',
+                  'hover:scale-[1.02] active:scale-[0.98]'
+                )}
+              >
+                <Building2 size={13} />
+                Espace Agent Immo
+              </a>
+
+              {/* Login */}
+              <a
+                href="/login"
+                className={cn(
+                  'hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium transition-all duration-200',
+                  'dark:bg-white/[0.05] bg-black/[0.05] border border-white/[0.07]',
+                  'dark:text-slate-400 text-charcoal/60',
+                  'dark:hover:text-white hover:text-charcoal hover:border-white/[0.15]'
+                )}
+              >
+                <LogIn size={13} />
+                Connexion
+              </a>
 
               {/* CTA */}
               <a
@@ -138,14 +166,38 @@ export default function Navigation() {
                   {link.label}
                 </motion.a>
               ))}
-              <a
-                href="#configurateur"
+
+              {/* Agent Immo mobile */}
+              <motion.a
+                href="/agent-immo"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.length * 0.05 }}
                 onClick={() => setMobileOpen(false)}
-                className="mt-2 shimmer-btn text-center px-5 py-3 rounded-xl text-sm font-semibold text-white"
-                style={{ '--btn-bg': 'linear-gradient(135deg, #8B5CF6, #06B6D4)' } as React.CSSProperties}
+                className="flex items-center gap-2 py-2 text-amber-400 font-medium border-b dark:border-white/[0.05] border-black/[0.05]"
               >
-                Démarrer un projet
-              </a>
+                <Building2 size={15} />
+                Espace Agent Immo
+              </motion.a>
+
+              <div className="flex gap-2 mt-2">
+                <a
+                  href="/login"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-white/[0.1] text-white/60 text-sm font-medium"
+                >
+                  <LogIn size={14} />
+                  Connexion
+                </a>
+                <a
+                  href="#configurateur"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex-1 shimmer-btn text-center px-5 py-2.5 rounded-xl text-sm font-semibold text-white"
+                  style={{ '--btn-bg': 'linear-gradient(135deg, #8B5CF6, #06B6D4)' } as React.CSSProperties}
+                >
+                  Démarrer
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

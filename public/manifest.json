@@ -1,0 +1,41 @@
+{
+  "name": "MindFlow — Architecture Digitale",
+  "short_name": "MindFlow",
+  "description": "Agence digitale d'excellence. Algorithmes prédictifs, flux de données et moteurs analytiques.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "url": "/dashboard",
+      "description": "Accéder au tableau de bord"
+    },
+    {
+      "name": "RDV Auto",
+      "url": "/rdv-auto",
+      "description": "Réserver un rendez-vous"
+    },
+    {
+      "name": "Agent Immo",
+      "url": "/agent-immo",
+      "description": "Agent immobilier IA"
+    }
+  ]
+}
