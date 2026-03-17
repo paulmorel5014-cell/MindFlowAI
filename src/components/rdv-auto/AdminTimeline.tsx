@@ -370,7 +370,7 @@ export default function AdminTimeline() {
                                 </div>
                                 {appt.client.notes && (
                                   <p className="text-[10px] text-white/30 mt-1 italic truncate">
-                                    "{appt.client.notes}"
+                                    &ldquo;{appt.client.notes}&rdquo;
                                   </p>
                                 )}
                               </div>

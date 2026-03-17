@@ -13,17 +13,11 @@ type View = 'booking' | 'admin'
 
 export default function RDVAutoPage() {
   const [view, setView] = useState<View>('booking')
-  const [mounted, setMounted] = useState(false)
   const { user, isLoading: authLoading } = useAuth()
 
   useEffect(() => {
     initializeStore()
-    setMounted(true)
   }, [])
-
-  if (!mounted) return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0A0F1E 0%, #0F1628 55%, #0A0F1E 100%)' }} />
-  )
 
   return (
     <div

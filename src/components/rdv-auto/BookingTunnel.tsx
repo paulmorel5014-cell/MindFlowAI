@@ -146,7 +146,7 @@ export default function BookingTunnel() {
               <div>
                 <h2 className="text-lg font-bold text-white mb-1">Choisissez votre prestation</h2>
                 <p className="text-sm text-white/35 mb-5">
-                  Sélectionnez le type d'intervention dont vous avez besoin.
+                  Sélectionnez le type d&apos;intervention dont vous avez besoin.
                 </p>
                 <ServiceSelector selected={service} onSelect={handleServiceSelect} />
               </div>

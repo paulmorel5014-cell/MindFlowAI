@@ -57,7 +57,7 @@ export default function DayGantt({ appointments, onConfirm, onReschedule, onCanc
     <div className="frozen-card rounded-2xl border border-white/[0.07] overflow-hidden">
       {/* Header */}
       <div className="px-4 py-3 border-b border-white/[0.06] flex items-center justify-between">
-        <span className="text-xs font-semibold text-white/55">Vue temporelle — Aujourd'hui</span>
+        <span className="text-xs font-semibold text-white/55">Vue temporelle — Aujourd&apos;hui</span>
         <span className="text-[10px] font-mono text-white/25">08:00 – 18:00</span>
       </div>
 
@@ -235,7 +235,7 @@ export default function DayGantt({ appointments, onConfirm, onReschedule, onCanc
           {/* Empty state */}
           {active.length === 0 && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-xs text-white/20">Aucun RDV planifié aujourd'hui</p>
+              <p className="text-xs text-white/20">Aucun RDV planifié aujourd&apos;hui</p>
             </div>
           )}
         </div>
