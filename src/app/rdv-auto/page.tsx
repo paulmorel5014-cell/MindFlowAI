@@ -21,7 +21,9 @@ export default function RDVAutoPage() {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  if (!mounted) return (
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0A0F1E 0%, #0F1628 55%, #0A0F1E 100%)' }} />
+  )
 
   return (
     <div
