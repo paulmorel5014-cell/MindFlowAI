@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Zap, Mail, Lock, Eye, EyeOff, User, Hammer,
-  UserCircle, ArrowRight, Loader2, Sparkles, CheckCircle2,
+  UserCircle, ArrowRight, Loader2, Sparkles, CheckCircle2, Building2,
 } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { UserRole } from '@/lib/auth-store'
@@ -116,7 +116,7 @@ function RoleCard({
 }
 
 // ── Main page ─────────────────────────────────────────────────────────────────
-export default function LoginPage() {
+function LoginPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { user, isLoading, error, login, register, clearError } = useAuth()
@@ -134,7 +134,8 @@ export default function LoginPage() {
   useEffect(() => {
     if (!isLoading && user) {
       const from = searchParams.get('from')
-      const dest = from && from !== '/login' ? from : user.role === 'artisan' ? '/dashboard' : '/'
+      const defaultDest = user.role === 'artisan' ? '/dashboard' : user.role === 'agent_immobilier' ? '/agent-immo' : '/'
+      const dest = from && from !== '/login' ? from : defaultDest
       router.push(dest)
     }
   }, [user, isLoading, router, searchParams])
@@ -163,7 +164,8 @@ export default function LoginPage() {
       setSuccess(true)
       setTimeout(() => {
         const from = searchParams.get('from')
-        const dest = from && from !== '/login' ? from : result.user!.role === 'artisan' ? '/dashboard' : '/'
+        const defaultDest = result.user!.role === 'artisan' ? '/dashboard' : result.user!.role === 'agent_immobilier' ? '/agent-immo' : '/'
+        const dest = from && from !== '/login' ? from : defaultDest
         router.push(dest)
       }, 900)
     }
@@ -325,15 +327,23 @@ export default function LoginPage() {
                       <RoleCard
                         role="artisan"
                         label="Artisan"
-                        sub="Gérant / Indépendant"
+                        sub="Gérant / Indép."
                         icon={Hammer}
                         selected={role === 'artisan'}
                         onSelect={() => setRole('artisan')}
                       />
                       <RoleCard
+                        role="agent_immobilier"
+                        label="Agent Immo"
+                        sub="Immobilier"
+                        icon={Building2}
+                        selected={role === 'agent_immobilier'}
+                        onSelect={() => setRole('agent_immobilier')}
+                      />
+                      <RoleCard
                         role="client"
                         label="Client"
-                        sub="Particulier / Entreprise"
+                        sub="Particulier"
                         icon={UserCircle}
                         selected={role === 'client'}
                         onSelect={() => setRole('client')}
@@ -443,5 +453,13 @@ export default function LoginPage() {
         </div>
       </motion.div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginPageContent />
+    </Suspense>
   )
 }

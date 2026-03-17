@@ -3,7 +3,7 @@
 
 import { supabase, SUPABASE_ENABLED } from './supabase'
 
-export type UserRole = 'artisan' | 'client'
+export type UserRole = 'artisan' | 'client' | 'agent_immobilier'
 
 export interface AuthUser {
   id: string

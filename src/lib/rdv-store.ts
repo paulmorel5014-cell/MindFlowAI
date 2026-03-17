@@ -82,7 +82,6 @@ export function initializeStore(): void {
 
 // ─── DB ↔ Appointment converters ──────────────────────────────────────────────
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function dbToAppointment(row: any): Appointment {
   return {
     id:           String(row.id),
