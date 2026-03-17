@@ -92,7 +92,7 @@ export default function DashboardPage() {
     return () => observers.forEach((o) => o.disconnect())
   }, [])
 
-  const fillRate = stats
+  const fillRate = stats && stats.totalSlots > 0
     ? Math.round((stats.confirmedRdv / stats.totalSlots) * 100)
     : 0
 

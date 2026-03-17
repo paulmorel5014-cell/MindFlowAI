@@ -53,6 +53,8 @@ export const SERVICES: Service[] = [
 ]
 
 const STORAGE_KEY = 'rdv_auto_v1'
+const EVENTS_KEY = 'rdv_events_v1'
+const MAX_STORED_EVENTS = 50
 
 // ─── Store update broadcast ────────────────────────────────────────────────────
 // All mutations dispatch this event so React components can invalidate their caches.
@@ -62,71 +64,10 @@ function broadcastUpdate(): void {
   }
 }
 
-// ─── Seed data ────────────────────────────────────────────────────────────────
-
-function getDateOffset(days: number): string {
-  const d = new Date()
-  d.setDate(d.getDate() + days)
-  return d.toISOString().split('T')[0]
-}
-
-function makeSeedAppointments(): Appointment[] {
-  return [
-    {
-      id: 'seed-0',
-      serviceId: 'diagnostic',
-      serviceLabel: 'Diagnostic',
-      date: getDateOffset(0),
-      time: '09:00',
-      duration: 60,
-      client: { name: 'Sophie Martin', phone: '06 12 34 56 78', address: '12 rue des Lilas, Lyon' },
-      status: 'confirmed',
-      estimatedValue: 150,
-      createdAt: new Date().toISOString(),
-    },
-    {
-      id: 'seed-1',
-      serviceId: 'intervention',
-      serviceLabel: 'Intervention',
-      date: getDateOffset(0),
-      time: '14:00',
-      duration: 120,
-      client: { name: 'Marc Dupont', phone: '07 89 01 23 45', address: '5 avenue Foch, Lyon' },
-      status: 'confirmed',
-      estimatedValue: 350,
-      createdAt: new Date().toISOString(),
-    },
-    {
-      id: 'seed-2',
-      serviceId: 'devis',
-      serviceLabel: 'Devis',
-      date: getDateOffset(1),
-      time: '10:00',
-      duration: 30,
-      client: { name: 'Isabelle Renard', phone: '06 55 44 33 22', address: '8 rue Voltaire, Villeurbanne' },
-      status: 'pending',
-      estimatedValue: 0,
-      createdAt: new Date().toISOString(),
-    },
-    {
-      id: 'seed-3',
-      serviceId: 'diagnostic',
-      serviceLabel: 'Diagnostic',
-      date: getDateOffset(2),
-      time: '11:00',
-      duration: 60,
-      client: { name: 'Paul Laurent', phone: '06 77 88 99 00', address: '3 cours Gambetta, Lyon' },
-      status: 'pending',
-      estimatedValue: 150,
-      createdAt: new Date().toISOString(),
-    },
-  ]
-}
-
 export function initializeStore(): void {
   if (typeof window === 'undefined') return
   if (!localStorage.getItem(STORAGE_KEY)) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(makeSeedAppointments()))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([]))
   }
 }
 
@@ -254,9 +195,27 @@ export interface OtterFlowEvent {
 
 function dispatchOtterFlow(event: OtterFlowEvent): void {
   if (typeof window !== 'undefined') {
+    // Persist to localStorage
+    try {
+      const raw = localStorage.getItem(EVENTS_KEY)
+      const stored: OtterFlowEvent[] = raw ? JSON.parse(raw) : []
+      stored.unshift(event)
+      localStorage.setItem(EVENTS_KEY, JSON.stringify(stored.slice(0, MAX_STORED_EVENTS)))
+    } catch { /* ignore */ }
+
     window.dispatchEvent(new CustomEvent('otterflow:appointment', { detail: event }))
     // eslint-disable-next-line no-console
     console.info(`[OtterFlow] ${event.type} →`, event.payload)
+  }
+}
+
+export function getStoredEvents(): OtterFlowEvent[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = localStorage.getItem(EVENTS_KEY)
+    return raw ? JSON.parse(raw) : []
+  } catch {
+    return []
   }
 }
 
