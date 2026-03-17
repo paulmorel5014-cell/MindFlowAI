@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Info } from 'lucide-react'
-import { generateSlots, getAppointments, hasAvailableSlot, Service } from '@/lib/rdv-store'
+import { generateSlots, getAppointments, hasAvailableSlot, Service, Appointment } from '@/lib/rdv-store'
 import { useStoreVersion } from '@/hooks/useStoreVersion'
 
 const DAY_NAMES = ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di']
@@ -34,6 +34,8 @@ interface Props {
   selectedDate: string | null
   selectedTime: string | null
   onSelect: (date: string, time: string) => void
+  /** When provided, used instead of reading localStorage (public booking page) */
+  appointments?: Appointment[]
 }
 
 const slideVariants = {
@@ -42,7 +44,7 @@ const slideVariants = {
   exit: (dir: 1 | -1) => ({ x: dir * -50, opacity: 0 }),
 }
 
-export default function FrozenCalendar({ service, selectedDate, selectedTime, onSelect }: Props) {
+export default function FrozenCalendar({ service, selectedDate, selectedTime, onSelect, appointments: externalAppts }: Props) {
   const now = new Date()
   const storeVersion = useStoreVersion() // Re-runs memos when store changes
 
@@ -63,7 +65,7 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
 
   // Compute available days — ONE getAppointments() call for the whole month
   const availableDays = useMemo(() => {
-    const allAppts = getAppointments() // single parse
+    const allAppts = externalAppts ?? getAppointments()
     const set = new Set<string>()
     const days = getDaysInMonth(year, month)
     for (let d = 1; d <= days; d++) {
@@ -74,14 +76,11 @@ export default function FrozenCalendar({ service, selectedDate, selectedTime, on
       if (hasAvailableSlot(dateStr, service.duration, allAppts)) set.add(dateStr)
     }
     return set
-  // storeVersion ensures we recompute after any booking/cancellation
-  }, [year, month, service.duration, todayStr, maxDate, storeVersion])
+  }, [year, month, service.duration, todayStr, maxDate, storeVersion, externalAppts])
 
-  // Slots for selected day — fresh parse (single day, low cost)
   const slots = useMemo(
-    () => (activeDay ? generateSlots(activeDay, service.duration) : []),
-    // storeVersion ensures freshness after a new booking
-    [activeDay, service.duration, storeVersion],
+    () => (activeDay ? generateSlots(activeDay, service.duration, externalAppts ?? getAppointments()) : []),
+    [activeDay, service.duration, storeVersion, externalAppts],
   )
 
   const canGoPrev = !(year === now.getFullYear() && month === now.getMonth())

@@ -2,16 +2,11 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import {
-  AuthUser,
-  UserRole,
-  initializeAuth,
-  loginUser,
-  registerUser,
-  logoutUser,
-  getSession,
-  getUserById,
-  AuthResult,
+  AuthUser, UserRole,
+  initializeAuth, loginUser, registerUser, logoutUser,
+  getSession, getUserById, AuthResult,
 } from '@/lib/auth-store'
+import { supabase, SUPABASE_ENABLED } from '@/lib/supabase'
 
 interface AuthState {
   user: AuthUser | null
@@ -33,28 +28,75 @@ export function useAuth(): UseAuthReturn {
     error: null,
   })
 
-  // Initialize store + restore session on mount
   useEffect(() => {
-    let cancelled = false
-    async function init() {
-      await initializeAuth()
-      if (cancelled) return
-      const session = getSession()
-      const user = session ? getUserById(session.userId) : null
-      setState({ user, isLoading: false, error: null })
+    if (SUPABASE_ENABLED) {
+      // Restore session from Supabase
+      supabase.auth.getSession().then(async ({ data: { session } }) => {
+        if (session?.user) {
+          const { data: profile } = await supabase
+            .from('profiles').select('*').eq('id', session.user.id).single()
+          setState({
+            user: {
+              id: session.user.id,
+              email: session.user.email!,
+              name: profile?.name ?? session.user.email!.split('@')[0],
+              role: (profile?.role as UserRole) ?? 'artisan',
+              createdAt: session.user.created_at,
+            },
+            isLoading: false,
+            error: null,
+          })
+        } else {
+          setState({ user: null, isLoading: false, error: null })
+        }
+      })
+
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+        if (session?.user) {
+          const { data: profile } = await supabase
+            .from('profiles').select('*').eq('id', session.user.id).single()
+          setState({
+            user: {
+              id: session.user.id,
+              email: session.user.email!,
+              name: profile?.name ?? session.user.email!.split('@')[0],
+              role: (profile?.role as UserRole) ?? 'artisan',
+              createdAt: session.user.created_at,
+            },
+            isLoading: false,
+            error: null,
+          })
+        } else {
+          setState({ user: null, isLoading: false, error: null })
+        }
+      })
+
+      return () => subscription.unsubscribe()
+    } else {
+      // localStorage fallback
+      let cancelled = false
+      const init = async () => {
+        await initializeAuth()
+        if (cancelled) return
+        const session = getSession()
+        const user = session ? getUserById(session.userId) : null
+        setState({ user, isLoading: false, error: null })
+      }
+      init()
+      return () => { cancelled = true }
     }
-    init()
-    return () => { cancelled = true }
   }, [])
 
   const login = useCallback(async (email: string, password: string): Promise<AuthResult> => {
     setState((prev) => ({ ...prev, isLoading: true, error: null }))
     const result = await loginUser(email, password)
-    setState({
-      user: result.user ?? null,
-      isLoading: false,
-      error: result.error ?? null,
-    })
+    if (!SUPABASE_ENABLED) {
+      setState({ user: result.user ?? null, isLoading: false, error: result.error ?? null })
+    } else {
+      // onAuthStateChange will update the state for Supabase
+      if (!result.ok) setState((prev) => ({ ...prev, isLoading: false, error: result.error ?? null }))
+      else setState((prev) => ({ ...prev, isLoading: false }))
+    }
     return result
   }, [])
 
@@ -62,11 +104,12 @@ export function useAuth(): UseAuthReturn {
     async (email: string, password: string, name: string, role: UserRole): Promise<AuthResult> => {
       setState((prev) => ({ ...prev, isLoading: true, error: null }))
       const result = await registerUser(email, password, name, role)
-      setState({
-        user: result.user ?? null,
-        isLoading: false,
-        error: result.error ?? null,
-      })
+      if (!SUPABASE_ENABLED) {
+        setState({ user: result.user ?? null, isLoading: false, error: result.error ?? null })
+      } else {
+        if (!result.ok) setState((prev) => ({ ...prev, isLoading: false, error: result.error ?? null }))
+        else setState((prev) => ({ ...prev, isLoading: false }))
+      }
       return result
     },
     [],
