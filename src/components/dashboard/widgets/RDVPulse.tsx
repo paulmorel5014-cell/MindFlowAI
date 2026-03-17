@@ -122,15 +122,6 @@ export default function RDVPulse({ confirmedRdv, totalSlots, liveEvents }: Props
           </span>
         </div>
         <div className="p-2 space-y-1.5 overflow-y-auto max-h-48">
-          {liveEvents.length === 0 && (
-            <div className="flex flex-col items-center justify-center py-8 gap-2">
-              <Activity className="w-5 h-5 text-slate-600" />
-              <p className="text-[9px] text-slate-600 text-center font-mono">
-                En attente d&apos;activité…<br />
-                Créez un RDV pour voir les événements ici.
-              </p>
-            </div>
-          )}
           <AnimatePresence mode="popLayout">
             {liveEvents.slice(0, 6).map((event) => (
               <motion.div

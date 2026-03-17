@@ -1,103 +1,33 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { DashboardStats, RDVAutoEvent } from '@/app/api/dashboard/route'
-import {
-  getAppointments, getStoredEvents, syncAppointmentsFromSupabase,
-  type Appointment, type OtterFlowEvent,
-} from '@/lib/rdv-store'
-import { SUPABASE_ENABLED } from '@/lib/supabase'
-import { useAuth } from './useAuth'
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+const SERVICES = [
+  'Consultation initiale', 'Audit complet', 'Suivi mensuel',
+  'Devis personnalisé', 'Formation client', 'Prestation sur site',
+]
+const CLIENTS = [
+  'Sophie M.', 'Marc D.', 'Isabelle R.', 'Paul L.', 'Claire V.',
+  'Thomas B.', 'Amandine K.', 'Romain F.', 'Léa P.', 'Antoine C.',
+]
+const AMOUNTS = [320, 450, 380, 520, 290, 680, 410, 560, 340, 490]
 
-function toYYYYMMDD(date: Date): string {
-  return date.toISOString().split('T')[0]
+function randomItem<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)]
 }
 
-function monthBounds(year: number, month: number): { start: string; end: string } {
-  const start = `${year}-${String(month + 1).padStart(2, '0')}-01`
-  const lastDay = new Date(year, month + 1, 0).getDate()
-  const end = `${year}-${String(month + 1).padStart(2, '0')}-${String(lastDay).padStart(2, '0')}`
-  return { start, end }
-}
-
-function computeStats(appointments: Appointment[]): DashboardStats {
-  const now = new Date()
-  const active    = appointments.filter((a) => a.status !== 'cancelled')
-  const confirmed = active.filter((a) => a.status === 'confirmed')
-
-  const confirmedRdv   = confirmed.length
-  const totalSlots     = active.length
-  const totalValue     = confirmed.reduce((s, a) => s + a.estimatedValue, 0)
-  const averageBasket  = confirmedRdv > 0 ? Math.round(totalValue / confirmedRdv) : 0
-
-  const lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, 1)
-  const lm = monthBounds(lastMonthDate.getFullYear(), lastMonthDate.getMonth())
-  const lastMonthRevenue = confirmed
-    .filter((a) => a.date >= lm.start && a.date <= lm.end)
-    .reduce((s, a) => s + a.estimatedValue, 0)
-
-  const dow    = now.getDay()
-  const monday = new Date(now)
-  monday.setDate(now.getDate() - (dow === 0 ? 6 : dow - 1))
-  monday.setHours(0, 0, 0, 0)
-
-  const weeklyAppointments = Array.from({ length: 4 }, (_, week) =>
-    Array.from({ length: 7 }, (_, day) => {
-      const d = new Date(monday)
-      d.setDate(monday.getDate() + week * 7 + day)
-      return active.filter((a) => a.date === toYYYYMMDD(d)).length
-    }),
-  )
-
-  const monthlyTrend = Array.from({ length: 6 }, (_, i) => {
-    const d = new Date(now.getFullYear(), now.getMonth() - 5 + i, 1)
-    const { start, end } = monthBounds(d.getFullYear(), d.getMonth())
-    return confirmed
-      .filter((a) => a.date >= start && a.date <= end)
-      .reduce((s, a) => s + a.estimatedValue, 0)
-  })
-
+function generateLiveEvent(): RDVAutoEvent {
   return {
-    confirmedRdv, totalSlots, averageBasket, lastMonthRevenue,
-    visitors: 0, calendarClicks: 0,
-    weeklyAppointments, monthlyTrend,
-    regions: [
-      { name: 'Île-de-France',             demand: 92, city: 'Paris'      },
-      { name: 'Auvergne-Rhône-Alpes',      demand: 78, city: 'Lyon'       },
-      { name: 'Provence-Alpes-Côte d\'Azur', demand: 71, city: 'Marseille' },
-      { name: 'Occitanie',                 demand: 58, city: 'Toulouse'   },
-      { name: 'Nouvelle-Aquitaine',        demand: 52, city: 'Bordeaux'   },
-      { name: 'Hauts-de-France',           demand: 45, city: 'Lille'      },
-      { name: 'Grand Est',                 demand: 38, city: 'Strasbourg' },
-      { name: 'Bretagne',                  demand: 34, city: 'Rennes'     },
-    ],
+    id: `live-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+    timestamp: new Date().toISOString(),
+    clientName: randomItem(CLIENTS),
+    service: randomItem(SERVICES),
+    amount: randomItem(AMOUNTS),
+    source: Math.random() > 0.5 ? 'rdv-auto' : 'website',
+    status: 'confirmed',
   }
 }
-
-function otterFlowToRDVEvent(e: OtterFlowEvent): RDVAutoEvent {
-  const statusMap: Record<OtterFlowEvent['type'], RDVAutoEvent['status']> = {
-    APPOINTMENT_CREATED:    'pending',
-    APPOINTMENT_CONFIRMED:  'confirmed',
-    APPOINTMENT_CANCELLED:  'cancelled',
-    APPOINTMENT_RESCHEDULED:'pending',
-  }
-  const serviceLabel: Record<string, string> = {
-    diagnostic: 'Diagnostic', intervention: 'Intervention', devis: 'Devis',
-  }
-  return {
-    id:         `${e.payload.appointmentId}-${e.type}`,
-    timestamp:  e.timestamp,
-    clientName: e.payload.clientName,
-    service:    serviceLabel[e.payload.serviceId] ?? e.payload.serviceId,
-    amount:     e.payload.estimatedValue,
-    source:     'rdv-auto',
-    status:     statusMap[e.type],
-  }
-}
-
-// ─── Hook ─────────────────────────────────────────────────────────────────────
 
 export interface DashboardData {
   stats: DashboardStats | null
@@ -112,62 +42,88 @@ export interface DashboardData {
   refresh: () => void
 }
 
-export function useDashboardData(): DashboardData {
-  const { user } = useAuth()
-  const [stats, setStats]               = useState<DashboardStats | null>(null)
-  const [liveEvents, setLiveEvents]     = useState<RDVAutoEvent[]>([])
-  const [isLoading, setIsLoading]       = useState(true)
-  const [averageBasket, setAverageBasket] = useState(0)
+const DEFAULT_AVERAGE_BASKET = 420
 
-  const loadFromLocal = useCallback(() => {
-    const appointments = getAppointments()
-    const computed = computeStats(appointments)
-    setStats(computed)
-    if (computed.averageBasket > 0) setAverageBasket(computed.averageBasket)
-    setLiveEvents(getStoredEvents().map(otterFlowToRDVEvent))
-    setIsLoading(false)
+export function useDashboardData(): DashboardData {
+  const [stats, setStats] = useState<DashboardStats | null>(null)
+  const [liveEvents, setLiveEvents] = useState<RDVAutoEvent[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [isDemo, setIsDemo] = useState(true)
+  const [averageBasket, setAverageBasket] = useState(DEFAULT_AVERAGE_BASKET)
+  const pollingRef = useRef<NodeJS.Timeout | null>(null)
+  const liveRef = useRef<NodeJS.Timeout | null>(null)
+
+  const fetchData = useCallback(async () => {
+    try {
+      const res = await fetch('/api/dashboard')
+      if (!res.ok) return
+      const data = await res.json()
+      setStats(data.stats)
+      setLiveEvents(data.recentEvents ?? [])
+      setIsDemo(data.source === 'demo')
+    } catch {
+      // Silent fail — keep existing data
+    } finally {
+      setIsLoading(false)
+    }
   }, [])
 
-  const refresh = useCallback(async () => {
+  const refresh = useCallback(() => {
     setIsLoading(true)
-    if (SUPABASE_ENABLED && user?.id) {
-      await syncAppointmentsFromSupabase(user.id)
-    }
-    loadFromLocal()
-  }, [loadFromLocal, user?.id])
+    fetchData()
+  }, [fetchData])
 
-  // Initial load: sync from Supabase then render
+  // Initial fetch
   useEffect(() => {
-    async function init() {
-      if (SUPABASE_ENABLED && user?.id) {
-        await syncAppointmentsFromSupabase(user.id)
-      }
-      loadFromLocal()
-    }
-    init()
-  }, [loadFromLocal, user?.id])
+    fetchData()
+  }, [fetchData])
 
-  // React to local store changes (CustomEvent + Realtime via useStoreVersion)
+  // Polling every 30s
   useEffect(() => {
-    const handler = () => loadFromLocal()
-    window.addEventListener('rdv:store-updated', handler)
-    window.addEventListener('otterflow:appointment', handler)
+    pollingRef.current = setInterval(fetchData, 30_000)
     return () => {
-      window.removeEventListener('rdv:store-updated', handler)
-      window.removeEventListener('otterflow:appointment', handler)
+      if (pollingRef.current) clearInterval(pollingRef.current)
     }
-  }, [loadFromLocal])
+  }, [fetchData])
+
+  // Live event simulation (demo mode)
+  useEffect(() => {
+    const scheduleNext = () => {
+      const delay = 8000 + Math.random() * 7000 // 8-15s
+      liveRef.current = setTimeout(() => {
+        if (isDemo) {
+          const evt = generateLiveEvent()
+          setLiveEvents((prev) => [evt, ...prev].slice(0, 20))
+          setStats((prev) =>
+            prev ? { ...prev, confirmedRdv: prev.confirmedRdv + 1 } : prev
+          )
+        }
+        scheduleNext()
+      }, delay)
+    }
+    scheduleNext()
+    return () => {
+      if (liveRef.current) clearTimeout(liveRef.current)
+    }
+  }, [isDemo])
 
   const confirmedRdv = stats?.confirmedRdv ?? 0
-  const caActuel     = confirmedRdv * averageBasket
-  const caPrecedent  = stats?.lastMonthRevenue ?? 0
-  const tendency     = caPrecedent > 0
+  const caActuel = confirmedRdv * averageBasket
+  const caPrecedent = stats?.lastMonthRevenue ?? 0
+  const tendency = caPrecedent > 0
     ? Math.round(((caActuel - caPrecedent) / caPrecedent) * 100)
     : 0
 
   return {
-    stats, liveEvents, isLoading, isDemo: false,
-    averageBasket, setAverageBasket,
-    caActuel, caPrecedent, tendency, refresh,
+    stats,
+    liveEvents,
+    isLoading,
+    isDemo,
+    averageBasket,
+    setAverageBasket,
+    caActuel,
+    caPrecedent,
+    tendency,
+    refresh,
   }
 }

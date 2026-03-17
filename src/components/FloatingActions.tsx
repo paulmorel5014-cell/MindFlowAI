@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, ArrowRight, CalendarDays } from 'lucide-react'
-import Link from 'next/link'
+import { MessageCircle, ArrowRight } from 'lucide-react'
 
 const WHATSAPP_NUMBER = '33600000000' // À personnaliser
 const WHATSAPP_MESSAGE = encodeURIComponent('Bonjour, je souhaite en savoir plus sur vos solutions MindFlow.')
@@ -22,38 +21,6 @@ export default function FloatingActions() {
 
   return (
     <>
-      {/* ── RDV Auto button — desktop ── */}
-      <div className="hidden sm:block fixed bottom-6 right-[76px] z-40">
-        <div className="relative group">
-          <AnimatePresence>
-            <motion.div
-              initial={{ opacity: 0, x: 8, scale: 0.95 }}
-              animate={{ opacity: 0, x: 8, scale: 0.95 }}
-              whileHover={{ opacity: 1, x: 0, scale: 1 }}
-              className="absolute right-14 top-1/2 -translate-y-1/2 whitespace-nowrap text-xs font-medium px-3 py-1.5 rounded-lg pointer-events-none"
-              style={{ background: 'rgba(0,0,0,0.8)', color: 'white', backdropFilter: 'blur(8px)' }}
-            >
-              Prendre rendez-vous
-              <div className="absolute right-[-5px] top-1/2 -translate-y-1/2 w-0 h-0"
-                style={{ borderLeft: '5px solid rgba(0,0,0,0.8)', borderTop: '4px solid transparent', borderBottom: '4px solid transparent' }} />
-            </motion.div>
-          </AnimatePresence>
-          <Link href="/rdv-auto" aria-label="Prendre un rendez-vous">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-[52px] h-[52px] flex items-center justify-center rounded-full"
-              style={{
-                background: 'linear-gradient(135deg, #8B5CF6, #06B6D4)',
-                boxShadow: '0 4px 24px rgba(139,92,246,0.35)',
-              }}
-            >
-              <CalendarDays className="w-5 h-5 text-white" />
-            </motion.div>
-          </Link>
-        </div>
-      </div>
-
       {/* ── WhatsApp button — desktop ── */}
       <div className="hidden sm:block fixed bottom-6 right-6 z-40">
         <div className="relative">

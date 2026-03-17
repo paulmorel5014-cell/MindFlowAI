@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useDashboardData } from '@/hooks/useDashboardData'
-import AuthGuard from '@/components/auth/AuthGuard'
 import DashboardSidebar from '@/components/dashboard/DashboardSidebar'
 import DashboardHeader from '@/components/dashboard/DashboardHeader'
 import RevenuePredictor from '@/components/dashboard/widgets/RevenuePredictor'
@@ -92,7 +91,7 @@ export default function DashboardPage() {
     return () => observers.forEach((o) => o.disconnect())
   }, [])
 
-  const fillRate = stats && stats.totalSlots > 0
+  const fillRate = stats
     ? Math.round((stats.confirmedRdv / stats.totalSlots) * 100)
     : 0
 
@@ -101,7 +100,6 @@ export default function DashboardPage() {
     : 0
 
   return (
-    <AuthGuard>
     <div className="flex h-screen overflow-hidden bg-space">
       {/* Sidebar */}
       <DashboardSidebar
@@ -313,6 +311,5 @@ export default function DashboardPage() {
         </main>
       </div>
     </div>
-    </AuthGuard>
   )
 }
