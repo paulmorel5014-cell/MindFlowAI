@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import type { RDVAutoEvent } from '../../dashboard/route'
+
+export interface RDVAutoEvent {
+  id: string
+  type: string
+  timestamp: string
+  payload: Record<string, unknown>
+}
 
 // In-memory store — replace with DB/Redis in production
 const eventBuffer: RDVAutoEvent[] = []
