@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Cookie, X } from 'lucide-react'
 
-const STORAGE_KEY = 'mindflow_cookie_consent'
+const STORAGE_KEY = 'otterflow_cookie_consent'
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false)

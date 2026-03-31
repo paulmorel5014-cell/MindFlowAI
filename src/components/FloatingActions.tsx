@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, ArrowRight } from 'lucide-react'
 
 const WHATSAPP_NUMBER = '33600000000' // À personnaliser
-const WHATSAPP_MESSAGE = encodeURIComponent('Bonjour, je souhaite en savoir plus sur vos solutions MindFlow.')
+const WHATSAPP_MESSAGE = encodeURIComponent('Bonjour, je souhaite en savoir plus sur vos solutions OtterFlow.')
 
 export default function FloatingActions() {
   const [showMobileCTA, setShowMobileCTA] = useState(false)

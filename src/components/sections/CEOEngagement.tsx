@@ -123,7 +123,7 @@ export default function CEOEngagement() {
               <div className="flex items-center gap-2">
                 <div className="w-8 h-[1px] bg-gradient-to-r from-violet-neon to-transparent" />
                 <span className="text-xs dark:text-slate-500 text-charcoal/50 tracking-widest uppercase">
-                  Fondateur & CEO, MindFlow
+                  Fondateur & CEO, OtterFlow
                 </span>
               </div>
             </motion.div>

@@ -54,7 +54,7 @@ export default function Navigation() {
                 </div>
               </div>
               <span className="font-serif font-700 text-lg tracking-tight dark:text-white text-charcoal">
-                Mind<span className="gradient-text">Flow</span>
+                Otter<span className="gradient-text">Flow</span>
               </span>
             </a>
 

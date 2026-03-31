@@ -569,7 +569,7 @@ function EllarisSite() {
       {/* Stats */}
       <div className="mx-6 mb-8 p-5 grid grid-cols-3 gap-4 text-center"
         style={{ border: '0.5px solid rgba(16,185,129,0.15)', background: 'rgba(16,185,129,0.04)' }}>
-        {[{ v: '×8', l: 'leads qualifiés' }, { v: '÷6', l: 'coût par lead' }, { v: '34', l: 'leads/mois via MindFlow' }].map((s) => (
+        {[{ v: '×8', l: 'leads qualifiés' }, { v: '÷6', l: 'coût par lead' }, { v: '34', l: 'leads/mois via OtterFlow' }].map((s) => (
           <div key={s.l}>
             <div className="text-2xl font-bold" style={{ color: '#10B981' }}>{s.v}</div>
             <div className="text-[9px] mt-0.5" style={{ color: 'rgba(232,245,238,0.35)' }}>{s.l}</div>
@@ -832,7 +832,7 @@ function NexoraSite() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-4 text-[10px]"
             style={{ background: 'rgba(6,182,212,0.1)', border: '0.5px solid rgba(6,182,212,0.2)', color: '#06B6D4' }}>
             <motion.div className="w-1.5 h-1.5 rounded-full bg-cyan-400" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
-            MRR ×4 en 8 mois · Propulsé par MindFlow
+            MRR ×4 en 8 mois · Propulsé par OtterFlow
           </div>
           <h1 className="font-bold leading-tight mb-3" style={{ fontSize: 30 }}>
             Automatisez votre pipeline<br /><span style={{ color: '#06B6D4' }}>commercial B2B</span>
@@ -1032,10 +1032,10 @@ export function SiteMockupModal({ projectId, onClose }: { projectId: string; onC
             <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: '#22C55E', opacity: 0.8 }} />
             <span>{mockup.url}</span>
           </div>
-          {/* MindFlow badge */}
+          {/* OtterFlow badge */}
           <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] flex-shrink-0"
             style={{ background: 'rgba(139,92,246,0.12)', border: '0.5px solid rgba(139,92,246,0.25)', color: '#A78BFA' }}>
-            <Zap className="w-3 h-3" /> Site créé par MindFlow
+            <Zap className="w-3 h-3" /> Site créé par OtterFlow
           </div>
           <button onClick={onClose}
             className="w-7 h-7 rounded flex items-center justify-center transition-colors hover:bg-white/10 ml-1"
