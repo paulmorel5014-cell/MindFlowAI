@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─────────────────────────────────── */
+:root {
+  --font-playfair: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-dancing: 'Dancing Script', 'Brush Script MT', cursive;
+
+  /* Light */
+  --bg-primary: #FDFCF5;
+  --bg-secondary: #F5F3EA;
+  --text-primary: #1C1C1E;
+  --text-secondary: #4A4A52;
+  --accent: #8B5CF6;
+  --border: rgba(28, 28, 30, 0.08);
+}
+
+.dark {
+  --bg-primary: #0A0F1E;
+  --bg-secondary: #0F1628;
+  --text-primary: #F0EEE8;
+  --text-secondary: #94A3B8;
+  --accent: #A78BFA;
+  --border: rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Base ──────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Frozen Ice Card System ────────────────────────── */
+.frozen-card {
+  position: relative;
+  backdrop-filter: blur(25px) saturate(1.4);
+  -webkit-backdrop-filter: blur(25px) saturate(1.4);
+  background: rgba(255, 255, 255, 0.04);
+  border: 0.5px solid rgba(255, 255, 255, 0.10);
+  overflow: hidden;
+}
+
+.frozen-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.frozen-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Light mode frozen card */
+.light .frozen-card,
+:root:not(.dark) .frozen-card {
+  background: rgba(255, 255, 255, 0.55);
+  border: 0.5px solid rgba(255, 255, 255, 0.80);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+/* ─── Shimmer Button ────────────────────────────────── */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 60%
+  ) right / 200% 100% no-repeat,
+  var(--btn-bg, linear-gradient(135deg, #8B5CF6, #06B6D4));
+  background-size: 200% 100%, 100% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.shimmer-btn:hover {
+  animation-duration: 1.2s;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0, 0 0; }
+  100% { background-position: -200% 0, 0 0; }
+}
+
+/* ─── Noise Overlay ─────────────────────────────────── */
+.noise-overlay {
+  position: relative;
+}
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.4;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8B5CF6, #06B6D4);
+  border-radius: 3px;
+}
+
+/* ─── Selection ─────────────────────────────────────── */
+::selection {
+  background: rgba(139, 92, 246, 0.25);
+  color: inherit;
+}
+
+/* ─── Glow Animations ───────────────────────────────── */
+@keyframes glowOrbit {
+  0%   { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #A78BFA 0%, #06B6D4 50%, #A78BFA 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ─── Radar Animation ───────────────────────────────── */
+@keyframes radarPing {
+  0%   { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ─── Chart Line ────────────────────────────────────── */
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.draw-line {
+  stroke-dasharray: 1000;
+  animation: drawLine 2s ease-out forwards;
+}
+
+/* ─── Grain / Frost ─────────────────────────────────── */
+.frost-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.3 0 0 0 0 0.4 0 0 0 0 0.6 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Typing cursor ─────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Responsive typography ─────────────────────────── */
+.text-fluid-xl {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 1.05;
+}
+.text-fluid-lg {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  line-height: 1.1;
+}
+.text-fluid-md {
+  font-size: clamp(1.3rem, 2.5vw, 2rem);
+  line-height: 1.25;
+}
