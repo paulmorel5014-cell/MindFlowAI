@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cut & Dry Barber Shop – Massy (91)</title>
+  <meta name="description" content="Cut & Dry Barber Shop à Massy – Coupes, dégradés, rasages et soins barbe par des professionnels. Ouvert 7j/7 de 9h à 21h. 4 Rue de la Division Leclerc, 91300 Massy." />
+  <meta name="keywords" content="barbier massy, coiffeur massy, coupe homme massy, dégradé massy, barbe massy, cut dry" />
+  <meta property="og:title" content="Cut & Dry Barber Shop – Massy" />
+  <meta property="og:description" content="Barbier professionnel en plein cœur de Massy. Coupes, dégradés, rasage à l'ancienne." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="44" height="44" rx="4" fill="#C9A84C"/>
+          <path d="M13 12 Q13 8 17 8 L27 8 Q31 8 31 12 L31 16 Q31 20 27 20 L17 20 Q13 20 13 16 Z" fill="#1a1a1a"/>
+          <rect x="21" y="20" width="2" height="12" fill="#1a1a1a"/>
+          <path d="M14 34 Q14 31 17 31 L27 31 Q30 31 30 34 L30 36 Q30 38 27 38 L17 38 Q14 38 14 36 Z" fill="#1a1a1a"/>
+          <circle cx="22" cy="14" r="3" fill="#C9A84C"/>
+        </svg>
+        <span>Cut <em>&amp;</em> Dry</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Prestations</a></li>
+        <li><a href="#gallery">Galerie</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Nous trouver</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg">
+      <picture>
+        <source srcset="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&h=900&fit=crop&fm=webp&q=80" type="image/webp" />
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&h=900&fit=crop&q=80" alt="Intérieur Cut & Dry Barber Shop" loading="eager" fetchpriority="high" />
+      </picture>
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-tag">Barbier indépendant · Massy, Essonne</p>
+      <h1>L'art du<br /><em>rasoir &amp; ciseau</em></h1>
+      <p class="hero-sub">Coupes, dégradés, rasages à l'ancienne – par des mains expertes, pour un résultat impeccable.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-gold">Voir les prestations</a>
+        <a href="#contact" class="btn btn-outline">Nous trouver</a>
+      </div>
+      <div class="hero-badges">
+        <div class="badge"><span class="badge-num">7j/7</span><span class="badge-txt">Ouvert</span></div>
+        <div class="badge-sep"></div>
+        <div class="badge"><span class="badge-num">9h–21h</span><span class="badge-txt">Horaires</span></div>
+        <div class="badge-sep"></div>
+        <div class="badge"><span class="badge-num">3</span><span class="badge-txt">Coiffeurs</span></div>
+      </div>
+    </div>
+    <a href="#services" class="scroll-down" aria-label="Défiler">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/></svg>
+    </a>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Nos prestations</span>
+        <h2>Ce que nous faisons</h2>
+        <p>Chaque prestation est réalisée avec soin, des produits de qualité et un savoir-faire authentique.</p>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card featured">
+          <div class="service-img">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&h=400&fit=crop&q=80" alt="Coupe homme" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-body">
+            <div class="service-icon">✂️</div>
+            <h3>Coupe Homme</h3>
+            <p>Coupe personnalisée aux ciseaux ou à la tondeuse. Inclut shampoing et coiffage final.</p>
+            <div class="service-price"><span>À partir de</span><strong>18 €</strong></div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&h=400&fit=crop&q=80" alt="Dégradé" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-body">
+            <div class="service-icon">⚡</div>
+            <h3>Dégradé / Fade</h3>
+            <p>Dégradé bas, moyen ou haut – skin fade inclus. Finitions à la lame et au rasoir.</p>
+            <div class="service-price"><span>À partir de</span><strong>20 €</strong></div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&h=400&fit=crop&q=80" alt="Taille de barbe" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-body">
+            <div class="service-icon">🪒</div>
+            <h3>Taille de Barbe</h3>
+            <p>Mise en forme, contours nets et soin nourrissant. Barbe courte, mi-longue ou longue.</p>
+            <div class="service-price"><span>À partir de</span><strong>12 €</strong></div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1634189994326-a7fd6736afe8?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1634189994326-a7fd6736afe8?w=600&h=400&fit=crop&q=80" alt="Rasage à l'ancienne" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-body">
+            <div class="service-icon">💈</div>
+            <h3>Rasage à l'Ancienne</h3>
+            <p>Rasage au coupe-chou, serviette chaude, mousse et huile après-rasage premium.</p>
+            <div class="service-price"><span>À partir de</span><strong>22 €</strong></div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=600&h=400&fit=crop&q=80" alt="Coupe + barbe" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-body">
+            <div class="service-icon">⭐</div>
+            <h3>Coupe + Barbe</h3>
+            <p>Combo idéal : coupe complète + taille ou rasage de barbe. Look soigné de la tête aux pieds.</p>
+            <div class="service-price"><span>À partir de</span><strong>28 €</strong></div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1559181567-c3190ca9d715?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1559181567-c3190ca9d715?w=600&h=400&fit=crop&q=80" alt="Coupe enfant" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-body">
+            <div class="service-icon">👦</div>
+            <h3>Coupe Enfant</h3>
+            <p>Pour les moins de 12 ans. Coupe adaptée avec douceur et patience. Résultat propre garanti.</p>
+            <div class="service-price"><span>À partir de</span><strong>12 €</strong></div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=400&fit=crop&q=80" alt="Coupe + dégradé + barbe" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-body">
+            <div class="service-icon">👑</div>
+            <h3>Premium : Dégradé + Barbe</h3>
+            <p>Dégradé soigné + taille de barbe complète. Le duo favori de nos clients réguliers.</p>
+            <div class="service-price"><span>À partir de</span><strong>30 €</strong></div>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1582095133179-bfd08e2fo7dc?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=600&h=400&fit=crop&q=80" alt="Retouche nuque" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-body">
+            <div class="service-icon">🔧</div>
+            <h3>Retouche / Contours</h3>
+            <p>Rafraîchissement des contours, nuque et tempes. Idéal entre deux coupes.</p>
+            <div class="service-price"><span>À partir de</span><strong>8 €</strong></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section class="promo-banner">
+    <div class="container">
+      <div class="promo-content">
+        <div class="promo-icon">💈</div>
+        <div class="promo-text">
+          <h3>Fidélité récompensée</h3>
+          <p>10ème coupe offerte pour nos clients réguliers – demandez votre carte de fidélité en salon</p>
+        </div>
+        <a href="#contact" class="btn btn-gold">Venir nous voir</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Galerie</span>
+        <h2>Notre travail parle</h2>
+        <p>Quelques réalisations de notre équipe – dégradés, coupes et soins barbe.</p>
+      </div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item tall">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=1200&fit=crop&fm=webp&q=80" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&h=1200&fit=crop&q=80" alt="Dégradé précis" loading="lazy" />
+        </picture>
+      </div>
+      <div class="gallery-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&h=600&fit=crop&fm=webp&q=80" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=800&h=600&fit=crop&q=80" alt="Coupe propre" loading="lazy" />
+        </picture>
+      </div>
+      <div class="gallery-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=600&fit=crop&fm=webp&q=80" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=600&fit=crop&q=80" alt="Barbe taillée" loading="lazy" />
+        </picture>
+      </div>
+      <div class="gallery-item wide">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&h=600&fit=crop&fm=webp&q=80" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&h=600&fit=crop&q=80" alt="Salon intérieur" loading="lazy" />
+        </picture>
+      </div>
+      <div class="gallery-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1634189994326-a7fd6736afe8?w=800&h=600&fit=crop&fm=webp&q=80" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1634189994326-a7fd6736afe8?w=800&h=600&fit=crop&q=80" alt="Rasage traditionnel" loading="lazy" />
+        </picture>
+      </div>
+      <div class="gallery-item">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1560066984-138daaa0105b?w=800&h=600&fit=crop&fm=webp&q=80" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1560066984-138daaa0105b?w=800&h=600&fit=crop&q=80" alt="Fauteuil barbier" loading="lazy" />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-col">
+          <div class="about-img-wrap">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1560066984-138daaa0105b?w=700&h=900&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1560066984-138daaa0105b?w=700&h=900&fit=crop&q=80" alt="Notre salon" loading="lazy" />
+            </picture>
+          </div>
+          <div class="about-badge-float">
+            <strong>+5</strong>
+            <span>ans d'expérience</span>
+          </div>
+        </div>
+        <div class="about-text-col">
+          <span class="section-tag">À propos</span>
+          <h2>Un barbier de quartier, un savoir-faire d'exception</h2>
+          <p>Cut & Dry Barber Shop, c'est trois passionnés installés au cœur de Massy, une ville vivante de l'Essonne. Notre mission : offrir à chaque homme une coupe irréprochable dans une ambiance chaleureuse et authentique.</p>
+          <p>Que vous soyez actif dans le quartier d'affaires voisin ou résident du centre-ville, nous nous adaptons à votre emploi du temps – <strong>7 jours sur 7, de 9h à 21h</strong>.</p>
+          <p>Chaque client est unique. Nous prenons le temps de comprendre votre style, votre morphologie et vos habitudes pour vous proposer la coupe ou le soin qui vous correspond vraiment.</p>
+          <ul class="about-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#C9A84C"/><path d="M6 10l3 3 5-5" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/></svg>
+              Coiffeurs professionnels diplômés
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#C9A84C"/><path d="M6 10l3 3 5-5" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/></svg>
+              Produits de soin sélectionnés
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#C9A84C"/><path d="M6 10l3 3 5-5" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/></svg>
+              Matériel stérilisé après chaque client
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="#C9A84C"/><path d="M6 10l3 3 5-5" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/></svg>
+              Accueil sans rendez-vous
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn-gold">Nous rendre visite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Témoignages</span>
+        <h2>Ce que disent nos clients</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Dégradé parfait, propre et net. L'ambiance est top, les gars sont pros. Je reviens toutes les 3 semaines sans hésiter."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">K</div>
+            <div><strong>Karim B.</strong><span>Client régulier</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Meilleur barbier de Massy. J'ai essayé les autres enseignes, rien à voir. Ici on prend soin de toi et le résultat est toujours là."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">M</div>
+            <div><strong>Mohamed T.</strong><span>Client depuis 2 ans</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p>"Je travaille dans le quartier d'affaires à côté. Je passe en fin de journée, jamais d'attente trop longue et toujours satisfait."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">T</div>
+            <div><strong>Thomas V.</strong><span>Client professionnel</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / MAP -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Nous trouver</span>
+        <h2>Venez nous voir</h2>
+        <p>Pas besoin de rendez-vous. Passez directement – nous sommes là pour vous.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#C9A84C"/></svg>
+            </div>
+            <div>
+              <h4>Adresse</h4>
+              <p>4 Rue de la Division Leclerc<br />91300 Massy (Essonne)</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.5h-2V11h2v5.5zm0-7h-2V7h2v2.5z" fill="#C9A84C"/></svg>
+            </div>
+            <div>
+              <h4>Horaires</h4>
+              <p>Lundi – Dimanche<br /><strong>9h00 – 21h00</strong></p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z" fill="#C9A84C"/></svg>
+            </div>
+            <div>
+              <h4>Accès</h4>
+              <p>RER B – Massy-Palaiseau<br />Bus 91.06 – Arrêt Leclerc</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="#C9A84C"/></svg>
+            </div>
+            <div>
+              <h4>Instagram</h4>
+              <p><a href="https://www.instagram.com/cut.dry" target="_blank" rel="noopener">@cut.dry</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="contact-map">
+          <iframe
+            title="Localisation Cut & Dry Barber Shop"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=2.2700%2C48.7220%2C2.2900%2C48.7320&layer=mapnik&marker=48.7268%2C2.2801"
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+          <a
+            href="https://www.openstreetmap.org/?mlat=48.7268&mlon=2.2801#map=16/48.7268/2.2801"
+            target="_blank"
+            rel="noopener"
+            class="map-link"
+          >Ouvrir dans OpenStreetMap →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="logo">
+            <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="44" height="44" rx="4" fill="#C9A84C"/>
+              <path d="M13 12 Q13 8 17 8 L27 8 Q31 8 31 12 L31 16 Q31 20 27 20 L17 20 Q13 20 13 16 Z" fill="#1a1a1a"/>
+              <rect x="21" y="20" width="2" height="12" fill="#1a1a1a"/>
+              <path d="M14 34 Q14 31 17 31 L27 31 Q30 31 30 34 L30 36 Q30 38 27 38 L17 38 Q14 38 14 36 Z" fill="#1a1a1a"/>
+              <circle cx="22" cy="14" r="3" fill="#C9A84C"/>
+            </svg>
+            <span>Cut <em>&amp;</em> Dry</span>
+          </a>
+          <p>Barbier indépendant au cœur de Massy depuis plusieurs années. Venez comme vous êtes, repartez impeccables.</p>
+          <a href="https://www.instagram.com/cut.dry" target="_blank" rel="noopener" class="insta-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            @cut.dry
+          </a>
+        </div>
+        <div class="footer-col">
+          <h5>Prestations</h5>
+          <ul>
+            <li><a href="#services">Coupe Homme</a></li>
+            <li><a href="#services">Dégradé / Fade</a></li>
+            <li><a href="#services">Taille de Barbe</a></li>
+            <li><a href="#services">Rasage à l'Ancienne</a></li>
+            <li><a href="#services">Coupe + Barbe</a></li>
+            <li><a href="#services">Coupe Enfant</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Informations</h5>
+          <ul>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#gallery">Galerie</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">Horaires</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Horaires</h5>
+          <p class="footer-hours">Lun – Dim<br /><strong>9h00 – 21h00</strong></p>
+          <p class="footer-addr">4 Rue de la Division Leclerc<br />91300 Massy</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Cut & Dry Barber Shop – Massy. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
