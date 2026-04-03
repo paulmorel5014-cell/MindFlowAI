@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Viry Auto Plus – Garage automobile & Agence d'immatriculation à Viry-Châtillon. Mécanique générale, pneus, pare-brise, carte grise. Ouvert 6j/7." />
+  <meta name="keywords" content="garage viry châtillon, mécanique, pneus michelin, pare-brise, carte grise, essonne, 91170" />
+  <title>Viry Auto Plus – Garage & Immatriculation à Viry-Châtillon</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#accueil" class="nav__logo">
+        <span class="nav__logo-icon">⚙</span>
+        <div>
+          <span class="nav__logo-name">Viry Auto Plus</span>
+          <span class="nav__logo-sub">Garage & Immatriculation</span>
+        </div>
+      </a>
+
+      <ul class="nav__list" id="nav-list">
+        <li><a href="#services" class="nav__link">Services</a></li>
+        <li><a href="#pneus" class="nav__link">Pneus</a></li>
+        <li><a href="#vehicules" class="nav__link">Véhicules</a></li>
+        <li><a href="#avis" class="nav__link">Avis</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+        <li><a href="tel:+33169960000" class="btn btn--primary nav__cta">📞 Nous appeler</a></li>
+      </ul>
+
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="accueil">
+    <div class="hero__bg">
+      <picture>
+        <source srcset="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1600&fm=webp&q=80" type="image/webp" />
+        <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1600&q=80" alt="Garage automobile" class="hero__img" loading="eager" />
+      </picture>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__content container">
+      <div class="hero__badge">⭐ 4.6/5 · +49 avis Google</div>
+      <h1 class="hero__title">Votre garage de confiance<br /><span>à Viry-Châtillon</span></h1>
+      <p class="hero__desc">Mécanique · Pneus · Pare-brise · Carte grise<br />Tous véhicules — Tourisme, 4×4, Camionnette</p>
+      <div class="hero__actions">
+        <a href="#contact" class="btn btn--primary btn--lg">Prendre rendez-vous</a>
+        <a href="#services" class="btn btn--outline btn--lg">Nos services</a>
+      </div>
+      <div class="hero__badges">
+        <div class="hero__badge-item">
+          <span class="hero__badge-icon">🏆</span>
+          <span>+15 ans d'expérience</span>
+        </div>
+        <div class="hero__badge-item">
+          <span class="hero__badge-icon">🔧</span>
+          <span>Tous véhicules</span>
+        </div>
+        <div class="hero__badge-item">
+          <span class="hero__badge-icon">♿</span>
+          <span>Accès PMR</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BANDEAU RAPIDE ===== -->
+  <div class="quickbar">
+    <div class="container quickbar__inner">
+      <div class="quickbar__item">
+        <span class="quickbar__icon">📍</span>
+        <span>107-109 Av. de la Gribelette, 91170 Viry-Châtillon</span>
+      </div>
+      <div class="quickbar__item">
+        <span class="quickbar__icon">🕐</span>
+        <span>Lun–Sam : 8h30–18h30</span>
+      </div>
+      <div class="quickbar__item">
+        <span class="quickbar__icon">📞</span>
+        <a href="tel:+33169960000">01 69 96 00 00</a>
+      </div>
+      <div class="quickbar__item">
+        <span class="quickbar__icon">⭐</span>
+        <span>4.6/5 sur Google</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Ce que nous faisons</span>
+        <h2 class="section__title">Nos prestations</h2>
+        <p class="section__desc">Une offre complète pour l'entretien et la réparation de votre véhicule, avec des techniciens qualifiés et du matériel professionnel.</p>
+      </div>
+
+      <div class="services__grid">
+
+        <div class="service-card" data-aos>
+          <div class="service-card__img-wrap">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&fm=webp&q=75" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=600&q=75" alt="Mécanique générale" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-card__body">
+            <div class="service-card__icon">🔧</div>
+            <h3>Mécanique générale</h3>
+            <p>Vidange, freinage, distribution, embrayage, suspension, diagnostic électronique… Toutes les interventions mécaniques sur votre véhicule.</p>
+            <ul class="service-card__list">
+              <li>Vidange & filtres</li>
+              <li>Freins & plaquettes</li>
+              <li>Distribution & embrayage</li>
+              <li>Suspension & amortisseurs</li>
+              <li>Diagnostic OBD</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-aos>
+          <div class="service-card__img-wrap">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&fm=webp&q=75" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75" alt="Pneus et pneumatiques" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-card__body">
+            <div class="service-card__icon">🏎</div>
+            <h3>Pneus & Pneumatiques</h3>
+            <p>Vente et pose de pneus neufs et d'occasion. Équilibrage, géométrie et permutation. Grandes marques au meilleur prix.</p>
+            <ul class="service-card__list">
+              <li>Michelin · Continental · Pirelli · Goodyear</li>
+              <li>Pneus neufs & occasion</li>
+              <li>Équilibrage & géométrie</li>
+              <li>Permutation saisonnière</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-aos>
+          <div class="service-card__img-wrap">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&fm=webp&q=75" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=75" alt="Remplacement pare-brise" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-card__body">
+            <div class="service-card__icon">🪟</div>
+            <h3>Pare-brise & Vitrage</h3>
+            <p>Remplacement ou réparation de pare-brise, vitres latérales et lunette arrière. Intervention rapide, prise en charge assurance.</p>
+            <ul class="service-card__list">
+              <li>Remplacement pare-brise</li>
+              <li>Réparation impact & fissure</li>
+              <li>Vitres latérales & lunette</li>
+              <li>Prise en charge assurance</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-aos>
+          <div class="service-card__img-wrap">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&fm=webp&q=75" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=75" alt="Carte grise immatriculation" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-card__body">
+            <div class="service-card__icon">📋</div>
+            <h3>Carte grise & Immatriculation</h3>
+            <p>Agence officielle d'immatriculation. Obtenez votre carte grise rapidement, sans vous déplacer en préfecture.</p>
+            <ul class="service-card__list">
+              <li>Immatriculation véhicule neuf</li>
+              <li>Mutation & changement titulaire</li>
+              <li>Duplicata & correction</li>
+              <li>Changement d'adresse</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-aos>
+          <div class="service-card__img-wrap">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&fm=webp&q=75" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=75" alt="Diagnostic électronique" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-card__body">
+            <div class="service-card__icon">💻</div>
+            <h3>Diagnostic électronique</h3>
+            <p>Identification précise des pannes grâce à notre équipement de diagnostic dernière génération. Intervention ciblée, devis honnête.</p>
+            <ul class="service-card__list">
+              <li>Lecture codes défaut</li>
+              <li>Réinitialisation voyants</li>
+              <li>Contrôle moteur</li>
+              <li>Système ADAS & ESP</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-aos>
+          <div class="service-card__img-wrap">
+            <picture>
+              <source srcset="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&fm=webp&q=75" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=75" alt="Entretien et révision" loading="lazy" />
+            </picture>
+          </div>
+          <div class="service-card__body">
+            <div class="service-card__icon">📅</div>
+            <h3>Entretien & Révision</h3>
+            <p>Entretien périodique selon les préconisations constructeur. Carnet d'entretien respecté, pièces d'origine ou équivalentes.</p>
+            <ul class="service-card__list">
+              <li>Révision constructeur</li>
+              <li>Contrôle 30 points</li>
+              <li>Climatisation</li>
+              <li>Batterie & démarrage</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PNEUS / MARQUES ===== -->
+  <section class="section section--dark" id="pneus">
+    <div class="container">
+      <div class="section__header section__header--light">
+        <span class="section__tag section__tag--light">Pneumatiques</span>
+        <h2 class="section__title">Grandes marques au meilleur prix</h2>
+        <p class="section__desc">Nous vendons et posons des pneus neufs et d'occasion pour tous types de véhicules. Conseillez-vous sur le bon choix selon votre usage.</p>
+      </div>
+
+      <div class="brands__grid">
+        <div class="brand-card">
+          <div class="brand-card__logo brand-card__logo--michelin">
+            <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+              <rect width="120" height="60" rx="8" fill="#003087"/>
+              <text x="60" y="38" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="18" font-weight="900" fill="white" letter-spacing="1">MICHELIN</text>
+            </svg>
+          </div>
+          <p>Leader mondial de la performance et de la longévité</p>
+        </div>
+        <div class="brand-card">
+          <div class="brand-card__logo">
+            <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+              <rect width="120" height="60" rx="8" fill="#FF6600"/>
+              <text x="60" y="38" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="13" font-weight="900" fill="white" letter-spacing="1">CONTINENTAL</text>
+            </svg>
+          </div>
+          <p>Technologie allemande, tenue de route exceptionnelle</p>
+        </div>
+        <div class="brand-card">
+          <div class="brand-card__logo">
+            <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+              <rect width="120" height="60" rx="8" fill="#FFD100"/>
+              <text x="60" y="38" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="18" font-weight="900" fill="#000" letter-spacing="1">PIRELLI</text>
+            </svg>
+          </div>
+          <p>Performance sport et prestige pour votre véhicule</p>
+        </div>
+        <div class="brand-card">
+          <div class="brand-card__logo">
+            <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+              <rect width="120" height="60" rx="8" fill="#006CB7"/>
+              <text x="60" y="38" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="14" font-weight="900" fill="#FFD100" letter-spacing="1">GOODYEAR</text>
+            </svg>
+          </div>
+          <p>Fiabilité et sécurité sur toutes les routes</p>
+        </div>
+      </div>
+
+      <div class="pneus__features">
+        <div class="pneus__feature">
+          <span class="pneus__feature-icon">✅</span>
+          <span>Devis gratuit</span>
+        </div>
+        <div class="pneus__feature">
+          <span class="pneus__feature-icon">✅</span>
+          <span>Pose incluse</span>
+        </div>
+        <div class="pneus__feature">
+          <span class="pneus__feature-icon">✅</span>
+          <span>Équilibrage inclus</span>
+        </div>
+        <div class="pneus__feature">
+          <span class="pneus__feature-icon">✅</span>
+          <span>Valve offerte</span>
+        </div>
+        <div class="pneus__feature">
+          <span class="pneus__feature-icon">✅</span>
+          <span>Pneus occasion</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VÉHICULES ===== -->
+  <section class="section" id="vehicules">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Nos spécialités</span>
+        <h2 class="section__title">Tous types de véhicules</h2>
+        <p class="section__desc">Du citadin à la camionnette, nos techniciens interviennent sur tous les gabarits.</p>
+      </div>
+
+      <div class="vehicles__grid">
+        <div class="vehicle-card" data-aos>
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=500&fm=webp&q=80" type="image/webp" />
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=500&q=80" alt="Véhicule de tourisme" loading="lazy" />
+          </picture>
+          <div class="vehicle-card__body">
+            <h3>🚗 Tourisme</h3>
+            <p>Berlines, citadines, breaks, coupés — toutes marques et tous moteurs.</p>
+          </div>
+        </div>
+
+        <div class="vehicle-card" data-aos>
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=500&fm=webp&q=80" type="image/webp" />
+            <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=500&q=80" alt="4x4 et SUV" loading="lazy" />
+          </picture>
+          <div class="vehicle-card__body">
+            <h3>🚙 4×4 & SUV</h3>
+            <p>Transmission intégrale, garde au sol élevée — on maîtrise les spécificités de chaque modèle.</p>
+          </div>
+        </div>
+
+        <div class="vehicle-card" data-aos>
+          <picture>
+            <source srcset="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=500&fm=webp&q=80" type="image/webp" />
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=500&q=80" alt="Camionnette utilitaire" loading="lazy" />
+          </picture>
+          <div class="vehicle-card__body">
+            <h3>🚐 Camionnettes & Utilitaires</h3>
+            <p>Véhicules utilitaires légers, vans, fourgonnettes — entretien adapté à votre activité professionnelle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== POURQUOI NOUS ===== -->
+  <section class="why section section--accent">
+    <div class="container why__inner">
+      <div class="why__text">
+        <span class="section__tag">Pourquoi nous choisir</span>
+        <h2 class="section__title">Un garage à votre écoute</h2>
+        <p>Depuis des années, Viry Auto Plus s'impose comme le partenaire de confiance des automobilistes de l'Essonne. Accueil chaleureux, tarifs transparents et interventions rapides — c'est notre engagement.</p>
+
+        <div class="why__points">
+          <div class="why__point">
+            <span class="why__point-icon">⭐</span>
+            <div>
+              <strong>4.6/5 sur Google</strong>
+              <p>49 avis clients, majorité de retours très positifs</p>
+            </div>
+          </div>
+          <div class="why__point">
+            <span class="why__point-icon">💬</span>
+            <div>
+              <strong>Accueil chaleureux</strong>
+              <p>Un équipe à l'écoute qui explique chaque intervention</p>
+            </div>
+          </div>
+          <div class="why__point">
+            <span class="why__point-icon">💶</span>
+            <div>
+              <strong>Prix compétitifs</strong>
+              <p>Devis gratuit et tarifs justes sans mauvaise surprise</p>
+            </div>
+          </div>
+          <div class="why__point">
+            <span class="why__point-icon">⚡</span>
+            <div>
+              <strong>Intervention rapide</strong>
+              <p>Délais réduits et respect des engagements</p>
+            </div>
+          </div>
+          <div class="why__point">
+            <span class="why__point-icon">♿</span>
+            <div>
+              <strong>Accès PMR</strong>
+              <p>Entrée et parking accessibles aux personnes à mobilité réduite</p>
+            </div>
+          </div>
+          <div class="why__point">
+            <span class="why__point-icon">📋</span>
+            <div>
+              <strong>Agence d'immatriculation</strong>
+              <p>Carte grise sans passer par la préfecture</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why__img-wrap">
+        <picture>
+          <source srcset="https://images.unsplash.com/photo-1617469767-eae2f0e39988?w=700&fm=webp&q=80" type="image/webp" />
+          <img src="https://images.unsplash.com/photo-1617469767-eae2f0e39988?w=700&q=80" alt="Technicien garage" loading="lazy" />
+        </picture>
+        <div class="why__stat">
+          <span class="why__stat-num">4.6</span>
+          <span class="why__stat-label">⭐ Google</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AVIS ===== -->
+  <section class="section" id="avis">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Ce qu'ils disent</span>
+        <h2 class="section__title">Avis de nos clients</h2>
+        <div class="reviews__score">
+          <span class="reviews__score-num">4.6</span>
+          <div>
+            <div class="reviews__stars">★★★★★</div>
+            <span>Basé sur 49 avis Google</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews__grid">
+        <div class="review-card" data-aos>
+          <div class="review-card__stars">★★★★★</div>
+          <p>"Accueil très sympa, prix compétitifs et travail rapide. Je recommande vraiment ce garage, équipe professionnelle et honnête !"</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">S</div>
+            <div>
+              <strong>Sofiane M.</strong>
+              <span>Il y a 2 mois</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card" data-aos>
+          <div class="review-card__stars">★★★★★</div>
+          <p>"Changement de pneus fait en 30 minutes. Prix imbattable pour du Michelin. Le garagiste prend le temps d'expliquer ce qu'il fait."</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">L</div>
+            <div>
+              <strong>Laura D.</strong>
+              <span>Il y a 3 mois</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card" data-aos>
+          <div class="review-card__stars">★★★★★</div>
+          <p>"Carte grise faite sur place en quelques minutes. Très pratique de ne pas avoir à se déplacer en préfecture. Service impeccable."</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">K</div>
+            <div>
+              <strong>Karim B.</strong>
+              <span>Il y a 1 mois</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card" data-aos>
+          <div class="review-card__stars">★★★★☆</div>
+          <p>"Bon garage de quartier, sérieux et disponible. Pare-brise remplacé rapidement avec prise en charge assurance sans galère."</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">M</div>
+            <div>
+              <strong>Marie-France T.</strong>
+              <span>Il y a 5 mois</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card" data-aos>
+          <div class="review-card__stars">★★★★★</div>
+          <p>"Toujours disponibles même sans RDV. Réparation faite le jour même, voiture rendue propre. C'est mon garage depuis 3 ans maintenant."</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">T</div>
+            <div>
+              <strong>Thomas R.</strong>
+              <span>Il y a 4 mois</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card" data-aos>
+          <div class="review-card__stars">★★★★★</div>
+          <p>"Excellent rapport qualité-prix. Vidange + freins faits pour bien moins cher qu'en concession. Équipe agréable et transparente sur les tarifs."</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">A</div>
+            <div>
+              <strong>Amina K.</strong>
+              <span>Il y a 6 mois</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews__cta">
+        <a href="https://g.page/r/viry-auto-plus/review" target="_blank" rel="noopener" class="btn btn--outline">Laisser un avis Google</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section section--dark" id="contact">
+    <div class="container">
+      <div class="section__header section__header--light">
+        <span class="section__tag section__tag--light">Nous trouver</span>
+        <h2 class="section__title">Contact & Horaires</h2>
+      </div>
+
+      <div class="contact__grid">
+        <div class="contact__info">
+
+          <div class="contact__block">
+            <h3>📍 Adresse</h3>
+            <p>107-109 Av. de la Gribelette<br />91170 Viry-Châtillon</p>
+            <p class="contact__access">♿ Entrée et parking accessibles PMR</p>
+          </div>
+
+          <div class="contact__block">
+            <h3>📞 Téléphone</h3>
+            <a href="tel:+33169960000" class="contact__phone">01 69 96 00 00</a>
+          </div>
+
+          <div class="contact__block">
+            <h3>🕐 Horaires d'ouverture</h3>
+            <table class="contact__hours">
+              <tr><td>Lundi</td><td>8h30 – 18h30</td></tr>
+              <tr><td>Mardi</td><td>8h30 – 18h30</td></tr>
+              <tr><td>Mercredi</td><td>8h30 – 18h30</td></tr>
+              <tr><td>Jeudi</td><td>8h30 – 18h30</td></tr>
+              <tr><td>Vendredi</td><td>8h30 – 18h30</td></tr>
+              <tr><td>Samedi</td><td>8h30 – 17h00</td></tr>
+              <tr class="closed"><td>Dimanche</td><td>Fermé</td></tr>
+            </table>
+          </div>
+
+          <a href="tel:+33169960000" class="btn btn--primary btn--full">📞 Appeler maintenant</a>
+          <a href="https://maps.google.com/?q=107+Av.+de+la+Gribelette,+91170+Viry-Ch%C3%A2tillon" target="_blank" rel="noopener" class="btn btn--outline btn--full" style="margin-top:.75rem;">🗺 Ouvrir dans Google Maps</a>
+
+        </div>
+
+        <div class="contact__map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.7!2d2.3837!3d48.6694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5dd8b1e0b0001%3A0x1!2s107+Av.+de+la+Gribelette%2C+91170+Viry-Ch%C3%A2tillon!5e0!3m2!1sfr!2sfr!4v1"
+            width="100%"
+            height="420"
+            style="border:0;border-radius:12px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localisation Viry Auto Plus"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="nav__logo-icon">⚙</span>
+        <div>
+          <span class="nav__logo-name">Viry Auto Plus</span>
+          <span class="nav__logo-sub">Garage & Immatriculation</span>
+        </div>
+      </div>
+
+      <nav class="footer__nav">
+        <a href="#services">Services</a>
+        <a href="#pneus">Pneus</a>
+        <a href="#vehicules">Véhicules</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <p class="footer__copy">© 2025 Viry Auto Plus · 107-109 Av. de la Gribelette, 91170 Viry-Châtillon</p>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-top" id="back-top" aria-label="Retour en haut">↑</button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
