@@ -14,6 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="supabase-config.js"></script>
 </head>
 <body>
 
@@ -38,7 +40,7 @@
         <li><a href="#gallery">Galerie</a></li>
         <li><a href="#about">À propos</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#contact" class="nav-cta">Nous trouver</a></li>
+        <li><a href="#booking" class="nav-cta">Prendre RDV</a></li>
       </ul>
     </div>
   </nav>
@@ -57,8 +59,8 @@
       <h1>L'art du<br /><em>rasoir &amp; ciseau</em></h1>
       <p class="hero-sub">Coupes, dégradés, rasages à l'ancienne – par des mains expertes, pour un résultat impeccable.</p>
       <div class="hero-actions">
-        <a href="#services" class="btn btn-gold">Voir les prestations</a>
-        <a href="#contact" class="btn btn-outline">Nous trouver</a>
+        <a href="#booking" class="btn btn-gold">Prendre RDV</a>
+        <a href="#services" class="btn btn-outline">Voir les prestations</a>
       </div>
       <div class="hero-badges">
         <div class="badge"><span class="badge-num">7j/7</span><span class="badge-txt">Ouvert</span></div>
@@ -146,8 +148,8 @@
         <div class="service-card">
           <div class="service-img">
             <picture>
-              <source srcset="https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
-              <img src="https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?w=600&h=400&fit=crop&q=80" alt="Coupe + barbe" loading="lazy" />
+              <source srcset="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600&h=400&fit=crop&q=80" alt="Coupe + barbe" loading="lazy" />
             </picture>
           </div>
           <div class="service-body">
@@ -161,8 +163,8 @@
         <div class="service-card">
           <div class="service-img">
             <picture>
-              <source srcset="https://images.unsplash.com/photo-1559181567-c3190ca9d715?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
-              <img src="https://images.unsplash.com/photo-1559181567-c3190ca9d715?w=600&h=400&fit=crop&q=80" alt="Coupe enfant" loading="lazy" />
+              <source srcset="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=600&h=400&fit=crop&q=80" alt="Coupe enfant" loading="lazy" />
             </picture>
           </div>
           <div class="service-body">
@@ -176,8 +178,8 @@
         <div class="service-card">
           <div class="service-img">
             <picture>
-              <source srcset="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
-              <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&h=400&fit=crop&q=80" alt="Coupe + dégradé + barbe" loading="lazy" />
+              <source srcset="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?w=600&h=400&fit=crop&q=80" alt="Coupe + dégradé + barbe" loading="lazy" />
             </picture>
           </div>
           <div class="service-body">
@@ -191,7 +193,7 @@
         <div class="service-card">
           <div class="service-img">
             <picture>
-              <source srcset="https://images.unsplash.com/photo-1582095133179-bfd08e2fo7dc?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
+              <source srcset="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=600&h=400&fit=crop&fm=webp&q=80" type="image/webp" />
               <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=600&h=400&fit=crop&q=80" alt="Retouche nuque" loading="lazy" />
             </picture>
           </div>
@@ -348,6 +350,157 @@
             <div><strong>Thomas V.</strong><span>Client professionnel</span></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Rendez-vous en ligne</span>
+        <h2>Réservez votre séance</h2>
+        <p>Choisissez votre prestation, votre créneau et on vous attend. Confirmation instantanée.</p>
+      </div>
+
+      <div class="booking-wrap">
+
+        <!-- STEP INDICATORS -->
+        <div class="booking-steps">
+          <div class="bstep active" data-step="1">
+            <span class="bstep-num">1</span>
+            <span class="bstep-label">Prestation</span>
+          </div>
+          <div class="bstep-line"></div>
+          <div class="bstep" data-step="2">
+            <span class="bstep-num">2</span>
+            <span class="bstep-label">Date &amp; heure</span>
+          </div>
+          <div class="bstep-line"></div>
+          <div class="bstep" data-step="3">
+            <span class="bstep-num">3</span>
+            <span class="bstep-label">Vos infos</span>
+          </div>
+        </div>
+
+        <!-- STEP 1 — SERVICE -->
+        <div class="booking-panel active" id="bpanel-1">
+          <h3>Quelle prestation souhaitez-vous ?</h3>
+          <div class="service-picker">
+            <label class="spick" data-price="18">
+              <input type="radio" name="service" value="Coupe Homme – 18 €" />
+              <span class="spick-icon">✂️</span>
+              <span class="spick-name">Coupe Homme</span>
+              <span class="spick-price">18 €</span>
+            </label>
+            <label class="spick" data-price="20">
+              <input type="radio" name="service" value="Dégradé / Fade – 20 €" />
+              <span class="spick-icon">⚡</span>
+              <span class="spick-name">Dégradé / Fade</span>
+              <span class="spick-price">20 €</span>
+            </label>
+            <label class="spick" data-price="12">
+              <input type="radio" name="service" value="Taille de Barbe – 12 €" />
+              <span class="spick-icon">🪒</span>
+              <span class="spick-name">Taille de Barbe</span>
+              <span class="spick-price">12 €</span>
+            </label>
+            <label class="spick" data-price="22">
+              <input type="radio" name="service" value="Rasage à l'Ancienne – 22 €" />
+              <span class="spick-icon">💈</span>
+              <span class="spick-name">Rasage à l'Ancienne</span>
+              <span class="spick-price">22 €</span>
+            </label>
+            <label class="spick" data-price="28">
+              <input type="radio" name="service" value="Coupe + Barbe – 28 €" />
+              <span class="spick-icon">⭐</span>
+              <span class="spick-name">Coupe + Barbe</span>
+              <span class="spick-price">28 €</span>
+            </label>
+            <label class="spick" data-price="12">
+              <input type="radio" name="service" value="Coupe Enfant – 12 €" />
+              <span class="spick-icon">👦</span>
+              <span class="spick-name">Coupe Enfant</span>
+              <span class="spick-price">12 €</span>
+            </label>
+            <label class="spick" data-price="30">
+              <input type="radio" name="service" value="Premium Dégradé + Barbe – 30 €" />
+              <span class="spick-icon">👑</span>
+              <span class="spick-name">Premium Dégradé + Barbe</span>
+              <span class="spick-price">30 €</span>
+            </label>
+            <label class="spick" data-price="8">
+              <input type="radio" name="service" value="Retouche / Contours – 8 €" />
+              <span class="spick-icon">🔧</span>
+              <span class="spick-name">Retouche / Contours</span>
+              <span class="spick-price">8 €</span>
+            </label>
+          </div>
+          <div class="booking-nav">
+            <button class="btn btn-gold" id="toStep2" disabled>Continuer →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 — DATE & TIME -->
+        <div class="booking-panel" id="bpanel-2">
+          <h3>Choisissez votre créneau</h3>
+          <div class="datetime-grid">
+            <div class="date-col">
+              <label class="field-label">Date</label>
+              <input type="date" id="bookingDate" class="booking-input" min="" />
+            </div>
+            <div class="time-col">
+              <label class="field-label">Heure disponible</label>
+              <div class="time-slots" id="timeSlots">
+                <p class="slot-hint">Sélectionnez une date pour voir les créneaux</p>
+              </div>
+            </div>
+          </div>
+          <div class="booking-nav">
+            <button class="btn btn-outline" id="toStep1Back">← Retour</button>
+            <button class="btn btn-gold" id="toStep3" disabled>Continuer →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3 — INFOS CLIENT -->
+        <div class="booking-panel" id="bpanel-3">
+          <h3>Vos coordonnées</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="field-label" for="clientName">Prénom &amp; Nom</label>
+              <input type="text" id="clientName" class="booking-input" placeholder="ex. Mohammed Dupont" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="clientPhone">Téléphone</label>
+              <input type="tel" id="clientPhone" class="booking-input" placeholder="ex. 06 12 34 56 78" autocomplete="tel" />
+            </div>
+          </div>
+
+          <!-- RÉCAP -->
+          <div class="booking-recap" id="bookingRecap"></div>
+
+          <div class="booking-nav">
+            <button class="btn btn-outline" id="toStep2Back">← Retour</button>
+            <button class="btn btn-gold" id="confirmBooking">Confirmer le RDV ✓</button>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="booking-panel" id="bpanel-success">
+          <div class="booking-success">
+            <div class="success-icon">✅</div>
+            <h3>RDV confirmé !</h3>
+            <p>Merci, votre rendez-vous a bien été enregistré. À très vite chez Cut &amp; Dry !</p>
+            <div id="successDetails" class="success-details"></div>
+            <button class="btn btn-gold" id="newBooking">Prendre un autre RDV</button>
+          </div>
+        </div>
+
+        <!-- ERROR -->
+        <div class="booking-error" id="bookingError" hidden>
+          <span>⚠️</span> <span id="errorMsg">Une erreur est survenue, réessayez.</span>
+        </div>
+
       </div>
     </div>
   </section>
