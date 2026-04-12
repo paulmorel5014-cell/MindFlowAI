@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { Radar, BarChart3, CalendarCheck, ArrowRight, X, Zap, Shield, Clock, ChevronRight } from 'lucide-react'
+import { Radar, BarChart3, ArrowRight, X, Zap, Shield, Clock, ChevronRight } from 'lucide-react'
 // App preview components are defined below — no external images needed
 
 /* ─── Apple-style App Preview Components ────────────────────────── */
@@ -113,77 +113,6 @@ function AnalyticsPreview() {
   )
 }
 
-function RDVPreview() {
-  const days = ['L', 'M', 'M', 'J', 'V', 'S']
-  const slots = [
-    { time: '09:00', booked: true, label: 'Renovation cuisine' },
-    { time: '11:00', booked: false, label: '' },
-    { time: '14:30', booked: true, label: 'Audit chantier' },
-    { time: '16:00', booked: false, label: '' },
-  ]
-  return (
-    <div className="w-full h-full flex items-center justify-center relative select-none p-5">
-      <div className="absolute inset-0 rounded-xl" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(34,197,94,0.15) 0%, transparent 70%)' }} />
-
-      <div className="relative w-full max-w-[230px]">
-        {/* Day pills */}
-        <div className="flex gap-1.5 mb-4">
-          {days.map((d, i) => (
-            <div
-              key={i}
-              className={`flex-1 h-8 rounded-lg flex items-center justify-center text-[10px] font-semibold transition-all ${i === 2
-                  ? 'text-white shadow-[0_0_10px_rgba(34,197,94,0.5)]'
-                  : 'text-slate-500'
-                }`}
-              style={i === 2
-                ? { background: 'linear-gradient(135deg, #16a34a, #22c55e)' }
-                : { background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }
-              }
-            >{d}</div>
-          ))}
-        </div>
-
-        {/* Time slots */}
-        <div className="space-y-2">
-          {slots.map((slot, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.15 + i * 0.08 }}
-              className={`flex items-center gap-3 px-3 py-2 rounded-xl border ${slot.booked
-                  ? 'border-green-500/25'
-                  : 'border-white/[0.05]'
-                }`}
-              style={slot.booked
-                ? { background: 'rgba(34,197,94,0.10)' }
-                : { background: 'rgba(255,255,255,0.03)' }
-              }
-            >
-              <span className="text-[10px] font-mono text-slate-400 w-10 flex-shrink-0">{slot.time}</span>
-              {slot.booked ? (
-                <>
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0 shadow-[0_0_6px_rgba(34,197,94,0.8)]" />
-                  <span className="text-[10px] text-green-300 truncate">{slot.label}</span>
-                </>
-              ) : (
-                <span className="text-[10px] text-slate-600">Disponible</span>
-              )}
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Auto badge */}
-        <div className="mt-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full w-fit border border-green-500/20"
-          style={{ background: 'rgba(34,197,94,0.08)' }}>
-          <div className="w-1 h-1 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-[9px] font-semibold text-green-400 uppercase tracking-wider">Synchronisation auto</span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 const tools = [
   {
     id: 'radar',
@@ -230,29 +159,6 @@ const tools = [
     iconColor: 'text-violet-bright',
     glowColor: 'rgba(139,92,246,0.15)',
     accentHex: '#8B5CF6',
-  },
-  {
-    id: 'rdv',
-    icon: CalendarCheck,
-    Preview: RDVPreview,
-    name: 'RDV Auto',
-    tagline: 'Orchestration automatisée',
-    description:
-      'Flux de données synchronisés avec vos agendas. Le système confirme, rappelle et adapte les créneaux selon les disponibilités — zéro friction, zéro no-show.',
-    modalTitle: 'Votre Secrétariat Intelligent',
-    modalDescription:
-      'Libérez-vous des appels incessants et des rendez-vous manqués. Notre module de planification synchronisé gère votre calendrier 24h/24. Vos clients réservent leurs interventions en toute autonomie, et notre système de rappel automatique réduit vos absences de 80 %. Vous travaillez, OtterFlow remplit votre planning.',
-    modalFeatures: [
-      { icon: Clock, label: 'Disponible 24h/24', desc: 'Réservations même pendant votre sommeil' },
-      { icon: Zap, label: '-80% de no-shows', desc: 'Rappels automatiques multi-canaux' },
-      { icon: Shield, label: 'Autonomie client', desc: 'Réservation et modification en libre-service' },
-    ],
-    gradient: 'from-green-500/15 to-green-500/5',
-    border: 'border-green-500/20',
-    iconBg: 'bg-green-500/10',
-    iconColor: 'text-green-400',
-    glowColor: 'rgba(34,197,94,0.12)',
-    accentHex: '#22C55E',
   },
 ]
 
@@ -564,12 +470,12 @@ export default function Lab() {
             Le Laboratoire OtterFlow
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-2xl mx-auto">
-            Trois instruments de précision conçus pour transformer vos données
+            Deux instruments de précision conçus pour transformer vos données
             en croissance mesurable — sans compromis.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
           {tools.map((tool, i) => (
             <ToolCard key={tool.id} tool={tool} index={i} onOpen={() => setActiveTool(tool.id)} />
           ))}

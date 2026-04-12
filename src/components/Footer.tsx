@@ -8,8 +8,9 @@ const links = {
   Solutions: [
     { label: 'Prospect Radar', href: '#laboratoire' },
     { label: 'OtterFlow Analytics', href: '#laboratoire' },
-    { label: 'RDV Auto', href: '#laboratoire' },
-    { label: 'Algorithmes SEO', href: '#laboratoire' },
+    { label: 'Rebranding', href: '#tarification' },
+    { label: 'Google My Business', href: '#tarification' },
+    { label: 'Shooting photo', href: '#tarification' },
   ],
   Secteurs: [
     { label: 'Restauration', href: '#portfolio' },

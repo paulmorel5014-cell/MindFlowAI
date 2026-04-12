@@ -2,83 +2,90 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Check, Zap, Star, Crown, ArrowRight, Sparkles, Shield, RefreshCw, Headphones, Award } from 'lucide-react'
+import { Check, Zap, Star, Crown, ArrowRight, Sparkles, Shield, RefreshCw, Headphones, Award, Camera, TrendingUp, MapPin, Palette } from 'lucide-react'
 
 const plans = [
   {
-    id: 'launch',
-    name: 'Launch',
-    tagline: "L'essentiel pour exister.",
+    id: 'essentiel',
+    name: 'Pack Essentiel',
+    tagline: 'Exister et être trouvé.',
     icon: Zap,
-    setupPrice: '499€',
-    setupNote: 'Paiement unique',
-    monthlyPrice: '49€',
+    setupPrice: '890€',
+    setupNote: 'Setup unique',
+    monthlyPrice: '79€',
     monthlyNote: '/ mois',
     badge: null,
-    color: 'cyan',
     accentColor: '#06B6D4',
     borderClass: 'border-cyan-glacial/20',
     glowClass: 'shadow-[0_0_40px_rgba(6,182,212,0.08)]',
     hoverGlowClass: 'hover:shadow-[0_0_60px_rgba(6,182,212,0.18)]',
     features: [
-      'Site vitrine Frozen Ice (1 page)',
-      'Optimisation Google My Business',
-      'Prospect Radar — Version Standard',
+      'Site vitrine 5 pages',
+      'Setup Google My Business',
+      'Maintenance GMB mensuelle',
+      'SEO de base (on-page)',
     ],
     cta: 'Commencer',
     featured: false,
     selfFinance: null,
   },
   {
-    id: 'prestige',
-    name: 'Prestige',
+    id: 'croissance',
+    name: 'Pack Croissance',
     tagline: 'Dominez votre marché local.',
     icon: Star,
-    setupPrice: '1 299€',
-    setupNote: 'Paiement unique',
-    monthlyPrice: '99€',
+    setupPrice: '1 490€',
+    setupNote: 'Setup unique',
+    monthlyPrice: '149€',
     monthlyNote: '/ mois',
     badge: 'CONSEILLÉ',
-    color: 'violet',
     accentColor: '#8B5CF6',
     borderClass: 'border-violet-neon/40',
     glowClass: 'shadow-[0_0_60px_rgba(139,92,246,0.18)]',
     hoverGlowClass: 'hover:shadow-[0_0_90px_rgba(139,92,246,0.32)]',
     featured: true,
     features: [
-      'Site Multi-pages premium',
-      'Écosystème RDV Auto & Analytics complet',
-      'Prospect Radar — Illimité',
-      'Support Prioritaire 7j/7',
+      'Site web premium multi-pages',
+      'Rebranding léger (logo + charte)',
+      'Étude de marché locale',
+      'SEO actif + GMB optimisé',
+      'OtterFlow Analytics inclus',
     ],
-    selfFinance: "S'autofinance dès votre premier chantier généré.",
+    selfFinance: "S'autofinance dès les premiers clients générés.",
     cta: 'Démarrer ma croissance',
   },
   {
-    id: 'elite',
-    name: 'Élite',
+    id: 'prestige',
+    name: 'Pack Prestige',
     tagline: 'Infrastructure digitale sur-mesure.',
     icon: Crown,
-    setupPrice: 'Sur Devis',
-    setupNote: 'À partir de 3 000€',
-    monthlyPrice: '199€',
+    setupPrice: '2 990€',
+    setupNote: 'Setup unique',
+    monthlyPrice: '249€',
     monthlyNote: '/ mois',
-    badge: 'Exclusif',
-    color: 'gold',
+    badge: 'Premium',
     accentColor: '#D4AF72',
     borderClass: 'border-amber-400/20',
     glowClass: 'shadow-[0_0_40px_rgba(212,175,114,0.08)]',
     hoverGlowClass: 'hover:shadow-[0_0_60px_rgba(212,175,114,0.2)]',
     featured: false,
     features: [
-      'Solutions logicielles dédiées',
-      'Stratégie SEO agressive',
-      'Accès API propriétaire',
-      'Consultant dédié',
+      'App / dashboard OU site haut de gamme',
+      'Rebranding complet (identité visuelle)',
+      'Shooting photo professionnel',
+      'SEO avancé + OtterFlow Analytics',
+      'Suivi mensuel dédié (consultant)',
     ],
     selfFinance: null,
     cta: 'Contacter un expert',
   },
+]
+
+const addons = [
+  { icon: Camera, label: 'Shooting photo', price: 'Sur devis', color: '#F59E0B' },
+  { icon: TrendingUp, label: 'Étude de marché', price: 'Sur devis', color: '#0EA5E9' },
+  { icon: MapPin, label: 'Migration / optimisation GMB', price: 'Sur devis', color: '#10B981' },
+  { icon: Palette, label: 'Refonte identité visuelle', price: 'Sur devis', color: '#8B5CF6' },
 ]
 
 export default function Pricing() {
@@ -138,7 +145,6 @@ export default function Pricing() {
                       background: `linear-gradient(135deg, ${plan.accentColor}50, transparent 50%, ${plan.accentColor}25)`,
                     }}
                   />
-                  {/* Subtle pulse animation for featured */}
                   <motion.div
                     className="absolute -inset-[2px] rounded-[25px] z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
@@ -186,7 +192,6 @@ export default function Pricing() {
 
                 {/* Price Block */}
                 <div className="mb-6 pb-6 border-b dark:border-white/[0.07] border-black/[0.05]">
-                  {/* Setup — main price, large */}
                   <div
                     className="font-serif font-bold text-3xl leading-tight mb-0.5"
                     style={{ color: plan.accentColor }}
@@ -196,7 +201,6 @@ export default function Pricing() {
                   <div className="text-[11px] dark:text-slate-500 text-charcoal/45 mb-3 tracking-wide uppercase">
                     {plan.setupNote}
                   </div>
-                  {/* Subscription — subdued, secondary */}
                   <div className="flex items-baseline gap-1.5">
                     <span className="text-sm font-semibold dark:text-slate-300 text-charcoal/65">
                       {plan.monthlyPrice}
@@ -224,7 +228,7 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                {/* Self-finance mention for Prestige */}
+                {/* Self-finance mention */}
                 {plan.selfFinance && (
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -266,6 +270,51 @@ export default function Pricing() {
             </motion.div>
           ))}
         </div>
+
+        {/* Add-ons section */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.65 }}
+          className="mt-16"
+        >
+          <div className="text-center mb-8">
+            <span className="text-xs font-semibold uppercase tracking-widest dark:text-slate-500 text-charcoal/45">
+              À la carte — Options complémentaires
+            </span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {addons.map((addon, i) => (
+              <motion.div
+                key={addon.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.35 + i * 0.07, duration: 0.5 }}
+                className="frozen-card rounded-xl p-5 border dark:border-white/[0.06] border-black/[0.05] flex flex-col items-center text-center gap-3 hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center"
+                  style={{ background: `${addon.color}15`, border: `0.5px solid ${addon.color}35` }}
+                >
+                  <addon.icon className="w-4.5 h-4.5" style={{ color: addon.color }} />
+                </div>
+                <div>
+                  <div className="text-sm font-semibold dark:text-white text-charcoal leading-tight mb-1">
+                    {addon.label}
+                  </div>
+                  <div
+                    className="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                    style={{ background: `${addon.color}12`, color: addon.color }}
+                  >
+                    {addon.price}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Trust badges */}
         <motion.div
