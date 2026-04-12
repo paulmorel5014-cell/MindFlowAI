@@ -36,7 +36,7 @@ function buildArea(points: number[], w: number, h: number, padding = 20): string
   return `${path} L ${lastX} ${h - padding} L ${firstX} ${h - padding} Z`
 }
 
-export default function MindFlowAnalytics() {
+export default function OtterFlowAnalytics() {
   const [progress, setProgress] = useState(0)
   const [hoverIndex, setHoverIndex] = useState<number | null>(null)
   const svgRef = useRef<SVGSVGElement>(null)

@@ -2,14 +2,122 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { Radar, BarChart3, CalendarCheck, ArrowRight, X, Zap, Shield, Clock, ChevronRight } from 'lucide-react'
-import Image from 'next/image'
+import { Radar, BarChart3, ArrowRight, X, Zap, Shield, Clock, ChevronRight } from 'lucide-react'
+// App preview components are defined below — no external images needed
+
+/* ─── Apple-style App Preview Components ────────────────────────── */
+
+function RadarPreview() {
+  return (
+    <div className="w-full h-full flex items-center justify-center relative select-none">
+      {/* Ambient glow */}
+      <div className="absolute inset-0 rounded-xl" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(6,182,212,0.18) 0%, transparent 70%)' }} />
+
+      {/* Glassmorphism card */}
+      <div className="relative w-[220px] h-[220px] flex items-center justify-center">
+        {/* Radar rings */}
+        {[1, 0.72, 0.48, 0.26].map((scale, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full border border-cyan-400/20"
+            style={{ width: `${scale * 200}px`, height: `${scale * 200}px` }}
+          />
+        ))}
+        {/* Scanning sweep */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+          className="absolute inset-0 rounded-full"
+          style={{
+            background: 'conic-gradient(from 0deg, rgba(6,182,212,0.35) 0deg, transparent 70deg)',
+          }}
+        />
+        {/* Center dot */}
+        <div className="relative z-10 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.9)]" />
+        {/* Prospect dots */}
+        {[
+          { top: '20%', left: '65%', delay: 0 },
+          { top: '55%', left: '78%', delay: 0.4 },
+          { top: '72%', left: '40%', delay: 0.8 },
+          { top: '30%', left: '25%', delay: 1.2 },
+          { top: '60%', left: '18%', delay: 0.6 },
+        ].map((dot, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-cyan-300"
+            style={{ top: dot.top, left: dot.left, boxShadow: '0 0 8px rgba(6,182,212,0.8)' }}
+            animate={{ opacity: [0, 1, 0.6] }}
+            transition={{ delay: dot.delay, duration: 1.5, repeat: Infinity }}
+          />
+        ))}
+      </div>
+
+      {/* Stat badge */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full border border-cyan-400/25 backdrop-blur-md"
+        style={{ background: 'rgba(6,182,212,0.10)' }}>
+        <span className="text-xs font-semibold text-cyan-300 tracking-wider">847 prospects / mois</span>
+      </div>
+    </div>
+  )
+}
+
+function AnalyticsPreview() {
+  const bars = [38, 55, 42, 70, 58, 82, 65, 90, 74, 88]
+  return (
+    <div className="w-full h-full flex items-center justify-center relative select-none p-6">
+      <div className="absolute inset-0 rounded-xl" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139,92,246,0.20) 0%, transparent 70%)' }} />
+
+      <div className="relative w-full max-w-[240px]">
+        {/* Header stat */}
+        <div className="mb-5 flex items-end gap-2">
+          <motion.span
+            className="text-3xl font-bold"
+            style={{ color: '#a78bfa', textShadow: '0 0 20px rgba(139,92,246,0.6)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            +340%
+          </motion.span>
+          <span className="text-xs text-slate-400 mb-1.5">ROI moyen</span>
+        </div>
+
+        {/* Bar chart */}
+        <div className="flex items-end gap-1.5 h-[100px]">
+          {bars.map((h, i) => (
+            <motion.div
+              key={i}
+              className="flex-1 rounded-t-sm"
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ delay: 0.1 + i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              style={{
+                height: `${h}%`,
+                transformOrigin: 'bottom',
+                background: i >= 7
+                  ? 'linear-gradient(to top, #7c3aed, #a78bfa)'
+                  : 'rgba(139,92,246,0.35)',
+                boxShadow: i >= 7 ? '0 0 10px rgba(139,92,246,0.5)' : 'none',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Sparkline */}
+        <div className="mt-3 h-px w-full bg-gradient-to-r from-transparent via-violet-400/40 to-transparent" />
+        <div className="mt-2 flex justify-between text-[9px] text-slate-500">
+          <span>Jan</span><span>Mar</span><span>Mai</span><span>Juil</span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const tools = [
   {
     id: 'radar',
     icon: Radar,
-    otterImage: '/images/otter-radar.png',
+    Preview: RadarPreview,
     name: 'Prospect Radar',
     tagline: 'Détection prédictive',
     description:
@@ -32,14 +140,14 @@ const tools = [
   {
     id: 'analytics',
     icon: BarChart3,
-    otterImage: '/images/otter-analytics.png',
+    Preview: AnalyticsPreview,
     name: 'OtterFlow Analytics',
     tagline: 'Intelligence prédictive',
     description:
       'Tableaux de bord vivants alimentés par nos moteurs analytiques. Visualisez l\'évolution de votre ROI avec une précision de 94.2% et anticipez les tendances marché.',
     modalTitle: 'La Clarté sur vos Résultats',
     modalDescription:
-      'Traduisez votre visibilité en chiffre d\'affaires. Oubliez les graphiques complexes : notre tableau de bord vous montre l\'essentiel — l\'impact réel de MindFlow sur votre croissance. Suivez en direct le volume d\'affaires généré et optimisez votre stratégie grâce à une analyse prédictive de votre marché local.',
+      'Traduisez votre visibilité en chiffre d\'affaires. Oubliez les graphiques complexes : notre tableau de bord vous montre l\'essentiel — l\'impact réel de OtterFlow sur votre croissance. Suivez en direct le volume d\'affaires généré et optimisez votre stratégie grâce à une analyse prédictive de votre marché local.',
     modalFeatures: [
       { icon: BarChart3, label: 'Dashboard simplifié', desc: 'Indicateurs essentiels, zéro bruit' },
       { icon: Zap, label: 'Impact en direct', desc: "Volume d'affaires généré visible instantanément" },
@@ -51,29 +159,6 @@ const tools = [
     iconColor: 'text-violet-bright',
     glowColor: 'rgba(139,92,246,0.15)',
     accentHex: '#8B5CF6',
-  },
-  {
-    id: 'rdv',
-    icon: CalendarCheck,
-    otterImage: '/images/otter-rdv.png',
-    name: 'RDV Auto',
-    tagline: 'Orchestration automatisée',
-    description:
-      'Flux de données synchronisés avec vos agendas. Le système confirme, rappelle et adapte les créneaux selon les disponibilités — zéro friction, zéro no-show.',
-    modalTitle: 'Votre Secrétariat Intelligent',
-    modalDescription:
-      'Libérez-vous des appels incessants et des rendez-vous manqués. Notre module de planification synchronisé gère votre calendrier 24h/24. Vos clients réservent leurs interventions en toute autonomie, et notre système de rappel automatique réduit vos absences de 80 %. Vous travaillez, MindFlow remplit votre planning.',
-    modalFeatures: [
-      { icon: Clock, label: 'Disponible 24h/24', desc: 'Réservations même pendant votre sommeil' },
-      { icon: Zap, label: '-80% de no-shows', desc: 'Rappels automatiques multi-canaux' },
-      { icon: Shield, label: 'Autonomie client', desc: 'Réservation et modification en libre-service' },
-    ],
-    gradient: 'from-green-500/15 to-green-500/5',
-    border: 'border-green-500/20',
-    iconBg: 'bg-green-500/10',
-    iconColor: 'text-green-400',
-    glowColor: 'rgba(34,197,94,0.12)',
-    accentHex: '#22C55E',
   },
 ]
 
@@ -255,41 +340,48 @@ function ToolCard({ tool, index, onOpen }: { tool: (typeof tools)[0]; index: num
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Visualization card */}
+      {/* Visualization card — glassmorphism + glow */}
       <motion.div
-        animate={{ y: hovered ? -4 : 0, scale: hovered ? 1.01 : 1 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className={`
-          frozen-card rounded-2xl p-5 mb-5 flex-1
-          border ${tool.border}
-          bg-gradient-to-br ${tool.gradient}
-          transition-shadow duration-500
-          ${hovered
-            ? `shadow-[0_20px_60px_rgba(0,0,0,0.3)]`
-            : 'shadow-[0_8px_32px_rgba(0,0,0,0.15)]'
-          }
-          min-h-[320px]
-        `}
+        animate={{ y: hovered ? -6 : 0, scale: hovered ? 1.015 : 1 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mb-5 flex-1 min-h-[340px] rounded-[24px] overflow-hidden"
+        style={{
+          background: 'rgba(15,15,20,0.75)',
+          backdropFilter: 'blur(24px)',
+          border: `1px solid ${tool.accentHex}28`,
+          boxShadow: hovered
+            ? `0 24px 70px rgba(0,0,0,0.5), 0 0 40px ${tool.accentHex}22, inset 0 1px 0 rgba(255,255,255,0.07)`
+            : `0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04)`,
+        }}
       >
-        <div className="flex items-center justify-between mb-4">
-          <div className={`${tool.iconBg} rounded-xl p-2.5 border ${tool.border}`}>
+        {/* Ambient glow from accent color */}
+        <div
+          className="absolute -top-12 left-1/2 -translate-x-1/2 w-[200px] h-[140px] rounded-full blur-[60px] pointer-events-none transition-opacity duration-500"
+          style={{ background: tool.accentHex, opacity: hovered ? 0.18 : 0.10 }}
+        />
+        {/* Accent bar top */}
+        <div className="absolute top-0 left-0 right-0 h-[1.5px]"
+          style={{ background: `linear-gradient(90deg, transparent 5%, ${tool.accentHex}90, transparent 95%)` }} />
+
+        {/* Header row */}
+        <div className="flex items-center justify-between px-5 pt-5 pb-2">
+          <div
+            className={`${tool.iconBg} rounded-xl p-2.5 border ${tool.border}`}
+            style={{ boxShadow: `0 0 14px ${tool.accentHex}30` }}
+          >
             <tool.icon className={`w-4 h-4 ${tool.iconColor}`} />
           </div>
-          <div className="flex gap-1">
+          {/* macOS traffic lights */}
+          <div className="flex gap-1.5">
             {['#FF5F57', '#FFBD2E', '#28C840'].map((c) => (
-              <div key={c} className="w-2 h-2 rounded-full" style={{ backgroundColor: c }} />
+              <div key={c} className="w-2.5 h-2.5 rounded-full opacity-70" style={{ backgroundColor: c }} />
             ))}
           </div>
         </div>
-        <div className="h-[280px] flex items-end justify-center relative">
-          <Image
-            src={tool.otterImage}
-            alt={`Mascotte ${tool.name}`}
-            width={240}
-            height={280}
-            className="object-contain drop-shadow-2xl select-none"
-            priority
-          />
+
+        {/* Preview */}
+        <div className="h-[280px] relative overflow-hidden">
+          <tool.Preview />
         </div>
       </motion.div>
 
@@ -350,11 +442,16 @@ export default function Lab() {
 
   return (
     <section id="laboratoire" className="relative py-16 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 dark:bg-space-mid bg-white/60" />
+      <div className="absolute inset-0 dark:bg-space-mid bg-slate-50" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-neon/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-glacial/20 to-transparent" />
-      <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] rounded-full dark:bg-violet-neon/[0.04] blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] rounded-full dark:bg-cyan-glacial/[0.04] blur-[80px] pointer-events-none" />
+      {/* Gradient mesh blobs — Pinterest style */}
+      <div className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full blur-[130px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.10) 0%, transparent 70%)' }} />
+      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full blur-[110px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%)' }} />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] rounded-full blur-[100px] pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.07) 0%, transparent 70%)' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
@@ -373,12 +470,12 @@ export default function Lab() {
             Le Laboratoire OtterFlow
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-2xl mx-auto">
-            Trois instruments de précision conçus pour transformer vos données
+            Deux instruments de précision conçus pour transformer vos données
             en croissance mesurable — sans compromis.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
           {tools.map((tool, i) => (
             <ToolCard key={tool.id} tool={tool} index={i} onOpen={() => setActiveTool(tool.id)} />
           ))}

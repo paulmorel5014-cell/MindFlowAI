@@ -5,8 +5,8 @@ import { motion, AnimatePresence, useInView } from 'framer-motion'
 import {
   UtensilsCrossed, Hotel, HardHat, Scale, Laptop2, Store,
   BarChart3, Users, Globe, Mail, ArrowRight, ArrowLeft,
-  CheckCircle2, Sparkles, Megaphone, Calendar,
-  Rocket, TrendingUp, Cpu,
+  CheckCircle2, Sparkles, Megaphone, Camera,
+  Rocket, TrendingUp, Cpu, Palette,
 } from 'lucide-react'
 
 /* ─── Step 1 — Secteur ─────────────────────────────── */
@@ -24,9 +24,9 @@ const needs = [
   { id: 'visibilite', label: 'Visibilité & SEO', icon: Globe, description: 'Algorithmes de positionnement organique' },
   { id: 'leads', label: 'Génération de leads', icon: Users, description: 'Prospect Radar & ciblage prédictif' },
   { id: 'analytics', label: 'Analytics & ROI', icon: BarChart3, description: 'Tableaux de bord et flux de données' },
-  { id: 'rdv', label: 'Prise de rendez-vous', icon: Calendar, description: 'Orchestration automatisée des créneaux' },
+  { id: 'shooting', label: 'Shooting photo', icon: Camera, description: 'Photos professionnelles pour votre image' },
   { id: 'reseaux', label: 'Réseaux sociaux', icon: Megaphone, description: 'Moteurs de contenu et engagement' },
-  { id: 'email', label: 'Email & nurturing', icon: Mail, description: 'Séquences comportementales intelligentes' },
+  { id: 'rebranding', label: 'Rebranding', icon: Palette, description: 'Identité visuelle et refonte de marque' },
 ]
 
 /* ─── Step 3 — Ambition ─────────────────────────────── */
@@ -34,29 +34,29 @@ const ambitions = [
   {
     id: 'demarrage',
     label: 'Démarrage',
-    description: 'Je lance mon activité et j\'ai besoin d\'être pro en ligne, visible et crédible dès maintenant.',
+    description: 'Je lance mon activité et j\'ai besoin d\'être visible en ligne, crédible et trouvé sur Google.',
     icon: Rocket,
-    targetPlan: 'Plan Launch',
+    targetPlan: 'Pack Essentiel',
     color: '#06B6D4',
-    badge: '499€ Setup · 49€/mois',
+    badge: '890€ Setup · 79€/mois',
   },
   {
     id: 'croissance',
     label: 'Croissance',
-    description: 'Je veux automatiser mes rendez-vous, mon suivi client et dominer mon marché local.',
+    description: 'Je veux un site premium, un rebranding et dominer mon marché local grâce au SEO actif.',
     icon: TrendingUp,
-    targetPlan: 'Plan Prestige',
+    targetPlan: 'Pack Croissance',
     color: '#8B5CF6',
-    badge: '1 299€ Setup · 99€/mois',
+    badge: '1 490€ Setup · 149€/mois',
   },
   {
     id: 'expansion',
-    label: 'Expansion',
-    description: 'J\'ai besoin d\'un écosystème technologique sur-mesure pour une infrastructure digitale complète.',
+    label: 'Prestige',
+    description: 'J\'ai besoin d\'une infrastructure digitale complète : app sur-mesure, rebranding total et suivi dédié.',
     icon: Cpu,
-    targetPlan: 'Plan Élite',
+    targetPlan: 'Pack Prestige',
     color: '#D4AF72',
-    badge: 'Sur Devis · 199€/mois',
+    badge: '2 990€ Setup · 249€/mois',
   },
 ]
 

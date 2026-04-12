@@ -3,11 +3,11 @@ import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
-  title: 'MindFlow — L\'Architecture Digitale de Prestige',
+  title: 'OtterFlow — L\'Architecture Digitale de Prestige',
   description: 'Agence digitale d\'excellence. Algorithmes prédictifs, flux de données et moteurs analytiques au service de votre croissance.',
   keywords: ['agence digitale', 'marketing digital', 'algorithmes', 'flux de données', 'croissance'],
   openGraph: {
-    title: 'MindFlow — L\'Architecture Digitale de Prestige',
+    title: 'OtterFlow — L\'Architecture Digitale de Prestige',
     description: 'Agence digitale d\'excellence. Algorithmes prédictifs et moteurs de croissance pour les marques d\'exception.',
     type: 'website',
   },

@@ -7,9 +7,10 @@ import { Zap, Twitter, Linkedin, Instagram, X, ChevronRight } from 'lucide-react
 const links = {
   Solutions: [
     { label: 'Prospect Radar', href: '#laboratoire' },
-    { label: 'MindFlow Analytics', href: '#laboratoire' },
-    { label: 'RDV Auto', href: '#laboratoire' },
-    { label: 'Algorithmes SEO', href: '#laboratoire' },
+    { label: 'OtterFlow Analytics', href: '#laboratoire' },
+    { label: 'Rebranding', href: '#tarification' },
+    { label: 'Google My Business', href: '#tarification' },
+    { label: 'Shooting photo', href: '#tarification' },
   ],
   Secteurs: [
     { label: 'Restauration', href: '#portfolio' },
@@ -37,13 +38,11 @@ const legalContent = {
     sections: [
       {
         title: 'Éditeur du site',
-        content: `MindFlow — SAS au capital de 10 000€
-SIRET : 123 456 789 00012
-RCS Paris B 123 456 789
-Siège social : 15 Avenue George V, 75008 Paris, France
-Directeur de la publication : Alexandre Dupont
-Email : contact@mindflow.fr
-Téléphone : +33 1 23 45 67 89`,
+        content: `OtterFlow — Entreprise individuelle au capital de 0€
+SIRET : 991 494 196 00017
+Siège social : 4 rue du Chevalier de la Barre, 92130 Issy-les-Moulineaux, France
+Dirigeant : Paul Morel
+Email : contact@otterflow.fr`,
       },
       {
         title: 'Hébergement',
@@ -55,11 +54,11 @@ https://vercel.com`,
       },
       {
         title: 'Propriété intellectuelle',
-        content: `L'ensemble des éléments constituant ce site (textes, graphiques, logiciels, photographies, images, sons, plans, noms, logos, marques, créations et œuvres protégeables diverses) sont la propriété exclusive de MindFlow ou de ses partenaires. Toute reproduction, distribution, modification ou utilisation sans autorisation préalable écrite est strictement interdite.`,
+        content: `L'ensemble des éléments constituant ce site (textes, graphiques, logiciels, photographies, images, sons, plans, noms, logos, marques, créations et œuvres protégeables diverses) sont la propriété exclusive de OtterFlow ou de ses partenaires. Toute reproduction, distribution, modification ou utilisation sans autorisation préalable écrite est strictement interdite.`,
       },
       {
         title: 'Limitation de responsabilité',
-        content: `MindFlow s'efforce de maintenir à jour les informations publiées sur ce site, mais ne peut garantir leur exactitude, complétude ou actualité. MindFlow ne saurait être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site.`,
+        content: `OtterFlow s'efforce de maintenir à jour les informations publiées sur ce site, mais ne peut garantir leur exactitude, complétude ou actualité. OtterFlow ne saurait être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site.`,
       },
     ],
   },
@@ -67,7 +66,7 @@ https://vercel.com`,
     sections: [
       {
         title: 'Collecte des données personnelles',
-        content: `Dans le cadre de l'utilisation de nos services et de nos formulaires de contact, MindFlow collecte les données suivantes :
+        content: `Dans le cadre de l'utilisation de nos services et de nos formulaires de contact, OtterFlow collecte les données suivantes :
 • Nom et prénom
 • Adresse email professionnelle
 • Numéro de téléphone
@@ -96,7 +95,7 @@ Ces données sont collectées avec votre consentement explicite et sont utilisé
 • Droit à la portabilité
 • Droit d'opposition au traitement
 
-Pour exercer ces droits : privacy@mindflow.fr`,
+Pour exercer ces droits : privacy@otterflow.fr`,
       },
       {
         title: 'Cookies',
@@ -108,27 +107,27 @@ Pour exercer ces droits : privacy@mindflow.fr`,
     sections: [
       {
         title: 'Objet',
-        content: `Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation du site mindflow.fr ainsi que des services proposés par MindFlow SAS.`,
+        content: `Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation du site otterflow.fr ainsi que des services proposés par OtterFlow.`,
       },
       {
         title: 'Accès aux services',
-        content: `L'accès au site est gratuit et ouvert à tout utilisateur disposant d'un accès à Internet. MindFlow se réserve le droit de modifier, suspendre ou interrompre l'accès au site à tout moment, sans préavis ni indemnité.`,
+        content: `L'accès au site est gratuit et ouvert à tout utilisateur disposant d'un accès à Internet. OtterFlow se réserve le droit de modifier, suspendre ou interrompre l'accès au site à tout moment, sans préavis ni indemnité.`,
       },
       {
         title: 'Conditions d\'abonnement',
-        content: `Les abonnements MindFlow sont souscrits par voie électronique ou par bon de commande. L'abonnement est mensuel et résiliable à tout moment avec un préavis de 30 jours. Le setup (paiement unique) n'est pas remboursable une fois la prestation démarrée.`,
+        content: `Les abonnements OtterFlow sont souscrits par voie électronique ou par bon de commande. L'abonnement est mensuel et résiliable à tout moment avec un préavis de 30 jours. Le setup (paiement unique) n'est pas remboursable une fois la prestation démarrée.`,
       },
       {
         title: 'Obligations de l\'utilisateur',
         content: `L'utilisateur s'engage à :
 • Fournir des informations exactes lors de l'inscription
 • Ne pas utiliser les services à des fins illicites
-• Respecter la propriété intellectuelle de MindFlow
+• Respecter la propriété intellectuelle de OtterFlow
 • Ne pas tenter de contourner les mesures de sécurité du site`,
       },
       {
         title: 'Responsabilité',
-        content: `MindFlow s'engage à fournir des services conformes aux descriptions publiées. Les résultats présentés dans les études de cas sont des performances passées et ne constituent pas une garantie de résultats futurs.`,
+        content: `OtterFlow s'engage à fournir des services conformes aux descriptions publiées. Les résultats présentés dans les études de cas sont des performances passées et ne constituent pas une garantie de résultats futurs.`,
       },
       {
         title: 'Droit applicable',
@@ -188,7 +187,7 @@ function LegalModal({
           <div className="flex items-center justify-between px-7 py-5 border-b dark:border-white/[0.06] border-black/[0.05]">
             <div>
               <h2 className="font-serif font-bold text-xl dark:text-white text-charcoal">{title}</h2>
-              <p className="text-xs dark:text-slate-500 text-charcoal/45 mt-0.5">MindFlow SAS — Paris, France</p>
+              <p className="text-xs dark:text-slate-500 text-charcoal/45 mt-0.5">OtterFlow — Issy-les-Moulineaux, France</p>
             </div>
             <motion.button
               onClick={onClose}
@@ -227,7 +226,7 @@ function LegalModal({
             {/* Last updated */}
             <div className="pt-2 border-t dark:border-white/[0.05] border-black/[0.04]">
               <p className="text-xs dark:text-slate-600 text-charcoal/35 italic">
-                Dernière mise à jour : Mars 2025 — Pour toute question : legal@mindflow.fr
+                Dernière mise à jour : Mars 2026 — Pour toute question : contact@otterflow.fr
               </p>
             </div>
           </div>
@@ -262,7 +261,7 @@ export default function Footer() {
                   </div>
                 </div>
                 <span className="font-serif font-bold text-xl dark:text-white text-charcoal">
-                  Mind<span className="gradient-text">Flow</span>
+                  Otter<span className="gradient-text">Flow</span>
                 </span>
               </a>
 
@@ -312,7 +311,7 @@ export default function Footer() {
           {/* Bottom */}
           <div className="pt-8 border-t dark:border-white/[0.05] border-black/[0.05] flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs dark:text-slate-600 text-charcoal/40">
-              © 2025 MindFlow SAS. Tous droits réservés.
+              © 2026 OtterFlow. Tous droits réservés.
             </p>
             <div className="flex gap-6">
               {(Object.keys(legalContent) as Array<keyof typeof legalContent>).map((item) => (
