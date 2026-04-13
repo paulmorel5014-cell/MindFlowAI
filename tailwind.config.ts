@@ -33,10 +33,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        signature: ['var(--font-dancing)', 'cursive'],
-        typewriter: ['"Special Elite"', 'Courier New', 'monospace'],
+        serif: ['Nunito', 'system-ui', 'sans-serif'],
+        sans: ['Nunito', 'system-ui', 'sans-serif'],
+        signature: ['Caveat', 'cursive'],
+        typewriter: ['Nunito', 'system-ui', 'sans-serif'],
+        mono: ['"Space Mono"', 'Courier New', 'monospace'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

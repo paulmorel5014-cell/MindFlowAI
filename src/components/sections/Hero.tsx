@@ -1,46 +1,65 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring, useInView } from 'framer-motion'
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
-
-const stats = [
-  { to: 98, prefix: '', suffix: '%', label: 'Taux de satisfaction' },
-  { to: 340, prefix: '+', suffix: '%', label: 'ROI moyen sur 6 mois' },
-  { to: 200, prefix: '', suffix: '+', label: 'Projets livrés' },
-  { to: 12, prefix: '', suffix: '', label: 'Secteurs maîtrisés' },
-]
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 
 const words = ['Prestige', 'Excellence', 'Innovation', 'Vision']
 const VOWELS = ['A','E','I','O','U','É','È','Ê','Œ']
 const getPrep = (w: string) => VOWELS.includes(w[0].toUpperCase()) ? "d'" : 'de '
 
-/* ─── CountUp ─────────────────────────────────────────── */
-function CountUp({ to, prefix = '', suffix = '', active }: { to: number; prefix?: string; suffix?: string; active: boolean }) {
-  const motionValue = useMotionValue(0)
-  const springValue = useSpring(motionValue, { stiffness: 45, damping: 18 })
-  const [display, setDisplay] = useState(0)
+const row1 = [
+  'Création de sites web', 'SEO Local', 'Personal Shopper IA', 'Google My Business',
+  'Rebranding', 'Shooting Photo', 'Applications sur-mesure', 'OtterFlow Analytics',
+  'Étude de marché', 'WhatsApp IA',
+]
+const row2 = [
+  'Restaurants & Gastronomie', 'Hôtellerie & Tourisme', 'E-commerce', 'PME & TPE',
+  'Beauté & Bien-être', 'B2B & Conseil', 'Immobilier', 'Tech & SaaS', 'Commerce & Retail',
+]
 
-  useEffect(() => {
-    if (active) motionValue.set(to)
-  }, [active, to, motionValue])
+function MarqueeRow({ items, reverse = false, accent }: { items: string[]; reverse?: boolean; accent: string }) {
+  const doubled = [...items, ...items]
+  return (
+    <div className="overflow-hidden w-full py-2 relative">
+      {/* Edge fades */}
+      <div className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+        style={{ background: 'linear-gradient(to right, var(--fade-bg, #0A0F1E), transparent)' }} />
+      <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
+        style={{ background: 'linear-gradient(to left, var(--fade-bg, #0A0F1E), transparent)' }} />
 
-  useEffect(() => {
-    return springValue.on('change', (v) => setDisplay(Math.round(v)))
-  }, [springValue])
-
-  return <>{prefix}{display}{suffix}</>
+      <div
+        className="flex whitespace-nowrap w-max gap-3"
+        style={{
+          animation: `marquee-${reverse ? 'right' : 'left'} ${reverse ? '32s' : '26s'} linear infinite`,
+        }}
+      >
+        {doubled.map((item, i) => (
+          <div
+            key={i}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border flex-shrink-0"
+            style={{
+              background: `${accent}0A`,
+              borderColor: `${accent}25`,
+              color: i % 2 === 0 ? `${accent}CC` : 'rgba(148,163,184,0.7)',
+            }}
+          >
+            <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: accent, opacity: 0.6 }} />
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null)
-  const statsRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   const [wordIndex, setWordIndex] = useState(0)
-  const statsInView = useInView(statsRef, { once: true, margin: '-80px' })
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,7 +74,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       id="accueil"
     >
-      {/* ── Background layers ── */}
+      {/* Background */}
       <div className="absolute inset-0 dark:bg-space bg-ivory" />
 
       {/* Radial glows */}
@@ -83,51 +102,23 @@ export default function Hero() {
         <motion.div
           key={i}
           className="absolute rounded-full pointer-events-none blur-[60px]"
-          style={{
-            left: orb.x,
-            top: orb.y,
-            width: orb.size,
-            height: orb.size,
-            background: orb.color,
-          }}
-          animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.6, 1, 0.6],
-          }}
-          transition={{
-            duration: 6 + i,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: orb.delay,
-          }}
+          style={{ left: orb.x, top: orb.y, width: orb.size, height: orb.size, background: orb.color }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 6 + i, repeat: Infinity, ease: 'easeInOut', delay: orb.delay }}
         />
       ))}
 
-      {/* ── Main content ── */}
+      {/* Main content */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 text-center max-w-6xl mx-auto px-6 pt-24"
+        className="relative z-10 text-center max-w-6xl mx-auto px-6 pt-24 w-full"
       >
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 frozen-card"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-cyan-glacial" />
-          <span className="text-[9px] sm:text-xs font-medium tracking-wide sm:tracking-widest uppercase dark:text-slate-300 text-charcoal/70">
-            Architecture Digitale · Génération 2025
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-glacial animate-pulse" />
-        </motion.div>
-
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-fluid-xl font-bold dark:text-white text-charcoal leading-[1.04] mb-4"
+          className="font-serif text-fluid-xl font-bold dark:text-white text-charcoal leading-[1.04] mb-10"
         >
           L&rsquo;Architecture Digitale<br />
           <span className="relative inline-block">
@@ -139,7 +130,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -20, filter: 'blur(8px)' }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="gradient-text inline-block italic"
+                className="gradient-text inline-block font-signature"
               >
                 {words[wordIndex]}
               </motion.span>
@@ -147,23 +138,12 @@ export default function Hero() {
           </span>
         </motion.h1>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-fluid-md font-light dark:text-slate-400 text-charcoal/60 max-w-2xl mx-auto mb-12 leading-relaxed"
-        >
-          Des moteurs prédictifs sur-mesure, des flux de données
-          <br className="hidden sm:block" /> qui propulsent vos ambitions au sommet.
-        </motion.p>
-
         {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 sm:mb-20"
+          transition={{ duration: 0.7, delay: 0.45 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
           <a
             href="#configurateur"
@@ -182,30 +162,24 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Stats — animated counters */}
+        {/* Marquee strips */}
         <motion.div
-          ref={statsRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.75 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9, duration: 1 }}
+          className="w-screen relative left-1/2 -translate-x-1/2 space-y-2"
+          style={{
+            // @ts-expect-error custom property
+            '--fade-bg': 'var(--marquee-bg)',
+          }}
         >
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
-              className="frozen-card rounded-2xl p-5 text-center group hover:scale-[1.03] transition-transform duration-300 cursor-default"
-            >
-              <div className="font-serif font-bold text-2xl md:text-3xl gradient-text mb-1">
-                <CountUp to={stat.to} prefix={stat.prefix} suffix={stat.suffix} active={statsInView} />
-              </div>
-              <div className="text-xs dark:text-slate-500 text-charcoal/50 font-medium leading-tight">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+          {/* Horizontal rule */}
+          <div className="h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent mb-4" />
+
+          <MarqueeRow items={row1} accent="#8B5CF6" />
+          <MarqueeRow items={row2} reverse accent="#06B6D4" />
+
+          <div className="h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent mt-4" />
         </motion.div>
       </motion.div>
 
@@ -214,7 +188,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-xs dark:text-slate-600 text-charcoal/30 tracking-widest uppercase font-medium">
           Explorer

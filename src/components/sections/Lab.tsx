@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { Radar, BarChart3, ArrowRight, X, Zap, Shield, Clock, ChevronRight } from 'lucide-react'
+import { Radar, BarChart3, MessageCircle, ArrowRight, X, Zap, Shield, Clock, ChevronRight, ShoppingBag, Users, Star } from 'lucide-react'
 // App preview components are defined below — no external images needed
 
 /* ─── Apple-style App Preview Components ────────────────────────── */
@@ -113,6 +113,69 @@ function AnalyticsPreview() {
   )
 }
 
+function ShopperPreview() {
+  const messages = [
+    { from: 'user', text: 'Bonjour, je cherche un plat végétarien 🌿', delay: 0 },
+    { from: 'bot', text: 'Bonsoir ! Je vous recommande notre Risotto aux champignons — 18€. Très apprécié ce soir 🍄', delay: 0.5 },
+    { from: 'user', text: 'Et pour le dessert ?', delay: 1.0 },
+    { from: 'bot', text: 'Notre Fondant au chocolat est à emporter en combo — économisez 3€ 🍫', delay: 1.5 },
+  ]
+  return (
+    <div className="w-full h-full flex items-center justify-center relative select-none p-4">
+      <div className="absolute inset-0 rounded-xl" style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(37,211,102,0.15) 0%, transparent 70%)' }} />
+
+      <div className="relative w-full max-w-[240px]">
+        {/* WhatsApp-style header */}
+        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-t-2xl mb-0.5"
+          style={{ background: 'rgba(37,211,102,0.15)', border: '1px solid rgba(37,211,102,0.25)', borderBottom: 'none' }}>
+          <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+            style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}>
+            <ShoppingBag className="w-3.5 h-3.5 text-white" />
+          </div>
+          <div>
+            <div className="text-[10px] font-bold text-green-300 leading-tight">OtterFlow Shop</div>
+            <div className="flex items-center gap-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+              <span className="text-[8px] text-green-400">en ligne</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Chat messages */}
+        <div className="space-y-2 px-2 py-3 rounded-b-2xl"
+          style={{ background: 'rgba(0,0,0,0.25)', border: '1px solid rgba(37,211,102,0.15)', borderTop: 'none' }}>
+          {messages.map((msg, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 8, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: msg.delay, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div
+                className="max-w-[80%] px-2.5 py-1.5 rounded-xl text-[9px] leading-relaxed"
+                style={msg.from === 'bot'
+                  ? { background: 'rgba(37,211,102,0.18)', color: '#86efac', border: '0.5px solid rgba(37,211,102,0.25)' }
+                  : { background: 'rgba(255,255,255,0.10)', color: '#e2e8f0', border: '0.5px solid rgba(255,255,255,0.10)' }
+                }
+              >
+                {msg.text}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Panier moyen badge */}
+        <div className="mt-3 flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full border border-green-500/20"
+          style={{ background: 'rgba(37,211,102,0.08)' }}>
+          <Star className="w-2.5 h-2.5 text-green-400" />
+          <span className="text-[9px] font-semibold text-green-400 uppercase tracking-wider">+32% panier moyen</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const tools = [
   {
     id: 'radar',
@@ -136,6 +199,31 @@ const tools = [
     iconColor: 'text-cyan-glacial',
     glowColor: 'rgba(6,182,212,0.15)',
     accentHex: '#06B6D4',
+    badge: null,
+  },
+  {
+    id: 'shopper',
+    icon: MessageCircle,
+    Preview: ShopperPreview,
+    name: 'Personal Shopper IA',
+    tagline: 'Sur WhatsApp',
+    badge: 'Nouveau',
+    description:
+      'Un chatbot IA conversationnel intégré à WhatsApp. Recommandations produits, support 24/7, augmentation du panier moyen. Disponible pour restaurants, hôtels, e-commerce, salons et B2B.',
+    modalTitle: 'Votre Vendeur Disponible 24h/24',
+    modalDescription:
+      'Transformez WhatsApp en canal de vente intelligent. Notre Personal Shopper IA engage vos clients en langage naturel, recommande les bons produits au bon moment et augmente votre panier moyen de +32% en moyenne. Sans application à télécharger, sans formation — juste WhatsApp.',
+    modalFeatures: [
+      { icon: MessageCircle, label: 'WhatsApp natif', desc: 'Zéro friction — vos clients utilisent déjà WhatsApp' },
+      { icon: Users, label: 'Multi-secteurs', desc: 'Restaurants, hôtels, e-commerce, salons, B2B' },
+      { icon: ShoppingBag, label: '+32% panier moyen', desc: 'Recommandations personnalisées par IA' },
+    ],
+    gradient: 'from-green-500/15 to-green-500/5',
+    border: 'border-green-500/20',
+    iconBg: 'bg-green-500/10',
+    iconColor: 'text-green-400',
+    glowColor: 'rgba(37,211,102,0.15)',
+    accentHex: '#25D366',
   },
   {
     id: 'analytics',
@@ -159,6 +247,7 @@ const tools = [
     iconColor: 'text-violet-bright',
     glowColor: 'rgba(139,92,246,0.15)',
     accentHex: '#8B5CF6',
+    badge: null,
   },
 ]
 
@@ -336,10 +425,27 @@ function ToolCard({ tool, index, onOpen }: { tool: (typeof tools)[0]; index: num
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.75, delay: index * 0.16, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex flex-col"
+      className="group flex flex-col relative"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* Floating "Nouveau" badge above card */}
+      {tool.badge && (
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+          <motion.div
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-bold text-white whitespace-nowrap"
+            style={{
+              background: `linear-gradient(135deg, ${tool.accentHex}EE, ${tool.accentHex}AA)`,
+              boxShadow: `0 4px 20px ${tool.accentHex}55, 0 0 0 1px ${tool.accentHex}40`,
+            }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            {tool.badge}
+          </motion.div>
+        </div>
+      )}
       {/* Visualization card — glassmorphism + glow */}
       <motion.div
         animate={{ y: hovered ? -6 : 0, scale: hovered ? 1.015 : 1 }}
@@ -470,12 +576,12 @@ export default function Lab() {
             Le Laboratoire OtterFlow
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-2xl mx-auto">
-            Deux instruments de précision conçus pour transformer vos données
+            Trois instruments de précision conçus pour transformer vos données
             en croissance mesurable — sans compromis.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {tools.map((tool, i) => (
             <ToolCard key={tool.id} tool={tool} index={i} onOpen={() => setActiveTool(tool.id)} />
           ))}
