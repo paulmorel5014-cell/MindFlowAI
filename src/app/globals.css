@@ -228,6 +228,16 @@ body {
   animation: blink 1s step-end infinite;
 }
 
+/* ─── Marquee ───────────────────────────────────────── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
 /* ─── Responsive typography ─────────────────────────── */
 .text-fluid-xl {
   font-size: clamp(2.5rem, 6vw, 5.5rem);
