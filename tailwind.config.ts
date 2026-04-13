@@ -33,10 +33,10 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ['Syne', 'system-ui', 'sans-serif'],
-        sans: ['Manrope', 'system-ui', 'sans-serif'],
+        serif: ['Nunito', 'system-ui', 'sans-serif'],
+        sans: ['Nunito', 'system-ui', 'sans-serif'],
         signature: ['Caveat', 'cursive'],
-        typewriter: ['Lora', 'Georgia', 'serif'],
+        typewriter: ['Nunito', 'system-ui', 'sans-serif'],
         mono: ['"Space Mono"', 'Courier New', 'monospace'],
       },
       backgroundImage: {
