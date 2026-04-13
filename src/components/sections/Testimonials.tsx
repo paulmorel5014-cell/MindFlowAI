@@ -6,9 +6,9 @@ import { Star, Quote } from 'lucide-react'
 
 const testimonials = [
   {
-    initials: 'SM',
-    name: 'Sophie M.',
-    role: 'Restauratrice',
+    initials: 'TR',
+    name: 'Thomas R.',
+    role: 'Gérant',
     company: 'Restaurant · Paris',
     quote: 'En 3 semaines, notre page Google affichait 4,8 étoiles et nos réservations en ligne ont doublé. L\'équipe OtterFlow a tout géré.',
     result: 'Réservations ×2',
@@ -60,7 +60,7 @@ export default function Testimonials() {
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-12 md:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/5 border border-amber-500/20 mb-6">
@@ -86,7 +86,7 @@ export default function Testimonials() {
               initial={{ opacity: 0, y: 36, scale: 0.97 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.65, delay: t.delay, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, delay: Math.min(t.delay * 0.4, 0.1), ease: [0.22, 1, 0.36, 1] }}
               className="relative group"
             >
               {/* Top accent border */}

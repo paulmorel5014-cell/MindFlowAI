@@ -33,7 +33,7 @@ const steps = [
     number: '04',
     icon: TrendingUp,
     title: 'Croissance continue',
-    description: 'Optimisation permanente basée sur les résultats réels. Reporting mensuel, ajustements algorithmiques et accompagnement dédié.',
+    description: 'Optimisation permanente basée sur les résultats réels. Reporting mensuel, ajustements continus et accompagnement dédié.',
     color: '#06B6D4',
     delay: 0.45,
   },
@@ -60,7 +60,7 @@ export default function Process() {
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-16 md:mb-20"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-cyan-glacial/10 bg-cyan-glacial/5 border border-cyan-glacial/20 mb-6">
@@ -72,8 +72,8 @@ export default function Process() {
             De l&rsquo;ambition aux résultats
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-2xl mx-auto">
-            Un processus éprouvé en 4 étapes pour transformer vos données
-            en avantage concurrentiel mesurable.
+            Un processus simple en 4 étapes pour passer
+            de l&rsquo;invisible au incontournable.
           </p>
         </motion.div>
 
@@ -90,7 +90,7 @@ export default function Process() {
                 key={step.number}
                 initial={{ opacity: 0, y: 32 }}
                 animate={stepsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: step.delay, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.4, delay: Math.min(step.delay * 0.6, 0.1), ease: [0.22, 1, 0.36, 1] }}
                 className="relative flex flex-col items-center md:items-center text-left md:text-center"
               >
                 {/* Vertical line mobile */}

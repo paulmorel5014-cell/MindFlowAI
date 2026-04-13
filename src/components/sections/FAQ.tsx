@@ -66,7 +66,7 @@ function FAQItem({ faq, index, inView }: { faq: typeof faqs[0]; index: number; i
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.1), ease: [0.22, 1, 0.36, 1] }}
     >
       <div
         className="frozen-card rounded-2xl border overflow-hidden transition-all duration-300"
@@ -154,7 +154,7 @@ export default function FAQ() {
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-12 md:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-violet-neon/10 bg-violet-neon/5 border border-violet-neon/20 mb-6">

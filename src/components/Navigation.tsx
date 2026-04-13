@@ -8,12 +8,19 @@ import { cn } from '@/lib/utils'
 
 function LogoMark() {
   const [imgOk, setImgOk] = useState(true)
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
+
+  const logoFilter = mounted
+    ? resolvedTheme === 'dark'
+      ? 'brightness(0) invert(1) drop-shadow(0 0 10px rgba(139,92,246,0.5))'
+      : 'brightness(0)'
+    : 'brightness(0) invert(1)'
 
   return (
-    <div
-      className="relative w-11 h-11 flex-shrink-0 transition-all duration-300 group-hover:scale-105"
-      style={{ filter: 'drop-shadow(0 0 10px rgba(139,92,246,0.25))' }}
-    >
+    <div className="relative w-11 h-11 flex-shrink-0 transition-all duration-300 group-hover:scale-105">
       {imgOk ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -21,7 +28,8 @@ function LogoMark() {
           alt="OtterFlow logo"
           width={44}
           height={44}
-          className="w-full h-full object-contain rounded-xl"
+          className="w-full h-full object-contain"
+          style={{ filter: logoFilter, transition: 'filter 0.3s' }}
           onError={() => setImgOk(false)}
         />
       ) : (
