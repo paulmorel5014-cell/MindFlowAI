@@ -17,7 +17,7 @@ const steps = [
     number: '02',
     icon: Target,
     title: 'Stratégie sur-mesure',
-    description: 'Conception d\'une architecture digitale adaptée à votre secteur et vos objectifs. Chaque algorithme est calibré pour votre réalité terrain.',
+    description: 'Conception d\'une présence digitale adaptée à votre secteur et vos objectifs. Chaque solution est adaptée à votre réalité terrain.',
     color: '#8B5CF6',
     delay: 0.15,
   },
@@ -25,7 +25,7 @@ const steps = [
     number: '03',
     icon: Rocket,
     title: 'Déploiement & Automatisation',
-    description: 'Mise en place des moteurs prédictifs, intégration des flux de données et automatisation de vos processus commerciaux clés.',
+    description: 'Mise en place des outils intelligents, intégration de vos données et automatisation de vos processus commerciaux clés.',
     color: '#8B5CF6',
     delay: 0.3,
   },
@@ -150,7 +150,9 @@ export default function Process() {
           className="text-center mt-14"
         >
           <a
-            href="#configurateur"
+            href="https://wa.me/33781364451"
+            target="_blank"
+            rel="noopener noreferrer"
             className="shimmer-btn inline-flex items-center gap-2.5 px-8 py-3.5 rounded-2xl text-sm font-semibold text-white hover:scale-[1.02] active:scale-[0.98] transition-transform duration-200"
             style={{ '--btn-bg': 'linear-gradient(135deg, #06B6D4, #8B5CF6)' } as React.CSSProperties}
           >

@@ -3,21 +3,21 @@ import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
-  title: 'OtterFlow — Agence Digitale | Sites Web, SEO & IA pour PME et TPE',
-  description: 'OtterFlow crée des sites web professionnels, optimise votre référencement Google (SEO) et déploie des chatbots IA WhatsApp pour restaurants, hôtels, boutiques et PME. Setup rapide, résultats mesurables.',
+  metadataBase: new URL('https://otterflow.fr'),
+  title: 'OtterFlow — Agence Digitale Paris | Sites Web, SEO & Chatbot IA WhatsApp pour PME et TPE',
+  description: 'OtterFlow crée des sites web, gère votre SEO local et déploie des chatbots IA sur WhatsApp pour les restaurants, hôtels, boutiques et PME en France. Devis gratuit en 24h.',
   keywords: [
-    'agence digitale',
-    'création site web',
+    'agence digitale Paris',
+    'création site web PME',
     'SEO local',
     'Google My Business',
     'chatbot WhatsApp IA',
+    'Personal Shopper IA WhatsApp',
     'rebranding',
     'shooting photo professionnel',
-    'site vitrine',
-    'application sur mesure',
-    'marketing digital PME',
+    'site vitrine restaurant',
+    'marketing digital PME TPE',
     'référencement naturel',
-    'Personal Shopper IA',
     'OtterFlow',
   ],
   authors: [{ name: 'Paul Morel', url: 'https://otterflow.fr' }],
@@ -29,16 +29,18 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   openGraph: {
-    title: 'OtterFlow — Sites Web, SEO & Chatbot IA WhatsApp',
-    description: 'Agence digitale spécialisée PME et TPE. Sites vitrine, SEO local, Google My Business, rebranding et Personal Shopper IA sur WhatsApp.',
+    title: 'OtterFlow — Agence Digitale Paris | Sites Web, SEO & Chatbot IA WhatsApp',
+    description: 'OtterFlow crée des sites web, gère votre SEO local et déploie des chatbots IA sur WhatsApp pour les restaurants, hôtels, boutiques et PME en France. Devis gratuit en 24h.',
     type: 'website',
     locale: 'fr_FR',
     siteName: 'OtterFlow',
+    images: [{ url: '/IMG_0258.webp', width: 800, height: 800, alt: 'OtterFlow — Agence Digitale Paris' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'OtterFlow — Agence Digitale PME & TPE',
-    description: 'Sites web, SEO, Google My Business et chatbot IA WhatsApp pour restaurants, hôtels, boutiques et PME.',
+    title: 'OtterFlow — Agence Digitale Paris | PME & TPE',
+    description: 'Sites web, SEO local et chatbot IA WhatsApp pour restaurants, hôtels, boutiques et PME. Devis gratuit en 24h.',
+    images: ['/IMG_0258.webp'],
   },
 }
 

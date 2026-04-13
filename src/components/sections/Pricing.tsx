@@ -249,7 +249,9 @@ export default function Pricing() {
 
                 {/* CTA */}
                 <a
-                  href="#configurateur"
+                  href="https://wa.me/33781364451"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`
                     group/btn w-full flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl
                     text-sm font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]

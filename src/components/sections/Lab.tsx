@@ -55,7 +55,7 @@ function RadarPreview() {
       {/* Stat badge */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full border border-cyan-400/25 backdrop-blur-md"
         style={{ background: 'rgba(6,182,212,0.10)' }}>
-        <span className="text-xs font-semibold text-cyan-300 tracking-wider">847 prospects / mois</span>
+        <span className="text-xs font-semibold text-cyan-300 tracking-wider">Données en temps réel</span>
       </div>
     </div>
   )
@@ -77,9 +77,9 @@ function AnalyticsPreview() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            +340%
+            +ROI
           </motion.span>
-          <span className="text-xs text-slate-400 mb-1.5">ROI moyen</span>
+          <span className="text-xs text-slate-400 mb-1.5">dès le 1er mois</span>
         </div>
 
         {/* Bar chart */}
@@ -184,10 +184,10 @@ const tools = [
     name: 'Prospect Radar',
     tagline: 'Détection prédictive',
     description:
-      'Notre algorithme cartographie en temps réel les zones d\'opportunité et qualifie automatiquement 847 prospects par mois via des flux de données comportementaux.',
+      'Identifiez les prospects les plus chauds dans votre ville, par secteur, en temps réel.',
     modalTitle: 'L\'Avantage Tactique',
     modalDescription:
-      'Notre moteur de détection scanne votre zone géographique en temps réel pour identifier les opportunités que personne d\'autre ne voit. Nous positionnons votre entreprise là où la demande est la plus forte, avant même que vos prospects ne décrochent leur téléphone.',
+      'Notre outil de détection scanne votre zone géographique en temps réel pour identifier les opportunités que personne d\'autre ne voit. Nous positionnons votre entreprise là où la demande est la plus forte, avant même que vos prospects ne décrochent leur téléphone.',
     modalFeatures: [
       { icon: Zap, label: 'Détection en temps réel', desc: 'Scan continu de votre zone de chalandise' },
       { icon: Shield, label: 'Données exclusives', desc: 'Flux propriétaires non accessibles à vos concurrents' },
@@ -230,9 +230,9 @@ const tools = [
     icon: BarChart3,
     Preview: AnalyticsPreview,
     name: 'OtterFlow Analytics',
-    tagline: 'Intelligence prédictive',
+    tagline: 'Analyse en temps réel',
     description:
-      'Tableaux de bord vivants alimentés par nos moteurs analytiques. Visualisez l\'évolution de votre ROI avec une précision de 94.2% et anticipez les tendances marché.',
+      'Tableaux de bord vivants pour visualiser l\'évolution de votre ROI et anticiper les tendances de votre marché local.',
     modalTitle: 'La Clarté sur vos Résultats',
     modalDescription:
       'Traduisez votre visibilité en chiffre d\'affaires. Oubliez les graphiques complexes : notre tableau de bord vous montre l\'essentiel — l\'impact réel de OtterFlow sur votre croissance. Suivez en direct le volume d\'affaires généré et optimisez votre stratégie grâce à une analyse prédictive de votre marché local.',
@@ -397,7 +397,9 @@ function ToolModal({ tool, onClose }: { tool: (typeof tools)[0]; onClose: () => 
               className="mt-7"
             >
               <a
-                href="#configurateur"
+                href="https://wa.me/33781364451"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={onClose}
                 className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-2xl text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
                 style={{ background: `linear-gradient(135deg, ${tool.accentHex}EE, ${tool.accentHex}AA)` }}
