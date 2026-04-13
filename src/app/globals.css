@@ -78,9 +78,43 @@ body {
 /* Light mode frozen card */
 .light .frozen-card,
 :root:not(.dark) .frozen-card {
-  background: rgba(255, 255, 255, 0.55);
-  border: 0.5px solid rgba(255, 255, 255, 0.80);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.75);
+  border: 0.5px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+/* ─── Light mode text contrast fixes ───────────────────── */
+:root:not(.dark) {
+  /* Ensure readable text on light backgrounds */
+  --text-muted: #4B5563;
+  --text-subtle: #6B7280;
+}
+
+/* Sections with light backgrounds — reinforce text contrast */
+:root:not(.dark) section {
+  color: #1C1C1E;
+}
+
+/* Override Tailwind slate opacity classes that are too light in light mode */
+:root:not(.dark) .text-charcoal\/40,
+:root:not(.dark) .text-charcoal\/45 {
+  color: rgba(28, 28, 30, 0.60) !important;
+}
+
+:root:not(.dark) .text-charcoal\/50,
+:root:not(.dark) .text-charcoal\/55 {
+  color: rgba(28, 28, 30, 0.65) !important;
+}
+
+:root:not(.dark) .text-charcoal\/60 {
+  color: rgba(28, 28, 30, 0.72) !important;
+}
+
+/* Dark text-slate-* classes should not apply in light mode */
+:root:not(.dark) .dark\:text-slate-400,
+:root:not(.dark) .dark\:text-slate-500,
+:root:not(.dark) .dark\:text-slate-600 {
+  /* These are dark-mode classes — handled by Tailwind dark: prefix already */
 }
 
 /* ─── Shimmer Button ────────────────────────────────── */
