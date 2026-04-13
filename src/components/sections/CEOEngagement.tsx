@@ -67,7 +67,7 @@ export default function CEOEngagement() {
               {/* Decorative line */}
               <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-violet-neon/40 via-cyan-glacial/30 to-transparent rounded-full" />
 
-              <div className="font-typewriter text-lg md:text-xl leading-relaxed dark:text-white/90 text-charcoal/90 pl-4 space-y-5">
+              <div className="font-typewriter italic text-lg md:text-xl leading-relaxed dark:text-white/90 text-charcoal/90 pl-4 space-y-5">
                 <motion.p
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -117,7 +117,7 @@ export default function CEOEngagement() {
               transition={{ delay: 0.9, duration: 0.7 }}
               className="mt-12"
             >
-              <div className="font-typewriter text-3xl md:text-4xl gradient-text mb-1">
+              <div className="font-signature text-4xl md:text-5xl gradient-text mb-1">
                 Paul Morel
               </div>
               <div className="flex items-center gap-2">

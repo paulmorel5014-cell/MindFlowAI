@@ -253,18 +253,16 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
             {/* Brand */}
             <div className="lg:col-span-2">
-              <a href="#" className="flex items-center gap-2.5 group mb-5 w-fit">
+              <a href="#" className="flex items-center group mb-5 w-fit">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/IMG_0258.webp"
                   alt="OtterFlow"
-                  width={36}
-                  height={36}
-                  className="w-9 h-9 object-contain rounded-xl"
+                  width={48}
+                  height={48}
+                  className="w-12 h-12 object-contain rounded-xl transition-all duration-300 group-hover:scale-105"
+                  style={{ filter: 'drop-shadow(0 0 12px rgba(139,92,246,0.3))' }}
                 />
-                <span className="font-serif font-bold text-xl dark:text-white text-charcoal">
-                  Otter<span className="gradient-text">Flow</span>
-                </span>
               </a>
 
               <p className="text-sm dark:text-slate-400 text-charcoal/60 leading-relaxed max-w-xs mb-6">

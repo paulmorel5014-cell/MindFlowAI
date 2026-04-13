@@ -10,14 +10,17 @@ function LogoMark() {
   const [imgOk, setImgOk] = useState(true)
 
   return (
-    <div className="relative w-9 h-9 flex-shrink-0">
+    <div
+      className="relative w-11 h-11 flex-shrink-0 transition-all duration-300 group-hover:scale-105"
+      style={{ filter: 'drop-shadow(0 0 10px rgba(139,92,246,0.25))' }}
+    >
       {imgOk ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src="/IMG_0258.webp"
           alt="OtterFlow logo"
-          width={36}
-          height={36}
+          width={44}
+          height={44}
           className="w-full h-full object-contain rounded-xl"
           onError={() => setImgOk(false)}
         />
@@ -25,7 +28,7 @@ function LogoMark() {
         <>
           <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-neon to-cyan-glacial opacity-80 group-hover:opacity-100 transition-opacity" />
           <div className="absolute inset-0.5 rounded-[10px] dark:bg-space bg-white flex items-center justify-center">
-            <Zap className="w-4 h-4 text-cyan-glacial" strokeWidth={2.5} />
+            <Zap className="w-5 h-5 text-cyan-glacial" strokeWidth={2.5} />
           </div>
         </>
       )}
@@ -79,11 +82,8 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-18 py-3">
 
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2.5 group flex-shrink-0">
+            <a href="#" className="flex items-center group flex-shrink-0">
               <LogoMark />
-              <span className="font-serif font-bold text-lg tracking-tight dark:text-white text-charcoal">
-                Otter<span className="gradient-text">Flow</span>
-              </span>
             </a>
 
             {/* Desktop nav */}

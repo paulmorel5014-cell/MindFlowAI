@@ -125,7 +125,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, y: -20, filter: 'blur(8px)' }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="gradient-text inline-block italic"
+                className="gradient-text inline-block font-signature"
               >
                 {words[wordIndex]}
               </motion.span>
@@ -173,10 +173,10 @@ export default function Hero() {
               transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
               className="frozen-card rounded-2xl p-5 text-center group hover:scale-[1.03] transition-transform duration-300 cursor-default"
             >
-              <div className="font-serif font-bold text-2xl md:text-3xl gradient-text mb-1">
+              <div className="font-mono font-bold text-2xl md:text-3xl gradient-text mb-1">
                 <CountUp to={stat.to} prefix={stat.prefix} suffix={stat.suffix} active={statsInView} />
               </div>
-              <div className="text-xs dark:text-slate-500 text-charcoal/50 font-medium leading-tight">
+              <div className="text-xs dark:text-slate-500 text-charcoal/50 font-medium leading-tight tracking-wide">
                 {stat.label}
               </div>
             </motion.div>
