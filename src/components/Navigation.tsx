@@ -6,6 +6,33 @@ import { useTheme } from 'next-themes'
 import { Sun, Moon, Menu, X, ArrowRight, Zap } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
+function LogoMark() {
+  const [imgOk, setImgOk] = useState(true)
+
+  return (
+    <div className="relative w-9 h-9 flex-shrink-0">
+      {imgOk ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src="/IMG_0258.webp"
+          alt="OtterFlow logo"
+          width={36}
+          height={36}
+          className="w-full h-full object-contain rounded-xl"
+          onError={() => setImgOk(false)}
+        />
+      ) : (
+        <>
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-neon to-cyan-glacial opacity-80 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute inset-0.5 rounded-[10px] dark:bg-space bg-white flex items-center justify-center">
+            <Zap className="w-4 h-4 text-cyan-glacial" strokeWidth={2.5} />
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
 const navLinks = [
   { label: 'Laboratoire', href: '#laboratoire' },
   { label: 'Tarification', href: '#tarification' },
@@ -53,13 +80,7 @@ export default function Navigation() {
 
             {/* Logo */}
             <a href="#" className="flex items-center gap-2.5 group flex-shrink-0">
-              {/* Drop your logo.webp into /public/ to replace this icon */}
-              <div className="relative w-9 h-9 flex-shrink-0">
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-neon to-cyan-glacial opacity-80 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute inset-0.5 rounded-[10px] dark:bg-space bg-white flex items-center justify-center">
-                  <Zap className="w-4 h-4 text-cyan-glacial" strokeWidth={2.5} />
-                </div>
-              </div>
+              <LogoMark />
               <span className="font-serif font-bold text-lg tracking-tight dark:text-white text-charcoal">
                 Otter<span className="gradient-text">Flow</span>
               </span>

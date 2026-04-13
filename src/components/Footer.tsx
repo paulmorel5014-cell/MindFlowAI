@@ -254,12 +254,14 @@ export default function Footer() {
             {/* Brand */}
             <div className="lg:col-span-2">
               <a href="#" className="flex items-center gap-2.5 group mb-5 w-fit">
-                <div className="relative w-9 h-9">
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-neon to-cyan-glacial opacity-80" />
-                  <div className="absolute inset-0.5 rounded-[10px] dark:bg-space bg-white flex items-center justify-center">
-                    <Zap className="w-4 h-4 text-cyan-glacial" strokeWidth={2.5} />
-                  </div>
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/IMG_0258.webp"
+                  alt="OtterFlow"
+                  width={36}
+                  height={36}
+                  className="w-9 h-9 object-contain rounded-xl"
+                />
                 <span className="font-serif font-bold text-xl dark:text-white text-charcoal">
                   Otter<span className="gradient-text">Flow</span>
                 </span>
