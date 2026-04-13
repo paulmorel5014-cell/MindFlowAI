@@ -425,10 +425,27 @@ function ToolCard({ tool, index, onOpen }: { tool: (typeof tools)[0]; index: num
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.75, delay: index * 0.16, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex flex-col"
+      className="group flex flex-col relative"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* Floating "Nouveau" badge above card */}
+      {tool.badge && (
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5">
+          <motion.div
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] font-bold text-white whitespace-nowrap"
+            style={{
+              background: `linear-gradient(135deg, ${tool.accentHex}EE, ${tool.accentHex}AA)`,
+              boxShadow: `0 4px 20px ${tool.accentHex}55, 0 0 0 1px ${tool.accentHex}40`,
+            }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            {tool.badge}
+          </motion.div>
+        </div>
+      )}
       {/* Visualization card — glassmorphism + glow */}
       <motion.div
         animate={{ y: hovered ? -6 : 0, scale: hovered ? 1.015 : 1 }}
@@ -454,21 +471,11 @@ function ToolCard({ tool, index, onOpen }: { tool: (typeof tools)[0]; index: num
 
         {/* Header row */}
         <div className="flex items-center justify-between px-5 pt-5 pb-2">
-          <div className="flex items-center gap-2">
-            <div
-              className={`${tool.iconBg} rounded-xl p-2.5 border ${tool.border}`}
-              style={{ boxShadow: `0 0 14px ${tool.accentHex}30` }}
-            >
-              <tool.icon className={`w-4 h-4 ${tool.iconColor}`} />
-            </div>
-            {tool.badge && (
-              <span
-                className="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider"
-                style={{ background: `${tool.accentHex}22`, color: tool.accentHex, border: `0.5px solid ${tool.accentHex}40` }}
-              >
-                {tool.badge}
-              </span>
-            )}
+          <div
+            className={`${tool.iconBg} rounded-xl p-2.5 border ${tool.border}`}
+            style={{ boxShadow: `0 0 14px ${tool.accentHex}30` }}
+          >
+            <tool.icon className={`w-4 h-4 ${tool.iconColor}`} />
           </div>
           {/* macOS traffic lights */}
           <div className="flex gap-1.5">

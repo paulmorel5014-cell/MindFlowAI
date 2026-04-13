@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring, useInView } from 'framer-motion'
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
+import { ArrowRight, ChevronDown } from 'lucide-react'
 
 const stats = [
   { to: 98, prefix: '', suffix: '%', label: 'Taux de satisfaction' },
@@ -108,26 +108,12 @@ export default function Hero() {
         style={{ y, opacity }}
         className="relative z-10 text-center max-w-6xl mx-auto px-6 pt-24"
       >
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 frozen-card"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-cyan-glacial" />
-          <span className="text-[9px] sm:text-xs font-medium tracking-wide sm:tracking-widest uppercase dark:text-slate-300 text-charcoal/70">
-            Architecture Digitale · Génération 2025
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-glacial animate-pulse" />
-        </motion.div>
-
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-fluid-xl font-bold dark:text-white text-charcoal leading-[1.04] mb-4"
+          className="font-serif text-fluid-xl font-bold dark:text-white text-charcoal leading-[1.04] mb-12"
         >
           L&rsquo;Architecture Digitale<br />
           <span className="relative inline-block">
@@ -146,17 +132,6 @@ export default function Hero() {
             </AnimatePresence>
           </span>
         </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-fluid-md font-light dark:text-slate-400 text-charcoal/60 max-w-2xl mx-auto mb-12 leading-relaxed"
-        >
-          Des moteurs prédictifs sur-mesure, des flux de données
-          <br className="hidden sm:block" /> qui propulsent vos ambitions au sommet.
-        </motion.p>
 
         {/* CTA buttons */}
         <motion.div
