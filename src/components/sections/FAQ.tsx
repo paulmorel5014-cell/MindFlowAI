@@ -189,7 +189,9 @@ export default function FAQ() {
             Une autre question ? Réponse garantie sous 24h.
           </p>
           <a
-            href="#configurateur"
+            href="https://wa.me/33781364451"
+            target="_blank"
+            rel="noopener noreferrer"
             className="shimmer-btn inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-sm font-semibold text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
             style={{ '--btn-bg': 'linear-gradient(135deg, #8B5CF6, #06B6D4)' } as React.CSSProperties}
           >

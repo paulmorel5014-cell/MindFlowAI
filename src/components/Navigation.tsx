@@ -122,7 +122,9 @@ export default function Navigation() {
 
               {/* CTA — desktop only */}
               <a
-                href="#configurateur"
+                href="https://wa.me/33781364451"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hidden md:inline-flex shimmer-btn items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                 style={{ '--btn-bg': 'linear-gradient(135deg, #8B5CF6, #06B6D4)' } as React.CSSProperties}
               >
@@ -229,7 +231,9 @@ export default function Navigation() {
 
                 {/* CTA */}
                 <motion.a
-                  href="#configurateur"
+                  href="https://wa.me/33781364451"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}

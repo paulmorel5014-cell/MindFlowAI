@@ -6,35 +6,35 @@ import { Star, Quote } from 'lucide-react'
 
 const testimonials = [
   {
-    initials: 'AM',
-    name: 'Antoine M.',
-    role: 'Chef-propriétaire',
-    company: 'Maison Varel · Paris 16e',
-    quote: 'En 4 mois, OtterFlow a complètement transformé notre visibilité en ligne. La liste d\'attente est passée de 2 jours à 3 semaines — un signal qu\'on n\'aurait jamais cru possible. L\'équipe comprend vraiment les enjeux de la restauration gastronomique.',
-    result: '+280% de réservations',
+    initials: 'SM',
+    name: 'Sophie M.',
+    role: 'Restauratrice',
+    company: 'Restaurant · Paris',
+    quote: 'En 3 semaines, notre page Google affichait 4,8 étoiles et nos réservations en ligne ont doublé. L\'équipe OtterFlow a tout géré.',
+    result: 'Réservations ×2',
     accent: '#F59E0B',
     stars: 5,
     delay: 0,
   },
   {
-    initials: 'SL',
-    name: 'Sophie L.',
-    role: 'Directrice Générale',
-    company: 'Grand Hôtel Aldric · Côte d\'Azur',
-    quote: 'Le pricing dynamique de OtterFlow a dépassé toutes nos attentes. Notre RevPAR a bondi de 195% en 6 mois grâce à des algorithmes qui anticipent les périodes creuses mieux que nos revenue managers. Une révolution pour notre établissement.',
-    result: '+195% de RevPAR',
-    accent: '#0EA5E9',
+    initials: 'LD',
+    name: 'Léa D.',
+    role: 'Gérante',
+    company: 'Boutique mode · Paris',
+    quote: 'Site refait, Google My Business optimisé, et on apparaît maintenant en premier sur notre quartier. Résultat en moins d\'un mois.',
+    result: '#1 sur le quartier',
+    accent: '#8B5CF6',
     stars: 5,
     delay: 0.15,
   },
   {
-    initials: 'MF',
-    name: 'Maître Fontaine',
-    role: 'Avocat associé',
-    company: 'Cabinet Fontaine & Associés · Lyon',
-    quote: 'Mon agenda est plein 3 semaines à l\'avance, automatiquement. Avant OtterFlow, je perdais des heures à gérer les prises de RDV. Aujourd\'hui, je me consacre entièrement à mes clients. Le ROI est évident dès le premier mois.',
-    result: 'Agenda plein 3 sem. à l\'avance',
-    accent: '#8B5CF6',
+    initials: 'CR',
+    name: 'Camille R.',
+    role: 'Créatrice',
+    company: 'Boutique déco · Paris',
+    quote: 'On n\'existait pas sur Google avant OtterFlow. Aujourd\'hui on reçoit des clients qui nous ont trouvés en ligne tous les jours.',
+    result: 'Clients Google chaque jour',
+    accent: '#06B6D4',
     stars: 5,
     delay: 0.3,
   },
@@ -73,7 +73,7 @@ export default function Testimonials() {
             Des résultats qui parlent
           </h2>
           <p className="text-lg dark:text-slate-400 text-charcoal/60 max-w-xl mx-auto">
-            Nos clients témoignent de l&rsquo;impact concret de nos algorithmes
+            Nos clients témoignent de l&rsquo;impact concret de nos solutions
             sur leur activité.
           </p>
         </motion.div>

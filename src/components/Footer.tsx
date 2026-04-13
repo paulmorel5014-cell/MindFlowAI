@@ -7,21 +7,24 @@ import { Zap, Twitter, Linkedin, Instagram, X, ChevronRight } from 'lucide-react
 const links = {
   Solutions: [
     { label: 'Prospect Radar', href: '#laboratoire' },
+    { label: 'Personal Shopper IA WhatsApp', href: '#laboratoire' },
     { label: 'OtterFlow Analytics', href: '#laboratoire' },
     { label: 'Rebranding', href: '#tarification' },
     { label: 'Google My Business', href: '#tarification' },
     { label: 'Shooting photo', href: '#tarification' },
   ],
   Secteurs: [
-    { label: 'Restauration', href: '#portfolio' },
-    { label: 'Hôtellerie', href: '#portfolio' },
-    { label: 'BTP & Immobilier', href: '#portfolio' },
-    { label: 'Juridique', href: '#portfolio' },
+    { label: 'Restauration & Food', href: '#tarification' },
+    { label: 'Hôtellerie & Tourisme', href: '#tarification' },
+    { label: 'Boutiques & Retail', href: '#tarification' },
+    { label: 'PME & TPE', href: '#tarification' },
+    { label: 'Beauté & Bien-être', href: '#tarification' },
+    { label: 'E-commerce', href: '#tarification' },
   ],
   Agence: [
     { label: 'Notre vision', href: '#vision' },
-    { label: 'Études de cas', href: '#portfolio' },
     { label: 'Tarification', href: '#tarification' },
+    { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#configurateur' },
   ],
 }
@@ -266,8 +269,7 @@ export default function Footer() {
               </a>
 
               <p className="text-sm dark:text-slate-400 text-charcoal/60 leading-relaxed max-w-xs mb-6">
-                L&rsquo;architecture digitale de prestige. Algorithmes prédictifs,
-                flux de données et moteurs de croissance pour les marques d&rsquo;exception.
+                Votre présence digitale clé en main. Sites web, SEO local et chatbot WhatsApp pour restaurants, hôtels, boutiques et PME.
               </p>
 
               {/* Socials */}
