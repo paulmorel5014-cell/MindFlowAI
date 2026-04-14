@@ -26,14 +26,15 @@ export default function Hero() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/Vid%C3%A9o%20webm.mp4" type="video/mp4" />
+        <source src="/hero.mp4" type="video/mp4" />
+        <source src="/hero.mp4" type="video/webm" />
       </video>
 
-      {/* Gradient overlay — sky transparent on top, dark at bottom for CTAs */}
+      {/* Gradient overlay — sky visible on top, dark at bottom for CTAs */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.72) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.70) 100%)',
         }}
       />
 
@@ -53,22 +54,20 @@ export default function Hero() {
           <span className="text-xs font-medium text-white/80 tracking-wide">Paris &amp; France</span>
         </motion.div>
 
-        {/* H1 — overlaid on sky */}
+        {/* H1 — two lines only, overlaid on sky */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="font-serif text-fluid-xl font-bold text-white leading-[1.06] mb-6"
-          style={{ textShadow: '0 2px 40px rgba(0,0,0,0.35)' }}
+          style={{ textShadow: '0 2px 40px rgba(0,0,0,0.4)' }}
         >
-          Plus de clients.<br />
           Plus de visibilité.<br />
           <em
-            className="not-italic"
             style={{
               fontStyle: 'italic',
               color: '#67E8F9',
-              textShadow: '0 0 40px rgba(6,182,212,0.6)',
+              textShadow: '0 0 50px rgba(6,182,212,0.7)',
             }}
           >
             Sans vous prendre la tête.
@@ -80,7 +79,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35 }}
-          className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed"
           style={{ textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}
         >
           OtterFlow crée votre site, gère votre SEO et automatise votre relation client sur WhatsApp. Pour les restaurants, hôtels, boutiques et PME qui veulent grandir.
