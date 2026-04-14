@@ -112,7 +112,12 @@ export default function Hero() {
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium dark:text-slate-300 text-charcoal/70 dark:hover:text-white hover:text-charcoal frozen-card hover:bg-white/[0.08] transition-all duration-300 hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium dark:text-white text-charcoal hover:opacity-80 transition-all duration-300 hover:scale-[1.02]"
+            style={{
+              border: '2px solid rgba(255,255,255,0.7)',
+              background: 'rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(12px)',
+            }}
           >
             Voir nos offres
           </a>

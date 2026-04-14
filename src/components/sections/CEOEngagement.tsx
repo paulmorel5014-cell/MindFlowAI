@@ -10,16 +10,13 @@ export default function CEOEngagement() {
 
   return (
     <section id="vision" className="relative py-16 md:py-32 overflow-hidden">
-      {/* Background — blurred image simulation */}
+      {/* Background */}
       <div className="absolute inset-0 dark:bg-space bg-ivory overflow-hidden">
-        {/* Blurred abstract shapes for depth */}
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-1/4 left-1/6 w-[500px] h-[500px] rounded-full dark:bg-violet-neon/[0.12] bg-violet-neon/[0.06] blur-[120px]" />
           <div className="absolute bottom-1/4 right-1/6 w-[400px] h-[400px] rounded-full dark:bg-cyan-glacial/[0.08] bg-cyan-glacial/[0.04] blur-[100px]" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full dark:bg-space-mid/80 bg-white/50 blur-[60px]" />
         </div>
-
-        {/* Grid */}
         <div
           className="absolute inset-0 opacity-[0.02] dark:opacity-[0.04]"
           style={{
@@ -37,9 +34,9 @@ export default function CEOEngagement() {
       <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 50, scale: 0.97 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
           animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
           {/* Outer glow ring */}
@@ -62,59 +59,54 @@ export default function CEOEngagement() {
               </span>
             </div>
 
-            {/* Letter content — signature font */}
+            {/* Letter content */}
             <div className="relative">
-              {/* Decorative line */}
               <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-violet-neon/40 via-cyan-glacial/30 to-transparent rounded-full" />
 
               <div className="font-typewriter italic text-lg md:text-xl leading-relaxed dark:text-white/90 text-charcoal/90 pl-4 space-y-5">
                 <motion.p
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3, duration: 0.7 }}
+                  transition={{ delay: 0.05, duration: 0.4 }}
                 >
                   Chaque projet que nous acceptons est une promesse.
-                  Non pas de résultats standardisés, mais d&rsquo;une attention
-                  absolue à <em className="text-violet-bright">votre réalité.</em>
                 </motion.p>
 
                 <motion.p
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.45, duration: 0.7 }}
+                  transition={{ delay: 0.07, duration: 0.4 }}
                 >
-                  Nos algorithmes s&rsquo;adaptent à vos contraintes budgétaires —
-                  parce que la croissance ne devrait jamais être
-                  le privilège des seules grandes entreprises.
+                  Pas des résultats génériques mais une attention réelle à{' '}
+                  <em className="text-violet-bright">votre activité, votre secteur, votre budget.</em>
                 </motion.p>
 
                 <motion.p
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.6, duration: 0.7 }}
+                  transition={{ delay: 0.09, duration: 0.4 }}
                 >
-                  Qu&rsquo;il s&rsquo;agisse d&rsquo;un restaurant familial ou d&rsquo;un groupe
-                  international, nos moteurs prédictifs délivrent
-                  la <em className="text-cyan-glacial">même précision,</em> la même excellence.
+                  Que vous soyez un restaurant familial ou une PME en pleine croissance,
+                  on vous construit la{' '}
+                  <em className="text-cyan-glacial">présence digitale que vous méritez.</em>
                 </motion.p>
 
                 <motion.p
                   initial={{ opacity: 0, x: -10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.75, duration: 0.7 }}
+                  transition={{ delay: 0.1, duration: 0.4 }}
                   className="dark:text-slate-400 text-charcoal/60 text-xl"
                 >
-                  Discutons ensemble. Je m&rsquo;engage personnellement à trouver
-                  la formule qui correspond à vos ambitions et à votre budget.
+                  Discutons-en. Je vous réponds personnellement sous 24h.
                 </motion.p>
               </div>
             </div>
 
             {/* Signature block */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9, duration: 0.7 }}
+              transition={{ delay: 0.1, duration: 0.4 }}
               className="mt-12"
             >
               <div className="font-signature text-4xl md:text-5xl gradient-text mb-1">
@@ -128,7 +120,7 @@ export default function CEOEngagement() {
               </div>
             </motion.div>
 
-            {/* Frost grain effect overlay */}
+            {/* Frost grain */}
             <div
               className="absolute inset-0 rounded-[26px] pointer-events-none opacity-[0.4]"
               style={{
