@@ -18,39 +18,24 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       id="accueil"
     >
-      {/* Background */}
-      <div className="absolute inset-0 dark:bg-space bg-ivory" />
+      {/* Video background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/Vid%C3%A9o%20webm.mp4" type="video/mp4" />
+      </video>
 
-      {/* Radial glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full dark:bg-violet-neon/[0.07] bg-violet-neon/[0.04] blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[400px] rounded-full dark:bg-cyan-glacial/[0.06] bg-cyan-glacial/[0.03] blur-[100px] pointer-events-none" />
-
-      {/* Grid overlay */}
+      {/* Gradient overlay — sky transparent on top, dark at bottom for CTAs */}
       <div
-        className="absolute inset-0 opacity-[0.025] dark:opacity-[0.04] pointer-events-none"
+        className="absolute inset-0 z-[1] pointer-events-none"
         style={{
-          backgroundImage: `
-            linear-gradient(rgba(139,92,246,0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139,92,246,0.5) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.72) 100%)',
         }}
       />
-
-      {/* Floating orbs */}
-      {[
-        { x: '15%', y: '20%', size: 280, color: 'rgba(139,92,246,0.12)', delay: 0 },
-        { x: '80%', y: '60%', size: 200, color: 'rgba(6,182,212,0.10)', delay: 1.5 },
-        { x: '60%', y: '15%', size: 150, color: 'rgba(139,92,246,0.08)', delay: 0.8 },
-      ].map((orb, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full pointer-events-none blur-[60px]"
-          style={{ left: orb.x, top: orb.y, width: orb.size, height: orb.size, background: orb.color }}
-          animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 6 + i, repeat: Infinity, ease: 'easeInOut', delay: orb.delay }}
-        />
-      ))}
 
       {/* Main content */}
       <motion.div
@@ -62,22 +47,32 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full dark:bg-white/[0.06] bg-black/[0.04] border dark:border-white/[0.08] border-black/[0.06] mb-8"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm mb-8"
         >
-          <MapPin className="w-3 h-3 dark:text-slate-400 text-charcoal/60" />
-          <span className="text-xs font-medium dark:text-slate-400 text-charcoal/60 tracking-wide">Paris &amp; France</span>
+          <MapPin className="w-3 h-3 text-white/80" />
+          <span className="text-xs font-medium text-white/80 tracking-wide">Paris &amp; France</span>
         </motion.div>
 
-        {/* H1 */}
+        {/* H1 — overlaid on sky */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-fluid-xl font-bold dark:text-white text-charcoal leading-[1.06] mb-6"
+          className="font-serif text-fluid-xl font-bold text-white leading-[1.06] mb-6"
+          style={{ textShadow: '0 2px 40px rgba(0,0,0,0.35)' }}
         >
           Plus de clients.<br />
           Plus de visibilité.<br />
-          <span className="gradient-text">Sans vous prendre la tête.</span>
+          <em
+            className="not-italic"
+            style={{
+              fontStyle: 'italic',
+              color: '#67E8F9',
+              textShadow: '0 0 40px rgba(6,182,212,0.6)',
+            }}
+          >
+            Sans vous prendre la tête.
+          </em>
         </motion.h1>
 
         {/* Subtitle */}
@@ -85,7 +80,8 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35 }}
-          className="text-lg md:text-xl dark:text-slate-400 text-charcoal/65 max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto mb-10 leading-relaxed"
+          style={{ textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}
         >
           OtterFlow crée votre site, gère votre SEO et automatise votre relation client sur WhatsApp. Pour les restaurants, hôtels, boutiques et PME qui veulent grandir.
         </motion.p>
@@ -112,7 +108,7 @@ export default function Hero() {
             href={WA_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium dark:text-white text-charcoal hover:opacity-80 transition-all duration-300 hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium text-white hover:opacity-80 transition-all duration-300 hover:scale-[1.02]"
             style={{
               border: '2px solid rgba(255,255,255,0.7)',
               background: 'rgba(255,255,255,0.08)',
