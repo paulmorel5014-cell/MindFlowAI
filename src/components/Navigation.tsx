@@ -8,16 +8,6 @@ import { cn } from '@/lib/utils'
 
 function LogoMark() {
   const [imgOk, setImgOk] = useState(true)
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => { setMounted(true) }, [])
-
-  const logoFilter = mounted
-    ? resolvedTheme === 'dark'
-      ? 'brightness(0) invert(1) drop-shadow(0 0 10px rgba(139,92,246,0.5))'
-      : 'brightness(0)'
-    : 'brightness(0) invert(1)'
 
   return (
     <div className="relative w-11 h-11 flex-shrink-0 transition-all duration-300 group-hover:scale-105">
@@ -28,8 +18,8 @@ function LogoMark() {
           alt="OtterFlow logo"
           width={44}
           height={44}
-          className="w-full h-full object-contain"
-          style={{ filter: logoFilter, transition: 'filter 0.3s' }}
+          className="w-full h-full object-contain dark:invert"
+          style={{ transition: 'filter 0.3s' }}
           onError={() => setImgOk(false)}
         />
       ) : (
@@ -87,15 +77,15 @@ export default function Navigation() {
         )}
       >
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
-          <div className="flex items-center justify-between h-18 py-3">
+          <div className="grid grid-cols-3 items-center h-18 py-3">
 
-            {/* Logo */}
-            <a href="#" className="flex items-center group flex-shrink-0">
+            {/* Logo — left */}
+            <a href="#" className="flex items-center group flex-shrink-0 justify-self-start">
               <LogoMark />
             </a>
 
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-7">
+            {/* Desktop nav — perfectly centered */}
+            <div className="hidden md:flex items-center justify-center gap-7">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -108,8 +98,8 @@ export default function Navigation() {
               ))}
             </div>
 
-            {/* Actions */}
-            <div className="flex items-center gap-2.5">
+            {/* Actions — right */}
+            <div className="flex items-center justify-end gap-2.5">
               {/* Theme toggle */}
               {mounted && (
                 <button
