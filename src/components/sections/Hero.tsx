@@ -18,19 +18,29 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       id="accueil"
     >
-      {/* Video background */}
+      {/* Video — mobile (9:16 portrait) */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="md:hidden absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/hero.mp4" type="video/mp4" />
-        <source src="/hero.mp4" type="video/webm" />
+        <source src="/herotelephone.webm" type="video/webm" />
       </video>
 
-      {/* Gradient overlay — sky visible on top, dark at bottom for CTAs */}
+      {/* Video — desktop (16:9 landscape) */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="hidden md:block absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/heroordinateur.webm" type="video/webm" />
+      </video>
+
+      {/* Gradient overlay */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
@@ -54,7 +64,7 @@ export default function Hero() {
           <span className="text-xs font-medium text-white/80 tracking-wide">Paris &amp; France</span>
         </motion.div>
 
-        {/* H1 — two lines only, overlaid on sky */}
+        {/* H1 */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
