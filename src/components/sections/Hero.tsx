@@ -2,9 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, MapPin } from 'lucide-react'
-
-const WA_LINK = 'https://wa.me/33781364451'
+import { MapPin } from 'lucide-react'
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null)
@@ -18,105 +16,117 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       id="accueil"
     >
-      {/* Video background */}
+      {/* Video — mobile (9:16 portrait) */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="md:hidden absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/hero.mp4" type="video/mp4" />
-        <source src="/hero.mp4" type="video/webm" />
+        <source src="/herotelephone.webm" type="video/webm" />
       </video>
 
-      {/* Gradient overlay — sky visible on top, dark at bottom for CTAs */}
+      {/* Video — desktop (16:9 landscape) */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="hidden md:block absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/heroordinateur.webm" type="video/webm" />
+      </video>
+
+      {/* Gradient overlay — max 20% so video remains clearly visible */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.20) 40%, rgba(0,0,0,0.70) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.10) 50%, rgba(0,0,0,0.20) 100%)',
         }}
       />
 
-      {/* Main content */}
+      {/* Badge — positioned high in the hero, above the centred title */}
       <motion.div
-        style={{ y, opacity }}
-        className="relative z-10 text-center max-w-4xl mx-auto px-6 pt-24 w-full"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="absolute top-28 left-0 right-0 z-10 flex justify-center"
       >
-        {/* Location badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm mb-8"
-        >
+        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm">
           <MapPin className="w-3 h-3 text-white/80" />
           <span className="text-xs font-medium text-white/80 tracking-wide">Paris &amp; France</span>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        {/* H1 — two lines only, overlaid on sky */}
+      {/* Main content — title + mobile CTA, vertically centred */}
+      <motion.div
+        style={{ y, opacity }}
+        className="relative z-10 text-center max-w-4xl mx-auto px-6 w-full"
+      >
+        {/* H1 */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-fluid-xl font-bold text-white leading-[1.06] mb-6"
-          style={{ textShadow: '0 2px 40px rgba(0,0,0,0.4)' }}
+          className="font-sans text-fluid-xl font-bold text-white leading-[1.1]"
+          style={{ textShadow: '0 2px 40px rgba(0,0,0,0.5)' }}
         >
-          Plus de visibilité.<br />
+          Plus de visibilité<br />
           <em
             style={{
+              fontFamily: "'Playfair Display', Georgia, serif",
               fontStyle: 'italic',
+              fontWeight: 400,
               color: '#67E8F9',
               textShadow: '0 0 50px rgba(6,182,212,0.7)',
             }}
           >
-            Sans vous prendre la tête.
+            Sans vous prendre la tête
           </em>
         </motion.h1>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35 }}
-          className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed"
-          style={{ textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}
-        >
-          OtterFlow crée votre site, gère votre SEO et automatise votre relation client sur WhatsApp. Pour les restaurants, hôtels, boutiques et PME qui veulent grandir.
-        </motion.p>
-
-        {/* CTA buttons */}
+        {/* CTA — mobile only, below the title in natural flow */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.45 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="md:hidden mt-10 flex justify-center"
         >
           <a
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group shimmer-btn inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-base font-semibold text-white shadow-[0_0_40px_rgba(139,92,246,0.3)] hover:shadow-[0_0_60px_rgba(139,92,246,0.5)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-            style={{ '--btn-bg': 'linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%)' } as React.CSSProperties}
-          >
-            Démarrer gratuitement
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
-
-          <a
-            href={WA_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium text-white hover:opacity-80 transition-all duration-300 hover:scale-[1.02]"
+            href="#tarification"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:bg-white/[0.14] active:scale-[0.98]"
             style={{
-              border: '2px solid rgba(255,255,255,0.7)',
-              background: 'rgba(255,255,255,0.08)',
+              background: 'rgba(255,255,255,0.07)',
+              border: '1px solid rgba(255,255,255,0.60)',
               backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
             }}
           >
             Voir nos offres
           </a>
         </motion.div>
+      </motion.div>
+
+      {/* CTA — desktop only, anchored at the bottom of the hero */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.45 }}
+        className="hidden md:flex absolute bottom-10 left-0 right-0 z-10 justify-center"
+      >
+        <a
+          href="#tarification"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:bg-white/[0.14] active:scale-[0.98]"
+          style={{
+            background: 'rgba(255,255,255,0.07)',
+            border: '1px solid rgba(255,255,255,0.60)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+          }}
+        >
+          Voir nos offres
+        </a>
       </motion.div>
     </section>
   )

@@ -7,17 +7,17 @@ import { Plus, ArrowRight } from 'lucide-react'
 const faqs = [
   {
     question: 'Quels sont les délais pour avoir mon site en ligne ?',
-    answer: 'Le Pack Essentiel (site vitrine 5 pages + GMB) est livré en 7 à 10 jours ouvrés. Le Pack Croissance, qui inclut un rebranding léger et une étude de marché locale, nécessite 14 à 18 jours. Le Pack Prestige avec app ou site haut de gamme se déploie en 3 à 5 semaines selon la complexité. Nous validons chaque étape avec vous avant de passer à la suivante.',
+    answer: 'Le Pack Essentiel (site vitrine 5 pages + Google My Business) est livré en 7 à 10 jours ouvrés. Le Pack Croissance, qui inclut un rebranding léger et une étude de marché locale, nécessite 14 à 18 jours. Le Pack Prestige avec app ou site haut de gamme se déploie en 3 à 5 semaines selon la complexité. Nous validons chaque étape avec vous avant de passer à la suivante.',
     category: 'Délais',
   },
   {
-    question: 'Comment fonctionne le Personal Shopper IA sur WhatsApp ?',
+    question: 'Comment fonctionne le Personal Assistant IA sur WhatsApp ?',
     answer: 'Notre chatbot IA se connecte à votre compte WhatsApp Business via l\'API officielle de Meta. Il répond automatiquement à vos clients 24h/24 : recommandations produits ou plats, informations de disponibilité, prise de commande, support. Vous gardez la main à tout moment et pouvez reprendre la conversation. Aucune application à installer pour vos clients — ils écrivent sur WhatsApp comme d\'habitude.',
-    category: 'Personal Shopper IA',
+    category: 'Personal Assistant IA',
   },
   {
     question: 'Puis-je commencer par le Pack Essentiel et évoluer ?',
-    answer: 'Absolument. Nos packs sont conçus pour s\'imbriquer. Vous démarrez avec l\'Essentiel, et dès que vous êtes prêt, vous upgradez vers Croissance ou Prestige en ne payant que la différence du setup. Votre site, votre GMB et vos contenus existants sont intégralement conservés et améliorés — pas de recommencement à zéro.',
+    answer: 'Absolument. Nos packs sont conçus pour s\'imbriquer. Vous démarrez avec l\'Essentiel, et dès que vous êtes prêt, vous upgradez vers Croissance ou Prestige en ne payant que la différence du setup. Votre site, votre Google My Business et vos contenus existants sont intégralement conservés et améliorés — pas de recommencement à zéro.',
     category: 'Tarification',
   },
   {
@@ -49,7 +49,7 @@ const faqs = [
 
 const categoryColors: Record<string, string> = {
   'Délais': '#06B6D4',
-  'Personal Shopper IA': '#25D366',
+  'Personal Assistant IA': '#25D366',
   'Tarification': '#8B5CF6',
   'Services': '#F59E0B',
   'SEO': '#0EA5E9',

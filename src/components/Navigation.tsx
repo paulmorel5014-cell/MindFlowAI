@@ -10,16 +10,15 @@ function LogoMark() {
   const [imgOk, setImgOk] = useState(true)
 
   return (
-    <div className="relative w-11 h-11 flex-shrink-0 transition-all duration-300 group-hover:scale-105">
+    <div className="relative w-12 h-12 flex-shrink-0 transition-all duration-300 group-hover:scale-105">
       {imgOk ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src="/IMG_0258.webp"
+          src="/Logopng.png"
           alt="OtterFlow logo"
-          width={44}
-          height={44}
-          className="w-full h-full object-contain dark:invert"
-          style={{ transition: 'filter 0.3s' }}
+          width={48}
+          height={48}
+          className="w-full h-full object-contain"
           onError={() => setImgOk(false)}
         />
       ) : (
@@ -90,7 +89,13 @@ export default function Navigation() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm font-medium dark:text-slate-400 text-charcoal/65 dark:hover:text-white hover:text-charcoal transition-colors duration-200 relative group"
+                  className={cn(
+                    'text-sm font-medium transition-colors duration-300 relative group',
+                    scrolled
+                      ? 'dark:text-slate-400 text-charcoal/65 dark:hover:text-white hover:text-charcoal'
+                      : 'text-white/90 hover:text-white'
+                  )}
+                  style={!scrolled ? { textShadow: '0 1px 8px rgba(0,0,0,0.6)' } : undefined}
                 >
                   {link.label}
                   <span className="absolute -bottom-0.5 left-0 w-0 h-[0.5px] bg-gradient-to-r from-violet-neon to-cyan-glacial group-hover:w-full transition-all duration-300" />
@@ -98,8 +103,8 @@ export default function Navigation() {
               ))}
             </div>
 
-            {/* Actions — right */}
-            <div className="flex items-center justify-end gap-2.5">
+            {/* Actions — right (col-start-3 forces column 3 even when nav links are hidden on mobile) */}
+            <div className="flex items-center justify-end gap-3 col-start-3">
               {/* Theme toggle */}
               {mounted && (
                 <button
@@ -132,7 +137,7 @@ export default function Navigation() {
               {/* Burger — mobile only */}
               <motion.button
                 className={cn(
-                  'md:hidden relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200',
+                  'md:hidden relative w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200',
                   'dark:text-white text-charcoal',
                   mobileOpen
                     ? 'dark:bg-white/[0.10] bg-black/[0.08] dark:border-white/[0.10] border-black/[0.08] border'
