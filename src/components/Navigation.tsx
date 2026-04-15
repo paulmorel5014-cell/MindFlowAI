@@ -10,16 +10,15 @@ function LogoMark() {
   const [imgOk, setImgOk] = useState(true)
 
   return (
-    <div className="relative w-11 h-11 flex-shrink-0 transition-all duration-300 group-hover:scale-105">
+    <div className="relative w-12 h-12 flex-shrink-0 transition-all duration-300 group-hover:scale-105">
       {imgOk ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src="/IMG_0258.webp"
+          src="/logopng.png"
           alt="OtterFlow logo"
-          width={44}
-          height={44}
-          className="w-full h-full object-contain dark:invert"
-          style={{ transition: 'filter 0.3s' }}
+          width={48}
+          height={48}
+          className="w-full h-full object-contain"
           onError={() => setImgOk(false)}
         />
       ) : (
@@ -99,7 +98,7 @@ export default function Navigation() {
             </div>
 
             {/* Actions — right */}
-            <div className="flex items-center justify-end gap-2.5">
+            <div className="flex items-center justify-end gap-3">
               {/* Theme toggle */}
               {mounted && (
                 <button
