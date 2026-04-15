@@ -103,8 +103,8 @@ export default function Navigation() {
               ))}
             </div>
 
-            {/* Actions — right */}
-            <div className="flex items-center justify-end gap-3">
+            {/* Actions — right (col-start-3 forces column 3 even when nav links are hidden on mobile) */}
+            <div className="flex items-center justify-end gap-3 col-start-3">
               {/* Theme toggle */}
               {mounted && (
                 <button

@@ -59,7 +59,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Main content — title only, vertically centred */}
+      {/* Main content — title + mobile CTA, vertically centred */}
       <motion.div
         style={{ y, opacity }}
         className="relative z-10 text-center max-w-4xl mx-auto px-6 w-full"
@@ -85,14 +85,35 @@ export default function Hero() {
             Sans vous prendre la tête
           </em>
         </motion.h1>
+
+        {/* CTA — mobile only, below the title in natural flow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45 }}
+          className="md:hidden mt-10 flex justify-center"
+        >
+          <a
+            href="#tarification"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:bg-white/[0.14] active:scale-[0.98]"
+            style={{
+              background: 'rgba(255,255,255,0.07)',
+              border: '1px solid rgba(255,255,255,0.60)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+            }}
+          >
+            Voir nos offres
+          </a>
+        </motion.div>
       </motion.div>
 
-      {/* CTA — liquid glass — anchored at the bottom of the hero */}
+      {/* CTA — desktop only, anchored at the bottom of the hero */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.45 }}
-        className="absolute bottom-10 left-0 right-0 z-10 flex justify-center"
+        className="hidden md:flex absolute bottom-10 left-0 right-0 z-10 justify-center"
       >
         <a
           href="#tarification"
