@@ -205,14 +205,14 @@ const tools = [
     id: 'shopper',
     icon: MessageCircle,
     Preview: ShopperPreview,
-    name: 'Personal Shopper IA',
+    name: 'Personal Assistant IA',
     tagline: 'Sur WhatsApp',
     badge: 'Nouveau',
     description:
       'Un chatbot IA conversationnel intégré à WhatsApp. Recommandations produits, support 24/7, augmentation du panier moyen. Disponible pour restaurants, hôtels, e-commerce, salons et B2B.',
     modalTitle: 'Votre Vendeur Disponible 24h/24',
     modalDescription:
-      'Transformez WhatsApp en canal de vente intelligent. Notre Personal Shopper IA engage vos clients en langage naturel, recommande les bons produits au bon moment et augmente votre panier moyen de +32% en moyenne. Sans application à télécharger, sans formation — juste WhatsApp.',
+      'Transformez WhatsApp en canal de vente intelligent. Notre Personal Assistant IA engage vos clients en langage naturel, recommande les bons produits au bon moment et augmente votre panier moyen de +32% en moyenne. Sans application à télécharger, sans formation — juste WhatsApp.',
     modalFeatures: [
       { icon: MessageCircle, label: 'WhatsApp natif', desc: 'Zéro friction — vos clients utilisent déjà WhatsApp' },
       { icon: Users, label: 'Multi-secteurs', desc: 'Restaurants, hôtels, e-commerce, salons, B2B' },

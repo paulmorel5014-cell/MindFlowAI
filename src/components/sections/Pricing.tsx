@@ -22,7 +22,7 @@ const plans = [
     features: [
       'Site vitrine 5 pages',
       'Setup Google My Business',
-      'Maintenance GMB mensuelle',
+      'Maintenance Google My Business mensuelle',
       'SEO de base (on-page)',
     ],
     cta: 'Commencer',
@@ -48,7 +48,7 @@ const plans = [
       'Site web premium multi-pages',
       'Rebranding léger (logo + charte)',
       'Étude de marché locale',
-      'SEO actif + GMB optimisé',
+      'SEO actif + Google My Business optimisé',
       'OtterFlow Analytics inclus',
     ],
     selfFinance: "S'autofinance dès les premiers clients générés.",
@@ -70,7 +70,7 @@ const plans = [
     hoverGlowClass: 'hover:shadow-[0_0_60px_rgba(212,175,114,0.2)]',
     featured: false,
     features: [
-      'App / dashboard OU site haut de gamme',
+      'Application sur-mesure et Site haut de gamme',
       'Rebranding complet (identité visuelle)',
       'Shooting photo professionnel',
       'SEO avancé + OtterFlow Analytics',
@@ -84,7 +84,7 @@ const plans = [
 const addons = [
   { icon: Camera, label: 'Shooting photo', price: 'Sur devis', color: '#F59E0B' },
   { icon: TrendingUp, label: 'Étude de marché', price: 'Sur devis', color: '#0EA5E9' },
-  { icon: MapPin, label: 'Migration / optimisation GMB', price: 'Sur devis', color: '#10B981' },
+  { icon: MapPin, label: 'Migration / optimisation Google My Business', price: 'Sur devis', color: '#10B981' },
   { icon: Palette, label: 'Refonte identité visuelle', price: 'Sur devis', color: '#8B5CF6' },
 ]
 

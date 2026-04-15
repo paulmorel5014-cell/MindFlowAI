@@ -59,7 +59,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Main content */}
+      {/* Main content — title only, vertically centred */}
       <motion.div
         style={{ y, opacity }}
         className="relative z-10 text-center max-w-4xl mx-auto px-6 w-full"
@@ -69,7 +69,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="font-sans text-fluid-xl font-bold text-white leading-[1.1] mb-10"
+          className="font-sans text-fluid-xl font-bold text-white leading-[1.1]"
           style={{ textShadow: '0 2px 40px rgba(0,0,0,0.5)' }}
         >
           Plus de visibilité<br />
@@ -85,27 +85,27 @@ export default function Hero() {
             Sans vous prendre la tête
           </em>
         </motion.h1>
+      </motion.div>
 
-        {/* CTA — single liquid glass button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35 }}
-          className="flex items-center justify-center"
+      {/* CTA — liquid glass — anchored at the bottom of the hero */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.45 }}
+        className="absolute bottom-10 left-0 right-0 z-10 flex justify-center"
+      >
+        <a
+          href="#tarification"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:bg-white/[0.14] active:scale-[0.98]"
+          style={{
+            background: 'rgba(255,255,255,0.07)',
+            border: '1px solid rgba(255,255,255,0.60)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+          }}
         >
-          <a
-            href="#tarification"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-base font-medium text-white transition-all duration-300 hover:scale-[1.02] hover:bg-white/[0.14] active:scale-[0.98]"
-            style={{
-              background: 'rgba(255,255,255,0.07)',
-              border: '1px solid rgba(255,255,255,0.60)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-            }}
-          >
-            Voir nos offres
-          </a>
-        </motion.div>
+          Voir nos offres
+        </a>
       </motion.div>
     </section>
   )
